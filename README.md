@@ -14,5 +14,3 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
   * Norman Peter Stankewitz - np.stankewitz.2018@alumnos.urjc.es - [GitHub](https://github.com/)
   
 ## **[Trello](https://trello.com/b/0NaHNGy9/bullet-madness)**
-
-## **[GDD](https://docs.google.com/document/d/1YwoTRTW1xaNHb_ljitqgXGKbt2AI6WRtuZX_5zPLON8/)**
