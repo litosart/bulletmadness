@@ -9,7 +9,7 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 
 ## **Integrantes:**
   * Carlos Rodríguez Sánchez Roldán - c.rodriguezs.2018@alumnos.urjc.es - [GitHub](https://github.com/litosart/)
-  * José Fernando Medina Talavera - jf.medina.2018@alumnos.urjc.es - [GitHub](https://github.com/)
+  * José Fernando Medina Talavera - jf.medina.2018@alumnos.urjc.es - [GitHub](https://github.com/Kreithor)
   * Antonio Arian Silaghi - aa.silaghi.2018@alumnos.urjc.es - [GitHub](https://github.com/)
   * Norman Peter Stankewitz - np.stankewitz.2018@alumnos.urjc.es - [GitHub](https://github.com/NormanSt98)
   
