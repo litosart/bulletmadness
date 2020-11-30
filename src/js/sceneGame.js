@@ -5,8 +5,8 @@ class sceneGame extends Phaser.Scene {
   }
 
   preload(){
-    this.load.image("background", "img/Backgrounds/Background_ClearSky.png");
-    this.load.image("playerShip1", "img/PlayerShips/PlayerShip1.png");
+    this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
+    this.load.image("playerShip1", "resources/img/sprites/PlayerShip1.png");
   }
 
   create() {
