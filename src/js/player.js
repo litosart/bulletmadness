@@ -10,23 +10,29 @@ class Player extends Phaser.GameObjects.Sprite{
     this.body.setCollideWorldBounds(true);
   }
 
-  Move(cursorKeys){
+  Move(inputKeys){
     var playerSpeed = 300;
 
-    if(cursorKeys.left.isDown){
+    if(inputKeys.left.isDown){
       this.body.setVelocityX(-playerSpeed);
-    }else if(cursorKeys.right.isDown){
+    }else if(inputKeys.right.isDown){
       this.body.setVelocityX(playerSpeed);
     }else {
       this.body.setVelocityX(0);
     }
 
-    if(cursorKeys.up.isDown){
+    if(inputKeys.up.isDown){
       this.body.setVelocityY(-playerSpeed);
-    }else if(cursorKeys.down.isDown){
+    }else if(inputKeys.down.isDown){
       this.body.setVelocityY(playerSpeed);
     }else {
       this.body.setVelocityY(0);
     }
   }
+
+  Shoot(){
+
+  }
+
+
 }

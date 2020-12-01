@@ -23,7 +23,7 @@ class sceneGame extends Phaser.Scene {
         right:Phaser.Input.Keyboard.KeyCodes.D});
 
     //Adding Player Ships
-    var initialPlayerNumber = 2
+    var initialPlayerNumber = 2;
 
     var i = 0;
     this.players = [];
@@ -31,10 +31,14 @@ class sceneGame extends Phaser.Scene {
       this.players[i] = new Player(this);
       this.players[i].setRandomPosition(1*config.width/10,8*config.height/10,8*config.width/10,1.5*config.height/10)
     }
+
+    //Adding Enemy
+    this.enemy = new Enemy(this);
   }
 
   update(){
     this.players[0].Move(this.cursorKeys);
     this.players[1].Move(this.inputWASD);
+    this.enemy.Move();
   }
 }
