@@ -9,7 +9,7 @@ class Player extends Phaser.GameObjects.Sprite{
 
     this.body.setCollideWorldBounds(true);
   }
-
+  
   Move(inputKeys){
     var playerSpeed = 300;
 
