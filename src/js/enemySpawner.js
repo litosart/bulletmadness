@@ -1,5 +1,4 @@
 class EnemySpawner{
-
     constructor(scene){
       this.scene = scene
       this.enemyArray = [];

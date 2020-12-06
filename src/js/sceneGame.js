@@ -1,7 +1,7 @@
 
-class sceneGame extends Phaser.Scene {
+class SceneGame extends Phaser.Scene {
   constructor(){
-    super("bootGame");
+    super("BootGame");
   }
 
   preload(){
@@ -41,11 +41,6 @@ class sceneGame extends Phaser.Scene {
     //Adding Enemy
     this.enemy = new Enemy(this);
     this.enemy.create();
-    console.log(this.enemy.a);
-
-    timer = game.time.create(false);
-    timer.loop(2000, updateCounter, this);
-    timer.start();
   }
 
   movePlayers(){
