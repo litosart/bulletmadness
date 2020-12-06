@@ -2,7 +2,7 @@ const config = {
   width: 600,
   height: 800,
   backgroundColor: 0x000000,
-  scene: [sceneTitleScreen],
+  scene: [sceneTitleScreen, sceneGame],
   pixelArt: true,
   physics: {
     default: "arcade",

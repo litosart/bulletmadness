@@ -1,10 +1,10 @@
-class sceneTitleScreen extends Phaser.scene{
+class sceneTitleScreen extends Phaser.Scene {
   constructor(){
     super("bootGame");
   }
 
   preload(){
-    this.add.text(20,20,"BULLET MADNESS", {
+    this.add.text(200,200,"BULLET MADNESS", {
       font:"25px Arial", fill:"white"
     });
     this.load.image("play_button", "resources/img/buttons/play_button.png");
@@ -12,7 +12,12 @@ class sceneTitleScreen extends Phaser.scene{
 
   create(){
     this.playb = this.add.image(250,500, 'play_button');
-    play.setInteractive();
+    this.playb.setInteractive();
+    this.playb.on('pointerdown', () =>  this.scene.start("sceneGame"));
+  }
+
+  update(){
+
   }
 
 }
