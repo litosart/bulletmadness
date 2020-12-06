@@ -6,10 +6,9 @@ class Player extends Phaser.GameObjects.Sprite{
     scene.add.existing(this,0);
     //Enabling Physics
     scene.physics.world.enable([this]);
-
     this.body.setCollideWorldBounds(true);
   }
-  
+
   Move(inputKeys){
     var playerSpeed = 300;
 

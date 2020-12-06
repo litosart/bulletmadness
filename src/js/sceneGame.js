@@ -32,13 +32,25 @@ class sceneGame extends Phaser.Scene {
       this.players[i].setRandomPosition(1*config.width/10,8*config.height/10,8*config.width/10,1.5*config.height/10)
     }
 
+    //Enemy Spawner
+    this.enemySpawner = new EnemySpawner(this);
+    this.enemySpawner.spawnEnemy();
     //Adding Enemy
     this.enemy = new Enemy(this);
+    this.enemy.create();
+    console.log(this.enemy.a);
+
+    timer = game.time.create(false);
+    timer.loop(2000, updateCounter, this);
+    timer.start();
+  }
+
+  movePlayers(){
+    this.players[0].Move(this.cursorKeys);
+    this.players[1].Move(this.inputWASD);
   }
 
   update(){
-    this.players[0].Move(this.cursorKeys);
-    this.players[1].Move(this.inputWASD);
-    this.enemy.Move();
+    this.movePlayers();
   }
 }
