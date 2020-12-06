@@ -2,7 +2,7 @@ const config = {
   width: 384,
   height: 512,
   backgroundColor: 0x000000,
-  scene: [SceneGame],
+  scene: [SceneBoot,SceneGame],
   pixelArt: true,
   physics: {
     default: "arcade",
@@ -13,5 +13,5 @@ const config = {
 }
 
 window.onload = function(){
-  const game = new Phaser.Game(config);
+  var game = new Phaser.Game(config);
 }

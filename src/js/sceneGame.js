@@ -1,15 +1,8 @@
 
 class SceneGame extends Phaser.Scene {
-  constructor(){
-    super("BootGame");
-  }
 
-  preload(){
-    this.add.text(20,20,"Loading Game...", {
-      font:"25px Arial", fill:"white"
-    });
-    this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
-    this.load.image("playerShip1", "resources/img/sprites/PlayerShip1.png");
+  constructor(){
+    super("SceneGame");
   }
 
   create() {
@@ -35,20 +28,38 @@ class SceneGame extends Phaser.Scene {
       this.players[i].setRandomPosition(1*config.width/10,8*config.height/10,8*config.width/10,1.5*config.height/10)
     }
 
+    this.players[0].setInputOrigin(this.cursorKeys);
+    this.players[1].setInputOrigin(this.inputWASD);
+
     //Enemy Spawner
-    this.enemySpawner = new EnemySpawner(this);
-    this.enemySpawner.spawnEnemy();
-    //Adding Enemy
-    this.enemy = new Enemy(this);
-    this.enemy.create();
+    this.enemyManager = new EnemyManager(this);
+    var timerEventConfig = {
+      delay: 200,
+      loop: true,
+      callback: this.enemyManager.spawnEnemy,
+      callbackScope: this.enemyManager
+    }
+    this.timer = this.time.addEvent(timerEventConfig);
   }
 
   movePlayers(){
-    this.players[0].Move(this.cursorKeys);
-    this.players[1].Move(this.inputWASD);
+    var i = 0;
+    for(i=0; i < this.players.length;i++){
+      this.players[i].move();
+    }
   }
 
   update(){
     this.movePlayers();
+
+    //Enemy Cleanup when out of screen
+    var i = 0;
+    for (var i = 0; i < this.enemyManager.enemyArray.length; i++) {
+      if(this.enemyManager.enemyArray[i].y > config.height-200){
+        this.enemyManager.enemyArray[i].destroy();
+        this.enemyManager.enemyArray.slice(i,1);
+      }
+    }
+
   }
 }
