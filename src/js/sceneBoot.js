@@ -1,11 +1,12 @@
-class SceneBoot extends Phaser.Scene{
-  constructor(){
+class SceneBoot extends Phaser.Scene {
+  constructor() {
     super("SceneBoot");
   }
 
-  preload(){
-    this.add.text(20,20,"Loading Game...", {
-      font:"25px Arial", fill:"white"
+  preload() {
+    this.add.text(20, 20, "Loading Game...", {
+      font: "25px Arial",
+      fill: "white"
     });
 
     this.load.image("play_button", "resources/img/buttons/play_button.png");
@@ -18,7 +19,7 @@ class SceneBoot extends Phaser.Scene{
     this.load.image("playerShip1", "resources/img/sprites/PlayerShip1.png");
   }
 
-  create(){
+  create() {
     this.scene.start("SceneTitleScreen");
   }
 }

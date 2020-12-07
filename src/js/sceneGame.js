@@ -17,7 +17,6 @@ class SceneGame extends Phaser.Scene {
 
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
-    this.enemyManager.create();
   }
 
   update() {
