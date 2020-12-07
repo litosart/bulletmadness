@@ -18,28 +18,21 @@ class SceneGame extends Phaser.Scene {
         right:Phaser.Input.Keyboard.KeyCodes.D});
 
     //Player Ships Initialization
-    var initialPlayerNumber = 2;
-
     var i = 0;
     this.players = [];
-    for(i=0;i < initialPlayerNumber;i++){
+    for(i=0;i < playerNumber;i++){
       this.players[i] = new Player(this);
       this.players[i].setRandomPosition(1*config.width/10,8*config.height/10,8*config.width/10,1.5*config.height/10)
     }
 
     this.players[0].setInputOrigin(this.cursorKeys);
-    this.players[1].setInputOrigin(this.inputWASD);
+    if(playerNumber == 2){
+      this.players[1].setInputOrigin(this.inputWASD);
+    }
 
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
     this.enemyManager.create();
-    /*var timerEventConfig = {
-      delay: 200,
-      loop: true,
-      callback: this.enemyManager.spawnEnemy,
-      callbackScope: this.enemyManager
-    }
-    this.timer = this.time.addEvent(timerEventConfig);*/
   }
 
   movePlayers(){
