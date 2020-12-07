@@ -10,7 +10,7 @@ class EnemyManager{
       this.enemyArray.push(new Enemy(this.scene));
       this.enemyArray[this.enemyArray.length-1].create();
     }
-
+    
     create(){
       var timerEventConfig = {
         delay: 200,
@@ -24,7 +24,9 @@ class EnemyManager{
     update(){
       var i = 0;
       for (var i = 0; i < this.enemyArray.length; i++) {
-        if(this.enemyArray[i] != undefined){
+        if(this.enemyArray[i] == undefined){
+          this.enemyArray.splice(i,1);
+        }else {
           this.enemyArray[i].update();
         }
       }
