@@ -1,12 +1,12 @@
-class Player extends Phaser.GameObjects.Sprite{
+class Player extends Phaser.GameObjects.Sprite {
 
   //class fields
   movementSpeed = 300;
   inputKeys = undefined;
 
-  constructor(scene){
+  constructor(scene) {
 
-    super(scene,0,0,"playerShip1");
+    super(scene, 0, 0, "playerShip1");
 
     //Set default Input Keys
     this.inputKeys = scene.input.keyboard.createCursorKeys();
@@ -22,33 +22,35 @@ class Player extends Phaser.GameObjects.Sprite{
   }
 
   //Sets the input that will be used to move the sprite
-  setInputOrigin(inputKeys){
+  setInputOrigin(inputKeys) {
     this.inputKeys = inputKeys;
   }
 
   //Moves the sprite acording to the input
-  move(){
+  move() {
 
-    if(this.inputKeys.left.isDown){
+    if (this.inputKeys.left.isDown) {
       this.body.setVelocityX(-this.movementSpeed);
-    }else if(this.inputKeys.right.isDown){
+    } else if (this.inputKeys.right.isDown) {
       this.body.setVelocityX(this.movementSpeed);
-    }else {
+    } else {
       this.body.setVelocityX(0);
     }
 
-    if(this.inputKeys.up.isDown){
+    if (this.inputKeys.up.isDown) {
       this.body.setVelocityY(-this.movementSpeed);
-    }else if(this.inputKeys.down.isDown){
+    } else if (this.inputKeys.down.isDown) {
       this.body.setVelocityY(this.movementSpeed);
-    }else {
+    } else {
       this.body.setVelocityY(0);
     }
   }
 
-  shoot(){
+  shoot() {
 
   }
 
-
+  update() {
+    this.move();
+  }
 }
