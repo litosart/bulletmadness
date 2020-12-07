@@ -1,6 +1,7 @@
 class EnemyManager{
 
     enemyArray = [];
+    timeBetweenSpawns = 200;
 
     constructor(scene){
       this.scene = scene
@@ -10,10 +11,10 @@ class EnemyManager{
       this.enemyArray.push(new Enemy(this.scene));
       this.enemyArray[this.enemyArray.length-1].create();
     }
-    
+
     create(){
       var timerEventConfig = {
-        delay: 200,
+        delay: this.timeBetweenSpawns,
         loop: true,
         callback: this.spawnEnemy,
         callbackScope: this
