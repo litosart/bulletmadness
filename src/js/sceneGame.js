@@ -1,4 +1,3 @@
-
 class SceneGame extends Phaser.Scene {
 
   constructor(){
@@ -7,7 +6,7 @@ class SceneGame extends Phaser.Scene {
 
   create() {
 
-    this.background = this.add.image(0,0,"background");
+    this.background = this.add.image(0,0,"background").setScale(2);
     this.background.setOrigin(0,0);
 
     //Input Initialization
