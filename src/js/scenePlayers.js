@@ -1,11 +1,6 @@
-class scenePlayers extends Phaser.Scene {
+class ScenePlayers extends Phaser.Scene {
   constructor(){
-    super("scenePlayers");
-  }
-
-  preload(){
-    this.load.image("1p", "resources/img/buttons/1.png");
-    this.load.image("2p", "resources/img/buttons/2.png");
+    super("ScenePlayers");
   }
 
   create(){
@@ -13,11 +8,21 @@ class scenePlayers extends Phaser.Scene {
     this.twoplayer = this.add.image(350,500, '2p').setScale(4);
     this.oneplayer.setInteractive();
     this.twoplayer.setInteractive();
-    this.oneplayer.on('pointerdown', () =>  this.scene.start("sceneGame"));
-    this.twoplayer.on('pointerdown', () =>  this.scene.start("sceneGame"));
+    this.oneplayer.on('pointerdown', () =>  this.OnePlayerSelected());
+    this.twoplayer.on('pointerdown', () =>  this.TwoPlayerSelected());
   }
 
   update(){
+  }
+
+  OnePlayerSelected(){
+    this.scene.start("SceneGame");
+    playerNumber = 1;
+  }
+
+  TwoPlayerSelected(){
+    this.scene.start("SceneGame");
+    playerNumber = 2;
   }
 
 }
