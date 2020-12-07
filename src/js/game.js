@@ -1,9 +1,9 @@
-var config = {
+const config = {
   width: 600,
   height: 800,
   type: Phaser.AUTO,
   backgroundColor: 0x000000,
-  scene: [SceneTitleScreen, ScenePlayers, SceneGame],
+  scene: [SceneBoot, SceneTitleScreen, ScenePlayers, SceneGame],
   pixelArt: true,
   //create: this.create,
   physics: {

@@ -1,6 +1,6 @@
-class scenePlayers extends Phaser.Scene {
+class ScenePlayers extends Phaser.Scene {
   constructor(){
-    super("scenePlayers");
+    super("ScenePlayers");
   }
 
   preload(){
@@ -13,8 +13,8 @@ class scenePlayers extends Phaser.Scene {
     this.twoplayer = this.add.image(350,500, '2p').setScale(4);
     this.oneplayer.setInteractive();
     this.twoplayer.setInteractive();
-    this.oneplayer.on('pointerdown', () =>  this.scene.start("sceneGame"));
-    this.twoplayer.on('pointerdown', () =>  this.scene.start("sceneGame"));
+    this.oneplayer.on('pointerdown', () =>  this.scene.start("SceneGame"));
+    this.twoplayer.on('pointerdown', () =>  this.scene.start("SceneGame"));
   }
 
   update(){
