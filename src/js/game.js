@@ -14,6 +14,8 @@ const config = {
   }
 };
 
+var playerNumber = 1;
+
 window.onload = function(){
  game = new Phaser.Game(config);
 };
