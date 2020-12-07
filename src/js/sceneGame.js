@@ -33,13 +33,14 @@ class SceneGame extends Phaser.Scene {
 
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
-    var timerEventConfig = {
+    this.enemyManager.create();
+    /*var timerEventConfig = {
       delay: 200,
       loop: true,
       callback: this.enemyManager.spawnEnemy,
       callbackScope: this.enemyManager
     }
-    this.timer = this.time.addEvent(timerEventConfig);
+    this.timer = this.time.addEvent(timerEventConfig);*/
   }
 
   movePlayers(){

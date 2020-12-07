@@ -11,10 +11,22 @@ class EnemyManager{
       this.enemyArray[this.enemyArray.length-1].create();
     }
 
+    create(){
+      var timerEventConfig = {
+        delay: 200,
+        loop: true,
+        callback: this.spawnEnemy,
+        callbackScope: this
+      }
+      this.scene.timer = this.scene.time.addEvent(timerEventConfig);
+    }
+
     update(){
       var i = 0;
       for (var i = 0; i < this.enemyArray.length; i++) {
-        this.enemyArray[i].checkOutOfBounds();
+        if(this.enemyArray[i] != undefined){
+          this.enemyArray[i].update();
+        }
       }
     }
 

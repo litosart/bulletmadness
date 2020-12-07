@@ -12,7 +12,7 @@ class Player extends Phaser.GameObjects.Sprite{
     this.inputKeys = scene.input.keyboard.createCursorKeys();
 
     //Adding to scene
-    scene.add.existing(this,0);
+    scene.add.existing(this);
 
     //Enabling Physics
     scene.physics.world.enable([this]);
