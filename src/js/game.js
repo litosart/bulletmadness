@@ -1,8 +1,8 @@
-var config = {
+const config = {
   width: 384,
   height: 512,
   backgroundColor: 0x000000,
-  scene: [sceneGame],
+  scene: [SceneBoot,SceneGame],
   pixelArt: true,
   physics: {
     default: "arcade",
