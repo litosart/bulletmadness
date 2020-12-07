@@ -3,7 +3,7 @@ var config = {
   height: 800,
   type: Phaser.AUTO,
   backgroundColor: 0x000000,
-  scene: [sceneTitleScreen, scenePlayers, sceneGame],
+  scene: [SceneTitleScreen, ScenePlayers, SceneGame],
   pixelArt: true,
   //create: this.create,
   physics: {
