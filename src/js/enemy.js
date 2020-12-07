@@ -18,6 +18,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
     this.body.setVelocityY(speed);
   }
 
+  //Removes player if out of bounds
   checkOutOfBounds() {
     if (this.y > config.height - 200) {
       this.destroy();

@@ -11,7 +11,7 @@ class InputManager {
     });
   }
 
-  getInput(i) {
-    return this.input[i];
+  getInput(index) {
+    return this.input[index];
   }
 }

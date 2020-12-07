@@ -3,8 +3,9 @@ class SceneBoot extends Phaser.Scene {
     super("SceneBoot");
   }
 
+  //Loads all the necesary images
   preload() {
-    this.add.text(20, 20, "Loading Game...", {
+    this.add.text(config.width-250, config.height-80, "Loading Game...", {
       font: "25px Arial",
       fill: "white"
     });
