@@ -6,8 +6,8 @@ class SceneGame extends Phaser.Scene {
 
   create() {
 
-    this.background = this.add.image(0, 0, "background").setScale(2);
-    this.background.setOrigin(0, 0);
+    //Level Enviorement Initialization
+    this.enviorementManager = new EnviorementManager(this);
 
     //Input
     this.inputManager = new InputManager(this);
@@ -17,12 +17,17 @@ class SceneGame extends Phaser.Scene {
 
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
-    
+
+    this.eventSystem = new Phaser.Events.EventEmitter();
   }
 
   update() {
     //this.movePlayers();
     this.playerManager.update();
     this.enemyManager.update();
+
+    if(playerManager.playersArray[0].x < 400){
+      console.log("Event Raised");
+    }
   }
 }

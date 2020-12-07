@@ -2,7 +2,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
   constructor(scene) {
     super(scene, Phaser.Math.Between(0, config.width), 0, "playerShip1");
-
+    
     //Adding to scene
     scene.add.existing(this);
 
