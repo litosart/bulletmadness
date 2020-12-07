@@ -1,5 +1,5 @@
 class EnemyManager {
-
+  
   enemyArray = [];
   timeBetweenSpawns = 200;
 
@@ -10,7 +10,6 @@ class EnemyManager {
 
   spawnEnemy() {
     this.enemyArray.push(new Enemy(this.scene));
-    this.enemyArray[this.enemyArray.length - 1].create();
   }
 
   setupSpawnLoop() {

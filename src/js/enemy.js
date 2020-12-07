@@ -1,8 +1,10 @@
 class Enemy extends Phaser.GameObjects.Sprite {
 
+  speed = 150;
+
   constructor(scene) {
     super(scene, Phaser.Math.Between(0, config.width), 0, "playerShip1");
-    
+
     //Adding to scene
     scene.add.existing(this);
 
@@ -11,11 +13,12 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     //Rotation in Radians
     this.rotation = 3.1415;
+
+    this.move();
   }
 
   move() {
-    var speed = 150;
-    this.body.setVelocityY(speed);
+    this.body.setVelocityY(this.speed);
   }
 
   //Removes player if out of bounds
@@ -23,10 +26,6 @@ class Enemy extends Phaser.GameObjects.Sprite {
     if (this.y > config.height - 200) {
       this.destroy();
     }
-  }
-
-  create() {
-    this.move();
   }
 
   update() {
