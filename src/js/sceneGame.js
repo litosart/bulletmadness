@@ -18,7 +18,7 @@ class SceneGame extends Phaser.Scene {
         left:Phaser.Input.Keyboard.KeyCodes.A,
         right:Phaser.Input.Keyboard.KeyCodes.D});
 
-    //Adding Player Ships
+    //Player Ships Initialization
     var initialPlayerNumber = 2;
 
     var i = 0;
@@ -31,7 +31,7 @@ class SceneGame extends Phaser.Scene {
     this.players[0].setInputOrigin(this.cursorKeys);
     this.players[1].setInputOrigin(this.inputWASD);
 
-    //Enemy Spawner
+    //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
     var timerEventConfig = {
       delay: 200,
@@ -51,15 +51,6 @@ class SceneGame extends Phaser.Scene {
 
   update(){
     this.movePlayers();
-
-    //Enemy Cleanup when out of screen
-    var i = 0;
-    for (var i = 0; i < this.enemyManager.enemyArray.length; i++) {
-      if(this.enemyManager.enemyArray[i].y > config.height-200){
-        this.enemyManager.enemyArray[i].destroy();
-        this.enemyManager.enemyArray.slice(i,1);
-      }
-    }
-
+    this.enemyManager.update();
   }
 }
