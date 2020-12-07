@@ -12,6 +12,6 @@ class SceneBoot extends Phaser.Scene{
   }
 
   create(){
-    this.scene.start("SceneGame");
+    this.scene.start("SceneTitleScreen");
   }
 }
