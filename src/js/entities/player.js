@@ -6,15 +6,15 @@ class Player extends Phaser.GameObjects.Sprite {
 
   constructor(scene) {
 
-    super(scene, 0, 0, "playerShip1");
+    super(scene, 0, 0, "ship_player_1");
 
     //Set default Input Keys
     this.inputKeys = scene.input.keyboard.createCursorKeys();
 
     //Adding to scene
     scene.add.existing(this);
-
-    this.play("ship1_anim");
+    
+    this.play("ship_player_1_idle");
 
     //Enabling Physics
     scene.physics.world.enable([this]);

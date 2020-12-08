@@ -5,6 +5,7 @@ class SceneBoot extends Phaser.Scene {
 
   //Loads all the necesary images
   preload() {
+
     this.add.text(config.width - 250, config.height - 80, "Loading Game...", {
       font: "25px Arial",
       fill: "white"
@@ -18,8 +19,17 @@ class SceneBoot extends Phaser.Scene {
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
 
+    this.load.spritesheet("ship_enemy_small_1", "resources/img/sprites/ship_enemy_small_red.png", {
+      frameWidth: 32,
+      frameHeight: 32
+    });
 
-    this.load.spritesheet("playerShip1", "resources/img/sprites/enemy_small_red.png", {
+    this.load.spritesheet("ship_enemy_big_1", "resources/img/sprites/ship_enemy_big_red.png", {
+      frameWidth: 64,
+      frameHeight: 32
+    });
+
+    this.load.spritesheet("ship_player_1", "resources/img/sprites/ship_player_1.png", {
       frameWidth: 32,
       frameHeight: 32
     });
@@ -29,8 +39,24 @@ class SceneBoot extends Phaser.Scene {
   create() {
 
     this.anims.create({
-      key: "ship1_anim",
-      frames: this.anims.generateFrameNumbers("playerShip1"),
+      key: "ship_enemy_small_1_idle",
+      frames: this.anims.generateFrameNumbers("ship_enemy_small_1"),
+      frameRate: 25,
+      repeat: -1,
+      yoyo: true
+    });
+
+    this.anims.create({
+      key: "ship_enemy_big_1_idle",
+      frames: this.anims.generateFrameNumbers("ship_enemy_big_1"),
+      frameRate: 12,
+      repeat: -1,
+      yoyo: true
+    });
+
+    this.anims.create({
+      key: "ship_player_1_idle",
+      frames: this.anims.generateFrameNumbers("ship_player_1"),
       frameRate: 25,
       repeat: -1,
       yoyo: true
