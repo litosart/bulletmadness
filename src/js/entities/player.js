@@ -21,9 +21,22 @@ class Player extends Phaser.GameObjects.Sprite {
 
     //Enabling Physics
     scene.physics.world.enable([this]);
-
+    scene.physicsManager.playerPhysicsGroup.add(this);
     //Setting collisions with screen bounds
     this.body.setCollideWorldBounds(true);
+
+    this.lives = 3;
+    this.alive = true;
+  }
+
+  recieveDamage() {
+    this.lives--;
+  }
+
+  playerDeath() {
+    this.x = config.height + 200;
+    this.alive = false;
+    this.body.enable = false;
   }
 
   //Sets the input that will be used to move the sprite
@@ -55,7 +68,7 @@ class Player extends Phaser.GameObjects.Sprite {
     this.kill();
   }
 
-  resetCooldown(){
+  resetCooldown() {
     this.shootCooldown = false;
   }
 

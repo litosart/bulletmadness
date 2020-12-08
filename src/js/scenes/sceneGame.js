@@ -11,16 +11,16 @@ class SceneGame extends Phaser.Scene {
     //Input Initialization
     this.inputManager = new InputManager(this);
 
+    this.physicsManager = new PhysicsManager(this);
+
     //Player Ships Initialization
     this.playerManager = new PlayerManager(this, this.inputManager);
 
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
 
-    this.physicsManager = new PhysicsManager(this);
+    this.scoreManager = new ScoreManager(this, this.playerManager.playersArray);
     
-    var beam = new Beam(this, 200, 500);
-
   }
 
   update() {
