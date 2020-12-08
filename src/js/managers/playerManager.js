@@ -22,10 +22,6 @@ class PlayerManager {
     this.setPlayersInput(inputManager);
   }
 
-  create() {
-
-  }
-
   update() {
     //Updates all playersin playersArray
     var i = 0;

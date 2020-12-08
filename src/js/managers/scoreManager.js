@@ -12,12 +12,12 @@ class ScoreManager {
     });
 
     //Lives text
-    this.livesText_1 = scene.add.text(16, config.height - 30, 'Lives: ' + this.players[0].lives, {
+    this.livesText_1 = scene.add.text(16, config.height - 30, 'Lives player 1: ' + this.players[0].lives, {
       fontSize: '20px',
       fill: '#000'
     });
     if (playerNumber == 2) {
-      this.livesText_2 = scene.add.text(config.width - 200, config.height - 30, 'Lives: ' + this.players[1].lives, {
+      this.livesText_2 = scene.add.text(config.width - 200, config.height - 30, 'Lives player 2: ' + this.players[1].lives, {
         fontSize: '20px',
         fill: '#000'
       });
@@ -43,7 +43,7 @@ class ScoreManager {
       this.livesText_2.setText('Lives player 2: ' + this.players[1].lives);
     }
   }
-  
+
   checkPlayersAlive() {
     var n = 0;
     var i = 0;

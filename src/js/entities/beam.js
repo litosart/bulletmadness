@@ -12,8 +12,8 @@ class Beam extends Phaser.GameObjects.Sprite {
 
     scene.physics.world.enableBody(this);
     scene.physicsManager.beamsPhysicsGroup.add(this);
-
-    this.body.velocity.y = -250;
+    
+    this.body.velocity.y = -800;
 
     //Adding to beam group
     //scene.projectiles1.add(this);
