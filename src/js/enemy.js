@@ -12,7 +12,11 @@ class Enemy extends Phaser.GameObjects.Sprite{
 
       //Rotation in Radians
       this.rotation = 3.1415;
+
+      //Adding to enemy group
+      scene.enemies.add(this);
     }
+    
     move(){
       var speed = 150;
       this.body.setVelocityY(speed);

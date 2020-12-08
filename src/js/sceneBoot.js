@@ -16,9 +16,23 @@ class SceneBoot extends Phaser.Scene{
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
     this.load.image("playerShip1", "resources/img/sprites/PlayerShip1.png");
+
+    //Adding the beam spritesheet
+    this.load.spritesheet("beam", "resources/img/sprites/beam.png", {
+      frameWidth: 16,
+      frameHeight: 16
+    });
   }
 
   create(){
-    this.scene.start("SceneTitleScreen");
+    this.scene.start("SceneGame");
+
+    //Animation of the beam
+     this.anims.create({
+       key: "beam_anim",
+       frames: this.anims.generateFrameNumbers("beam"),
+       frameRate: 20,
+       repeat: -1
+     });
   }
 }
