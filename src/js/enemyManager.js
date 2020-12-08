@@ -1,7 +1,7 @@
 class EnemyManager{
 
     enemyArray = [];
-    timeBetweenSpawns = 200;
+    timeBetweenSpawns = 500;
 
     constructor(scene){
       this.scene = scene

@@ -25,7 +25,7 @@ class SceneBoot extends Phaser.Scene{
   }
 
   create(){
-    this.scene.start("SceneGame");
+    this.scene.start("SceneTitleScreen");
 
     //Animation of the beam
      this.anims.create({
