@@ -11,6 +11,8 @@ class Enemy extends Phaser.GameObjects.Sprite {
     //Adding to scene
     scene.add.existing(this);
 
+        this.play("ship1_anim");
+
     //Enabling Physics
     scene.physics.world.enable([this]);
 

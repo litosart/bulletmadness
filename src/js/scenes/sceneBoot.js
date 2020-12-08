@@ -5,7 +5,7 @@ class SceneBoot extends Phaser.Scene {
 
   //Loads all the necesary images
   preload() {
-    this.add.text(config.width-250, config.height-80, "Loading Game...", {
+    this.add.text(config.width - 250, config.height - 80, "Loading Game...", {
       font: "25px Arial",
       fill: "white"
     });
@@ -17,10 +17,24 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("2p", "resources/img/buttons/2.png");
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
-    this.load.image("playerShip1", "resources/img/sprites/PlayerShip1.png");
+
+    
+    this.load.spritesheet("playerShip1", "resources/img/sprites/enemy_small_red.png", {
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
   }
 
   create() {
+
+    this.anims.create({
+      key: "ship1_anim",
+      frames: this.anims.generateFrameNumbers("playerShip1"),
+      frameRate: 5,
+      repeat: -1
+    });
+
     this.scene.start("SceneTitleScreen");
   }
 }
