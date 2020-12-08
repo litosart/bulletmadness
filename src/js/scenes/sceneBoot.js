@@ -34,6 +34,11 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 32
     });
 
+    this.load.spritesheet("proyectile_beam_1", "resources/img/sprites/proyectile_beam.png", {
+      frameWidth: 7,
+      frameHeight: 16
+    });
+
   }
 
   create() {
@@ -61,6 +66,15 @@ class SceneBoot extends Phaser.Scene {
       repeat: -1,
       yoyo: true
     });
+
+    this.anims.create({
+      key: "proyectile_beam_1_anim",
+      frames: this.anims.generateFrameNumbers("proyectile_beam_1"),
+      frameRate: 5,
+      repeat: -1,
+      yoyo: true
+    });
+
 
     this.scene.start("SceneTitleScreen");
   }

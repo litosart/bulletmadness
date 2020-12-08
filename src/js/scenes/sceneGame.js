@@ -6,7 +6,7 @@ class SceneGame extends Phaser.Scene {
 
   create() {
     //Level Enviorement Initialization
-    this.enviorementManager = new EnviorementManager(this,"background");
+    this.enviorementManager = new EnviorementManager(this, "background");
 
     //Input Initialization
     this.inputManager = new InputManager(this);
@@ -16,6 +16,11 @@ class SceneGame extends Phaser.Scene {
 
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
+
+    this.physicsManager = new PhysicsManager(this);
+    
+    var beam = new Beam(this, 200, 500);
+
   }
 
   update() {

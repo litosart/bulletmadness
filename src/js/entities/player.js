@@ -3,17 +3,20 @@ class Player extends Phaser.GameObjects.Sprite {
   //class fields
   movementSpeed = 300;
   inputKeys = undefined;
+  shootCooldown = false;
 
   constructor(scene) {
 
     super(scene, 0, 0, "ship_player_1");
+
+    this.scene = scene;
 
     //Set default Input Keys
     this.inputKeys = scene.input.keyboard.createCursorKeys();
 
     //Adding to scene
     scene.add.existing(this);
-    
+
     this.play("ship_player_1_idle");
 
     //Enabling Physics
@@ -48,15 +51,32 @@ class Player extends Phaser.GameObjects.Sprite {
     }
   }
 
-  removePlayer(){
+  removePlayer() {
     this.kill();
   }
 
-  shoot() {
+  resetCooldown(){
+    this.shootCooldown = false;
+  }
 
+  shoot() {
+    if (this.inputKeys.shoot.isDown && !this.shootCooldown) {
+      this.beam = new Beam(this.scene, this.x, (this.y - 10));
+      this.shootCooldown = true;
+
+      var timerEventConfig = {
+        delay: 100,
+        loop: false,
+        callback: this.resetCooldown,
+        callbackScope: this
+      }
+      this.scene.timer = this.scene.time.addEvent(timerEventConfig);
+
+    }
   }
 
   update() {
     this.move();
+    this.shoot();
   }
 }

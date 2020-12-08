@@ -7,6 +7,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
     //Setups Enemy Data
     this.enemyData = enemyData;
     this.setTexture(this.enemyData.spriteName);
+
     //Set Idle Animation;
     this.play(this.enemyData.idleAnimName);
 
@@ -15,8 +16,11 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     //Enabling Physics
     scene.physics.world.enable([this]);
+    scene.physicsManager.enemyPhysicsGroup.add(this);
+
     //Rotation in Radians
     this.rotation = 3.1415;
+
     //Sets Start Velocity
     this.body.setVelocityY(this.enemyData.movementSpeed);
   }

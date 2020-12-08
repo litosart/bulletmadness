@@ -3,8 +3,8 @@ class EnemySpawner {
   constructor(scene, enemyArray) {
     this.scene = scene;
     this.enemyList = enemyArray;
-    this.setupSpawnLoop();
 
+    this.setupSpawnLoop();
     this.enemyDataContainer = new EnemyShipsData();
   }
 
@@ -15,7 +15,8 @@ class EnemySpawner {
 
     //Creates enemy
     var enemy = new Enemy(this.scene, enemyData);
-
+    //Adds enemy to physics group
+    //this.enemyPhysicsGroup.add(enemy);
     //Adds enemy to enemyList
     this.enemyList.push(enemy);
 
