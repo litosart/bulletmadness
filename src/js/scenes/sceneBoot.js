@@ -18,7 +18,7 @@ class SceneBoot extends Phaser.Scene {
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
 
-    
+
     this.load.spritesheet("playerShip1", "resources/img/sprites/enemy_small_red.png", {
       frameWidth: 32,
       frameHeight: 32
@@ -31,8 +31,9 @@ class SceneBoot extends Phaser.Scene {
     this.anims.create({
       key: "ship1_anim",
       frames: this.anims.generateFrameNumbers("playerShip1"),
-      frameRate: 5,
-      repeat: -1
+      frameRate: 25,
+      repeat: -1,
+      yoyo: true
     });
 
     this.scene.start("SceneTitleScreen");

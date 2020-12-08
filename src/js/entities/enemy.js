@@ -7,25 +7,23 @@ class Enemy extends Phaser.GameObjects.Sprite {
     //Setups Enemy Data
     this.enemyData = enemyData;
     this.setTexture(this.enemyData.spriteName);
+    //Set Idle Animation;
+    this.play(this.enemyData.idleAnimName);
 
     //Adding to scene
     scene.add.existing(this);
 
-        this.play("ship1_anim");
-
     //Enabling Physics
     scene.physics.world.enable([this]);
-
     //Rotation in Radians
     this.rotation = 3.1415;
-
     //Sets Start Velocity
     this.body.setVelocityY(this.enemyData.movementSpeed);
   }
 
   //Removes player if out of bounds
   checkOutOfBounds() {
-    if (this.y > config.height - 200) {
+    if (this.y > config.height) {
       this.destroy();
     }
   }
