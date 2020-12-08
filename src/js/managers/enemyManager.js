@@ -1,5 +1,5 @@
 class EnemyManager {
-  
+
   enemyArray = [];
   timeBetweenSpawns = 200;
 

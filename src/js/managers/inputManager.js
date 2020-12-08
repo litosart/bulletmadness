@@ -14,4 +14,5 @@ class InputManager {
   getInput(index) {
     return this.input[index];
   }
+  
 }
