@@ -10,6 +10,7 @@ class SceneBoot extends Phaser.Scene{
 
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
+    this.load.spritesheet("logoanim", "resources/img/sprites/logo_sheet.png",{ frameWidth: 249, frameHeight: 96 });
 
     this.load.image("1p", "resources/img/buttons/1.png");
     this.load.image("2p", "resources/img/buttons/2.png");
