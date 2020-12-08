@@ -1,9 +1,12 @@
 class Enemy extends Phaser.GameObjects.Sprite {
 
-  speed = 150;
+  constructor(scene, enemyData) {
 
-  constructor(scene) {
-    super(scene, Phaser.Math.Between(0, config.width), 0, "playerShip1");
+    super(scene, Phaser.Math.Between(0, config.width), 0, "ship1");
+
+    //Setups Enemy Data
+    this.enemyData = enemyData;
+    this.setTexture(this.enemyData.spriteName);
 
     //Adding to scene
     scene.add.existing(this);
@@ -14,11 +17,8 @@ class Enemy extends Phaser.GameObjects.Sprite {
     //Rotation in Radians
     this.rotation = 3.1415;
 
-    this.move();
-  }
-
-  move() {
-    this.body.setVelocityY(this.speed);
+    //Sets Start Velocity
+    this.body.setVelocityY(this.enemyData.movementSpeed);
   }
 
   //Removes player if out of bounds
