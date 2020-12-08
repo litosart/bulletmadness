@@ -19,6 +19,11 @@ class SceneBoot extends Phaser.Scene {
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
 
+    this.load.spritesheet("game_logo", "resources/img/sprites/logo_sheet.png", {
+      frameWidth: 249,
+      frameHeight: 96
+    });
+
     this.load.spritesheet("ship_enemy_small_1", "resources/img/sprites/ship_enemy_small_red.png", {
       frameWidth: 32,
       frameHeight: 32
@@ -42,6 +47,16 @@ class SceneBoot extends Phaser.Scene {
   }
 
   create() {
+
+    this.anims.create({
+      key: 'game_logo_anim',
+      frames: this.anims.generateFrameNumbers('game_logo', {
+        start: 0,
+        end: 11
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
 
     this.anims.create({
       key: "ship_enemy_small_1_idle",
