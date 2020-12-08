@@ -3,13 +3,16 @@ class Player extends Phaser.GameObjects.Sprite{
   //class fields
   movementSpeed = 300;
   inputKeys = undefined;
+  shootKey = undefined;
+  beam = undefined;
+  //beamsArray = [];
+  
 
   constructor(scene){
 
     super(scene,0,0,"playerShip1");
 
-    //Set default Input Keys
-    this.inputKeys = scene.input.keyboard.createCursorKeys();
+    this.scene = scene;
 
     //Adding to scene
     scene.add.existing(this);
@@ -24,6 +27,11 @@ class Player extends Phaser.GameObjects.Sprite{
   //Sets the input that will be used to move the sprite
   setInputOrigin(inputKeys){
     this.inputKeys = inputKeys;
+  }
+
+  //Sets the key that will allow the player to shoot
+  setShootKey(shootKey){
+    this.shootKey = shootKey;
   }
 
   //Moves the sprite acording to the input
@@ -46,8 +54,23 @@ class Player extends Phaser.GameObjects.Sprite{
     }
   }
 
-  shoot(){
+  shoot(scene){
+    //var i = 0;
+    if (Phaser.Input.Keyboard.JustDown(this.shootKey)){ 
+      this.beam = new Beam(scene, this.x, (this.y - 10));
+      //this.beamsArray.push(this.beam);
+      //i++;
+    }
+    for (var i = 0; i < scene.projectiles1.getChildren().length; i++){
+      this.beam = scene.projectiles1.getChildren()[i];
+      this.beam.update();
+      scene.projectiles1.add(this.beam);
+    }
+  }
 
+  update(scene){
+    this.move();
+    this.shoot(scene)
   }
 
 
