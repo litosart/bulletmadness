@@ -1,6 +1,0 @@
-class EnemyTypesManager{
-  enemyTypes = []
-
-  constructor(){
-  }
-}
