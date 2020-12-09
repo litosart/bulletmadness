@@ -50,7 +50,7 @@ class SceneBoot extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32
     });
-    this.load.spritesheet("ship_player_2", "resources/img/sprites/ship_player_1.png", {
+    this.load.spritesheet("ship_player_2", "resources/img/sprites/ship_player_2.png", {
       frameWidth: 32,
       frameHeight: 32
     });
