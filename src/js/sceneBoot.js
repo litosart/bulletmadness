@@ -22,6 +22,14 @@ class SceneBoot extends Phaser.Scene{
   }
 
   create(){
+
+    this.anims.create({
+      key: 'ship_motion',
+      frames: this.anims.generateFrameNumbers('playerShip2', { start: 0, end: 2 }),
+      frameRate: 15,
+      repeat: -1
+    });
+
     this.scene.start("SceneTitleScreen");
   }
 }

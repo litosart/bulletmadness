@@ -6,8 +6,9 @@ class Player extends Phaser.GameObjects.Sprite{
 
   constructor(scene){
 
-    super(scene,0,0,"playerShip2").setScale(2).play('ship_motion');
+    super(scene,0,0,"playerShip2").setScale(2);
 
+    this.play("ship_motion");
     //Set default Input Keys
     this.inputKeys = scene.input.keyboard.createCursorKeys();
 
@@ -21,13 +22,7 @@ class Player extends Phaser.GameObjects.Sprite{
     this.body.setCollideWorldBounds(true);
 
   }
-  this.anims.create({
-    key: 'ship_motion',
-    frames: this.anims.generateFrameNumbers('playerShip2', { start: 0, end: 2 }),
-    frameRate: 10,
-    repeat: -1
-  });
-  this.add.sprite(300,200, 'playerShip2').setScale(2).play('ship_motion');
+
 create(){
 
 }
