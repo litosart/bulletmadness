@@ -30,7 +30,7 @@ class SceneBoot extends Phaser.Scene {
     });
 
     this.load.spritesheet("ship_enemy_small_1", "resources/img/sprites/ship_enemy_small_red.png", {
-      frameWidth: 32,
+      frameWidth: 20,
       frameHeight: 32
     });
 
