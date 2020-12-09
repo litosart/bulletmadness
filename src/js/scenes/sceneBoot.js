@@ -11,6 +11,8 @@ class SceneBoot extends Phaser.Scene {
       fill: "white"
     });
 
+    //IMAGENES
+
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
 
@@ -18,6 +20,8 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("2p", "resources/img/buttons/2.png");
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
+
+    //SPRITES
 
     this.load.spritesheet("game_logo", "resources/img/sprites/logo_sheet.png", {
       frameWidth: 249,
@@ -49,6 +53,9 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 16
     });
 
+    //MUSICA
+    this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
+
   }
 
   create() {
@@ -59,7 +66,7 @@ class SceneBoot extends Phaser.Scene {
         start: 0,
         end: 11
       }),
-      frameRate: 10,
+      frameRate: 15,
       repeat: -1
     });
 
@@ -103,7 +110,7 @@ class SceneBoot extends Phaser.Scene {
       yoyo: true
     });
 
-
+    this.sound.add('maintheme').play();
     this.scene.start("SceneTitleScreen");
   }
 }
