@@ -7,6 +7,7 @@ class EnemyData {
     this.movementSpeed = 10;
     this.canShoot = true;
     this.health = 100;
+    this.points = 10;
   }
 
 }
