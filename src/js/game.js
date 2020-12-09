@@ -8,7 +8,7 @@ const config = {
   //create: this.create,
   physics: {
     default: "arcade",
-    arcade:{
+    arcade: {
       debug: false
     }
   }
@@ -16,8 +16,11 @@ const config = {
 
 var playerNumber = 1;
 
-window.onload = function(){
- game = new Phaser.Game(config);
+//Event System Creation
+var eventSystem = new Phaser.Events.EventEmitter();
+
+window.onload = function() {
+  game = new Phaser.Game(config);
 };
 
 /*this.create = function(){
