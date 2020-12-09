@@ -11,6 +11,7 @@ class SceneGame extends Phaser.Scene {
     //Input Initialization
     this.inputManager = new InputManager(this);
 
+    //Physics Initialization
     this.physicsManager = new PhysicsManager(this);
 
     //Player Ships Initialization
@@ -19,8 +20,9 @@ class SceneGame extends Phaser.Scene {
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
 
+    //Score Manager Initialization
     this.scoreManager = new ScoreManager(this, this.playerManager.playersArray);
-    
+
   }
 
   update() {

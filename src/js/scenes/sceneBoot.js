@@ -24,6 +24,11 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 96
     });
 
+    this.load.spritesheet("ship_enemy_tiny_1", "resources/img/sprites/ship_enemy_tiny_red.png", {
+      frameWidth: 18,
+      frameHeight: 18
+    });
+
     this.load.spritesheet("ship_enemy_small_1", "resources/img/sprites/ship_enemy_small_red.png", {
       frameWidth: 32,
       frameHeight: 32
@@ -56,6 +61,14 @@ class SceneBoot extends Phaser.Scene {
       }),
       frameRate: 10,
       repeat: -1
+    });
+
+    this.anims.create({
+      key: "ship_enemy_tiny_1_idle",
+      frames: this.anims.generateFrameNumbers("ship_enemy_tiny_1"),
+      frameRate: 25,
+      repeat: -1,
+      yoyo: true
     });
 
     this.anims.create({
