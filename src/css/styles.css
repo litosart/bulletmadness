@@ -1,9 +1,0 @@
-html {
-  display: table;
-  margin: auto;
-}
-body{
-  background-color:black;
-  display: table-cell;
-  vertical-align: middle;
-}
