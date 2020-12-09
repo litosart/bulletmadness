@@ -1,11 +1,12 @@
 class PlayerManager {
 
   playersArray = [];
+  playerDataList;
 
-  createPlayers(scene) {
+  createPlayers(scene, playerDataList) {
     var i = 0;
     for (i = 0; i < playerNumber; i++) {
-      this.playersArray[i] = new Player(scene);
+      this.playersArray[i] = new Player(scene, playerDataList.list[i]);
       this.playersArray[i].setRandomPosition(1 * config.width / 10, 8 * config.height / 10, 8 * config.width / 10, 1.5 * config.height / 10)
     }
   }
@@ -18,7 +19,8 @@ class PlayerManager {
   }
 
   constructor(scene, inputManager) {
-    this.createPlayers(scene);
+    this.playerDataList = new PlayerShipsData();
+    this.createPlayers(scene, this.playerDataList);
     this.setPlayersInput(inputManager);
   }
 
