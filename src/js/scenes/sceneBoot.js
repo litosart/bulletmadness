@@ -110,7 +110,13 @@ class SceneBoot extends Phaser.Scene {
       yoyo: true
     });
 
-    this.sound.add('maintheme').play();
-    this.scene.start("SceneTitleScreen");
+    //Scene Fade Out
+    this.cameras.main.fadeOut(500);
+
+    this.cameras.main.once('camerafadeoutcomplete', function() {
+      this.sound.add('maintheme').play();
+      this.scene.start("SceneTitleScreen");
+    }, this);
+
   }
 }
