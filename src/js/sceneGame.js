@@ -25,9 +25,9 @@ class SceneGame extends Phaser.Scene {
       this.players[i].setRandomPosition(1*config.width/10,8*config.height/10,8*config.width/10,1.5*config.height/10)
     }
 
-    this.players[0].setInputOrigin(this.cursorKeys);
+    this.players[0].setInputOrigin(this.inputWASD);
     if(playerNumber == 2){
-      this.players[1].setInputOrigin(this.inputWASD);
+      this.players[1].setInputOrigin(this.cursorKeys);
     }
 
     //Enemy Manager Initialization

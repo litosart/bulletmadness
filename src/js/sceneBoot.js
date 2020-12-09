@@ -17,6 +17,8 @@ class SceneBoot extends Phaser.Scene{
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
     this.load.image("playerShip1", "resources/img/sprites/PlayerShip1.png");
+    this.load.spritesheet("playerShip2", "resources/img/sprites/ship1-Sheet.png",{ frameWidth: 32, frameHeight: 32 });
+
   }
 
   create(){
