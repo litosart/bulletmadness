@@ -10,7 +10,7 @@ class SceneGame extends Phaser.Scene {
     this.sceneData = sceneData;
 
     //Level Enviorement Initialization
-    this.enviorementManager = new EnviorementManager(this, "background");
+    this.enviorementManager = new EnviorementManager(this, "background_2");
 
     //Input Initialization
     this.inputManager = new InputManager(this);
@@ -24,6 +24,7 @@ class SceneGame extends Phaser.Scene {
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
 
+    /*
     var spawnerData = new SpawnerData();
     spawnerData.enemyData = enemyShipsData.list[0];
     spawnerData.spawnDelay = 1500;
@@ -35,20 +36,22 @@ class SceneGame extends Phaser.Scene {
     spawnerData.spawnDelay = 500;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
-
+    */
+    
     var spawnerData = new SpawnerData();
     spawnerData.enemyData = enemyShipsData.list[3];
     spawnerData.spawnDelay = 200;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
+
     //Score Manager Initialization
     this.scoreManager = new ScoreManager(this, this.playerManager.playersArray);
-
   }
 
   update() {
     this.playerManager.update();
     this.enemyManager.update();
+    this.enviorementManager.update();
   }
 }

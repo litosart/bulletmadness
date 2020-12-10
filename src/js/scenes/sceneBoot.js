@@ -5,16 +5,13 @@ class SceneBoot extends Phaser.Scene {
 
   //Loads all the necesary images
   preload() {
-
-    this.add.text(config.width - 250, config.height - 80, "Loading Game...", {
-      font: "25px Arial",
-      fill: "white"
-    });
-
     //IMAGENES
+
+    this.loadingText = this.add.bitmapText(config.width - 400, config.height - 80, "font_default", "Loading Game...");
 
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
+    this.load.image("score", "resources/img/sprites/score.png");
 
     this.load.image("1p", "resources/img/buttons/1.png");
     this.load.image("2p", "resources/img/buttons/2.png");
@@ -23,6 +20,8 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("arrow_right", "resources/img/buttons/flecha_der.png");
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
+    this.load.image("back_borders", "resources/img/backgrounds/back_borders.png");
+    this.load.image("background_2", "resources/img/backgrounds/Background_Black_Borders.png");
 
     //SPRITES
 
@@ -59,14 +58,16 @@ class SceneBoot extends Phaser.Scene {
       frameWidth: 7,
       frameHeight: 16
     });
+    this.load.spritesheet("numbers", "resources/img/sprites/numbers.png", {
+      frameWidth: 16,
+      frameHeight: 16
+    });
 
     //MUSICA
-    this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
-
+    this.load.audio('maintheme', "resources/sounds/music/main_theme.mp3");
   }
 
   create() {
-
     this.anims.create({
       key: 'game_logo_anim',
       frames: this.anims.generateFrameNumbers('game_logo', {
