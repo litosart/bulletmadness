@@ -14,13 +14,17 @@ class ScenePlayers extends Phaser.Scene {
 
   update() {}
 
-  OnePlayerSelected() {
+  startNextScene() {
     this.scene.start("SceneGame");
+  }
+
+  OnePlayerSelected() {
+    this.startNextScene();
     playerNumber = 1;
   }
 
   TwoPlayerSelected() {
-    this.scene.start("SceneGame");
+    this.startNextScene();
     playerNumber = 2;
   }
 
