@@ -1,4 +1,3 @@
-
 class ScenePlayers extends Phaser.Scene {
   constructor() {
     super("ScenePlayers");
@@ -27,51 +26,59 @@ class ScenePlayers extends Phaser.Scene {
     this.ship1 = this.add.sprite(175, 500, 'ship_player_1').setScale(2);
     this.ship2 = this.add.sprite(425, 500, 'ship_player_2').setScale(2);
 
-    this.shipsData = new PlayerShipsData();
-    this.i = 0;
+    this.selectedPlayerDataIndex = 0;
+    this.playerDataArray = [];
+    this.playerDataArray[0] = 0;
+    this.playerDataArray[1] = 1;
   }
 
   update() {}
 
+  startNextScene() {
+    var nextSceneData = {
+      //Setup information about what ship each player has selected
+      playerData: this.playerDataArray
+    }
+    this.scene.start("SceneGame", nextSceneData);
+  }
+
   OnePlayerSelected() {
-    //eventSystem.emit("selectShip",this.shipsData.list[this.i]);
-    this.scene.start("SceneGame");
+    this.startNextScene();
     playerNumber = 1;
   }
 
   TwoPlayerSelected() {
-    this.scene.start("SceneGame");
+    this.startNextScene();
     playerNumber = 2;
   }
 
   ChangeShip(dir, p) {
 
-    if(dir==1){
-      if(this.i<this.shipsData.list.length){
-        this.i++;
+    if (dir == 1) {
+      if (this.selectedPlayerDataIndex < playerShipsData.list.length) {
+        this.selectedPlayerDataIndex++;
       }
-      if(this.i==this.shipsData.list.length){
-        this.i=0;
+      if (this.selectedPlayerDataIndex == playerShipsData.list.length) {
+        this.selectedPlayerDataIndex = 0;
       }
-    } else if (dir==-1){
-      if(this.i<this.shipsData.list.length){
-        this.i--;
+    } else if (dir == -1) {
+      if (this.selectedPlayerDataIndex < playerShipsData.list.length) {
+        this.selectedPlayerDataIndex--;
       }
-      if(this.i<0){
-        this.i=this.shipsData.list.length-1;
+      if (this.selectedPlayerDataIndex < 0) {
+        this.selectedPlayerDataIndex = playerShipsData.list.length - 1;
       }
-    }
-    eventSystem.emit("selectShip",this.i);
-    if(p==1){
-      this.ship1.destroy();
-      this.ship1 = this.add.sprite(175, 500, this.shipsData.list[this.i].spriteName).setScale(2);
-    } else if(p==2){
-      this.ship2.destroy();
-      this.ship2 = this.add.sprite(425, 500, this.shipsData.list[this.i].spriteName).setScale(2);
     }
 
-    //this.ship1 = this.add.sprite(175, 300, 'ship_enemy_small_1').setScale(2);
-    //this.ship1 = playerDataList.list[2]
+    if (p == 1) {
+      this.ship1.destroy();
+      this.ship1 = this.add.sprite(175, 500, playerShipsData.list[this.selectedPlayerDataIndex].spriteName).setScale(2);
+    } else if (p == 2) {
+      this.ship2.destroy();
+      this.ship2 = this.add.sprite(425, 500, playerShipsData.list[this.selectedPlayerDataIndex].spriteName).setScale(2);
+    }
+
+    this.playerDataArray[p-1] = this.selectedPlayerDataIndex;
   }
 
 }

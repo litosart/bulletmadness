@@ -19,6 +19,9 @@ var playerNumber = 1;
 //Event System Creation
 var eventSystem = new Phaser.Events.EventEmitter();
 
+var enemyShipsData = new EnemyShipsData();
+var playerShipsData = new PlayerShipsData();
+
 window.onload = function() {
   game = new Phaser.Game(config);
 };
