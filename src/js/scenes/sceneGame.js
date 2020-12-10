@@ -4,7 +4,11 @@ class SceneGame extends Phaser.Scene {
     super("SceneGame");
   }
 
-  create() {
+  create(sceneData) {
+
+    //Setup previous Scene Data
+    this.sceneData = sceneData;
+
     //Level Enviorement Initialization
     this.enviorementManager = new EnviorementManager(this, "background");
 
