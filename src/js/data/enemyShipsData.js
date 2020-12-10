@@ -1,5 +1,11 @@
 class EnemyShipsData {
 
+
+  /*
+  EnemyShipsData contains all the Enemy Ships Information in the game
+  */
+
+
   list = []
 
   constructor() {

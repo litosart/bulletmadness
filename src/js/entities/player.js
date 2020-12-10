@@ -1,14 +1,12 @@
 class Player extends Phaser.GameObjects.Sprite {
 
   //class fields
-  //movementSpeed = 300;
   inputKeys = undefined;
   shootCooldown = false;
 
   constructor(scene, playerData) {
 
     super(scene, 0, 0, "ship_player_1");
-
     this.scene = scene;
 
     //Setups Player Data
@@ -30,6 +28,7 @@ class Player extends Phaser.GameObjects.Sprite {
     //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.playerPhysicsGroup.add(this);
+    
     //Setting collisions with screen bounds
     this.body.setCollideWorldBounds(true);
 

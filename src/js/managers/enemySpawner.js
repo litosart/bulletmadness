@@ -6,7 +6,8 @@ class EnemySpawner {
 
   Dependecies:
   -Scene
-  -SpawnerData
+  -EnemyManager (Ony uses the enemy list)
+  -SpawnerData (its not strictly necesary)
   */
 
   constructor(scene, spawnerData, enemyArray) {

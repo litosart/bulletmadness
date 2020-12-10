@@ -1,5 +1,13 @@
 class EnviorementManager {
 
+  /*
+  The Enviorement Manager its responsable of:
+  -Setting up the level background
+
+  Dependecies:
+  -Scene
+  */
+
   setBackgroundTo(newBackgroundName) {
     if (this.background != undefined) {
       this.background.destroy();

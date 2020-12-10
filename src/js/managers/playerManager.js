@@ -9,6 +9,7 @@ class PlayerManager {
   -Scene (Must contain a sceneData array with the indexes of the player ships data)
   -PlayerDataList
   -PlayerNumber Global Variable
+  -InputManager
   */
 
   playersArray = [];
