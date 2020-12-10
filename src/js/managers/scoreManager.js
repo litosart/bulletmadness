@@ -53,7 +53,7 @@ class ScoreManager {
       }
     }
     if (n == playerNumber) {
-      this.scene.scene.start("SceneTitleScreen");
+      this.scene.scene.start("SceneLevelEndOverview",{score:this.score});
     }
   }
 

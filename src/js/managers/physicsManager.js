@@ -1,5 +1,14 @@
 class PhysicsManager {
 
+  /*
+  The Physics Manager its responsable of:
+  -Maintaining the physics groups
+  -Processing object collisions
+
+  Dependecies:
+  -Scene
+  */
+
   constructor(scene) {
 
     //All Physics Groups Definitions
