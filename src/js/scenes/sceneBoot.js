@@ -15,6 +15,7 @@ class SceneBoot extends Phaser.Scene {
 
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
+    this.load.image("score", "resources/img/sprites/score.png");
 
     this.load.image("1p", "resources/img/buttons/1.png");
     this.load.image("2p", "resources/img/buttons/2.png");
@@ -23,6 +24,8 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("arrow_right", "resources/img/buttons/flecha_der.png");
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
+    this.load.image("back_borders", "resources/img/backgrounds/back_borders.png");
+    this.load.image("background_2", "resources/img/backgrounds/background_2.png");
 
     //SPRITES
 
@@ -57,6 +60,10 @@ class SceneBoot extends Phaser.Scene {
 
     this.load.spritesheet("proyectile_beam_1", "resources/img/sprites/proyectile_beam.png", {
       frameWidth: 7,
+      frameHeight: 16
+    });
+    this.load.spritesheet("numbers", "resources/img/sprites/numbers.png", {
+      frameWidth: 16,
       frameHeight: 16
     });
 

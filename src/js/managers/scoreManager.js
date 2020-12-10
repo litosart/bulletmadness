@@ -8,8 +8,9 @@ class ScoreManager {
     this.score = 0;
     this.scoreText = scene.add.text(16, 16, 'Score: 0', {
       fontSize: '20px',
-      fill: '#000'
+      fill: '#fff'
     });
+    scene.add.image(100, 20, 'score');
 
     //Lives text
     this.livesText_1 = scene.add.text(16, config.height - 30, 'Lives player 1: ' + this.players[0].lives, {
