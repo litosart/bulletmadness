@@ -1,15 +1,15 @@
 class EnemyManager {
 
+  spawnerArray = [];
   enemyArray = [];
-  enemyShipsData;
 
-  constructor(scene, enemyShipsData) {
-
+  constructor(scene) {
     this.scene = scene
-    this.enemyShipsData = enemyShipsData;
+  }
 
-    //Setup Enemy Spawners
-    this.BasicSpawner = new EnemySpawner(scene,this.enemyArray);
+  setupSpawner(enemyData,spawnerData){
+    var spawner = new EnemySpawner(this.scene,enemyData,this.enemyArray);
+    spawner.setupSpawner(spawnerData);
   }
 
   update() {

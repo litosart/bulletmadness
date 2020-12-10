@@ -26,7 +26,6 @@ class ScenePlayers extends Phaser.Scene {
     this.ship1 = this.add.sprite(175, 500, 'ship_player_1').setScale(2);
     this.ship2 = this.add.sprite(425, 500, 'ship_player_2').setScale(2);
 
-    this.shipsData = new PlayerShipsData();
     this.selectedPlayerDataIndex = 0;
     this.playerDataArray = [];
     this.playerDataArray[0] = 0;
@@ -36,11 +35,11 @@ class ScenePlayers extends Phaser.Scene {
   update() {}
 
   startNextScene() {
-    var data = {
+    var nextSceneData = {
+      //Setup information about what ship each player has selected
       playerData: this.playerDataArray
     }
-    console.log(data);
-    this.scene.start("SceneGame", data);
+    this.scene.start("SceneGame", nextSceneData);
   }
 
   OnePlayerSelected() {
@@ -56,27 +55,27 @@ class ScenePlayers extends Phaser.Scene {
   ChangeShip(dir, p) {
 
     if (dir == 1) {
-      if (this.selectedPlayerDataIndex < this.shipsData.list.length) {
+      if (this.selectedPlayerDataIndex < playerShipsData.list.length) {
         this.selectedPlayerDataIndex++;
       }
-      if (this.selectedPlayerDataIndex == this.shipsData.list.length) {
+      if (this.selectedPlayerDataIndex == playerShipsData.list.length) {
         this.selectedPlayerDataIndex = 0;
       }
     } else if (dir == -1) {
-      if (this.selectedPlayerDataIndex < this.shipsData.list.length) {
+      if (this.selectedPlayerDataIndex < playerShipsData.list.length) {
         this.selectedPlayerDataIndex--;
       }
       if (this.selectedPlayerDataIndex < 0) {
-        this.selectedPlayerDataIndex = this.shipsData.list.length - 1;
+        this.selectedPlayerDataIndex = playerShipsData.list.length - 1;
       }
     }
 
     if (p == 1) {
       this.ship1.destroy();
-      this.ship1 = this.add.sprite(175, 500, this.shipsData.list[this.selectedPlayerDataIndex].spriteName).setScale(2);
+      this.ship1 = this.add.sprite(175, 500, playerShipsData.list[this.selectedPlayerDataIndex].spriteName).setScale(2);
     } else if (p == 2) {
       this.ship2.destroy();
-      this.ship2 = this.add.sprite(425, 500, this.shipsData.list[this.selectedPlayerDataIndex].spriteName).setScale(2);
+      this.ship2 = this.add.sprite(425, 500, playerShipsData.list[this.selectedPlayerDataIndex].spriteName).setScale(2);
     }
 
     this.playerDataArray[p-1] = this.selectedPlayerDataIndex;
