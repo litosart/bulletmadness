@@ -5,13 +5,9 @@ class SceneBoot extends Phaser.Scene {
 
   //Loads all the necesary images
   preload() {
-
-    this.add.text(config.width - 250, config.height - 80, "Loading Game...", {
-      font: "25px Arial",
-      fill: "white"
-    });
-
     //IMAGENES
+
+    this.loadingText = this.add.bitmapText(config.width - 400, config.height - 80, "font_default", "Loading Game...");
 
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
@@ -25,7 +21,7 @@ class SceneBoot extends Phaser.Scene {
 
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
     this.load.image("back_borders", "resources/img/backgrounds/back_borders.png");
-    this.load.image("background_2", "resources/img/backgrounds/background_2.png");
+    this.load.image("background_2", "resources/img/backgrounds/Background_Black_Borders.png");
 
     //SPRITES
 
@@ -68,12 +64,10 @@ class SceneBoot extends Phaser.Scene {
     });
 
     //MUSICA
-    this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
-
+    this.load.audio('maintheme', "resources/sounds/music/main_theme.mp3");
   }
 
   create() {
-
     this.anims.create({
       key: 'game_logo_anim',
       frames: this.anims.generateFrameNumbers('game_logo', {

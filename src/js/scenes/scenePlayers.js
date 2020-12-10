@@ -4,6 +4,10 @@ class ScenePlayers extends Phaser.Scene {
   }
 
   create() {
+
+    this.selectShipText = this.add.bitmapText(50, 100, "font_default", "Select Your Ship");
+    this.selectShipText = this.add.bitmapText(35, config.height-80, "font_default", "Select Player Number");
+
     this.oneplayer = this.add.image(175, 650, '1p').setScale(4);
     this.twoplayer = this.add.image(425, 650, '2p').setScale(4);
     this.oneplayer.setInteractive();

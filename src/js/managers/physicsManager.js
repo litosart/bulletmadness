@@ -16,6 +16,7 @@ class PhysicsManager {
     this.beamsPhysicsGroup = scene.physics.add.group();
     this.enemyPhysicsGroup = scene.physics.add.group();
 
+    scene.physics.world.setBounds(30,0,config.width-60,config.height);
 
     //Define all collisions and responses
     scene.physics.add.collider(this.beamsPhysicsGroup, this.enemyPhysicsGroup, function(projectile, enemy) {
