@@ -1,34 +1,36 @@
 class EnemySpawner {
 
-  spawnDelay = 100;
-  spawnShouldLoop = true;
-  enemyData = enemyShipsData.list[0];
+  /*
+  The Enemy Spawner its responsable of:
+  -Spawning enemies using the given spawnerData
 
-  constructor(scene, enemyData, enemyArray) {
+  Dependecies:
+  -Scene
+  -SpawnerData
+  */
+
+  constructor(scene, spawnerData, enemyArray) {
     this.scene = scene;
-    this.enemyData = enemyData;
+    //References the enemyManager list
     this.enemyList = enemyArray;
+    this.spawnerData = spawnerData;
+    this.setupSpawnerLoop();
   }
 
   spawnEnemy() {
-    //Gets a random enemyData from the enemyDataContainer and spawns an enemy with given Data
-    var enemyData = this.enemyData;
-    //Creates enemy
-    var enemy = new Enemy(this.scene, enemyData);
-    //Adds enemy to enemyList
+    //Creates enemy using the given enemyData
+    var enemy = new Enemy(this.scene, this.spawnerData.enemyData);
+    //Adds enemy to the enemyManagers list
     this.enemyList.push(enemy);
   }
 
-  setupSpawner(spawnerData) {
-
+  setupSpawnerLoop() {
     this.spawnerLoopConfig = {
-      delay: spawnerData.spawnDelay,
-      loop: spawnerData.loop,
+      delay: this.spawnerData.spawnDelay,
+      loop: this.spawnerData.loop,
       callback: this.spawnEnemy,
       callbackScope: this
     }
     this.scene.timer = this.scene.time.addEvent(this.spawnerLoopConfig);
-
   }
-
 }

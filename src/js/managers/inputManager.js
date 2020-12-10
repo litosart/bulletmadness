@@ -1,5 +1,13 @@
 class InputManager {
 
+  /*
+  The Enemy Manager its responsable of:
+  -Giving input to playerManager
+
+  Dependecies:
+  -Scene
+  */
+
   input = [];
   constructor(scene) {
 

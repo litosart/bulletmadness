@@ -1,7 +1,17 @@
 class PlayerManager {
 
+  /*
+  The Player Manager its responsable of:
+  -Maintaining a list of all the players
+  -Passing the input to each player
+
+  Dependecies:
+  -Scene (Must contain a sceneData array with the indexes of the player ships data)
+  -PlayerDataList
+  -PlayerNumber Global Variable
+  */
+
   playersArray = [];
-  playerDataList;
 
   spawnPlayers(scene, playerDataList) {
     var i = 0;
