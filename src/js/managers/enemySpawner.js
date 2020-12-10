@@ -1,37 +1,37 @@
 class EnemySpawner {
 
-  constructor(scene, enemyArray) {
-    this.scene = scene;
-    this.enemyList = enemyArray;
+  /*
+  The Enemy Spawner its responsable of:
+  -Spawning enemies using the given spawnerData
 
-    this.setupSpawnLoop();
-    this.enemyDataContainer = new EnemyShipsData();
+  Dependecies:
+  -Scene
+  -EnemyManager (Ony uses the enemy list)
+  -SpawnerData (its not strictly necesary)
+  */
+
+  constructor(scene, spawnerData, enemyArray) {
+    this.scene = scene;
+    //References the enemyManager list
+    this.enemyList = enemyArray;
+    this.spawnerData = spawnerData;
+    this.setupSpawnerLoop();
   }
 
   spawnEnemy() {
-
-    //Gets a random enemyData from the enemyDataContainer and spawns an enemy with given Data
-    var enemyData = this.enemyDataContainer.list[Phaser.Math.Between(0, this.enemyDataContainer.list.length - 1)]
-
-    //Creates enemy
-    var enemy = new Enemy(this.scene, enemyData);
-    //Adds enemy to physics group
-    //this.enemyPhysicsGroup.add(enemy);
-    //Adds enemy to enemyList
+    //Creates enemy using the given enemyData
+    var enemy = new Enemy(this.scene, this.spawnerData.enemyData);
+    //Adds enemy to the enemyManagers list
     this.enemyList.push(enemy);
-
   }
 
-  setupSpawnLoop() {
-
-    var timerEventConfig = {
-      delay: 100,
-      loop: true,
+  setupSpawnerLoop() {
+    this.spawnerLoopConfig = {
+      delay: this.spawnerData.spawnDelay,
+      loop: this.spawnerData.loop,
       callback: this.spawnEnemy,
       callbackScope: this
     }
-    this.scene.timer = this.scene.time.addEvent(timerEventConfig);
-
+    this.scene.timer = this.scene.time.addEvent(this.spawnerLoopConfig);
   }
-
 }

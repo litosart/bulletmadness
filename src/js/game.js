@@ -3,7 +3,7 @@ const config = {
   height: 800,
   type: Phaser.AUTO,
   backgroundColor: 0x000000,
-  scene: [SceneBoot, SceneTitleScreen, ScenePlayers, SceneGame],
+  scene: [SceneBoot, SceneTitleScreen, ScenePlayers, SceneGame,SceneLevelEndOverview],
   pixelArt: true,
   //create: this.create,
   physics: {
@@ -18,6 +18,9 @@ var playerNumber = 1;
 
 //Event System Creation
 var eventSystem = new Phaser.Events.EventEmitter();
+
+var enemyShipsData = new EnemyShipsData();
+var playerShipsData = new PlayerShipsData();
 
 window.onload = function() {
   game = new Phaser.Game(config);

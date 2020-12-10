@@ -1,5 +1,9 @@
 class EnemyData {
 
+  /*
+  EnemyData contains all the necesary information to define an Enemy Ship
+  */
+
   constructor() {
     //Set Default Values
     this.spriteName = "ship_enemy_small_1";

@@ -11,13 +11,20 @@ class SceneBoot extends Phaser.Scene {
       fill: "white"
     });
 
+    //IMAGENES
+
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
 
     this.load.image("1p", "resources/img/buttons/1.png");
     this.load.image("2p", "resources/img/buttons/2.png");
 
+    this.load.image("arrow_left", "resources/img/buttons/flecha_izq.png");
+    this.load.image("arrow_right", "resources/img/buttons/flecha_der.png");
+
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
+
+    //SPRITES
 
     this.load.spritesheet("game_logo", "resources/img/sprites/logo_sheet.png", {
       frameWidth: 249,
@@ -43,11 +50,18 @@ class SceneBoot extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 32
     });
+    this.load.spritesheet("ship_player_2", "resources/img/sprites/ship_player_2.png", {
+      frameWidth: 32,
+      frameHeight: 32
+    });
 
     this.load.spritesheet("proyectile_beam_1", "resources/img/sprites/proyectile_beam.png", {
       frameWidth: 7,
       frameHeight: 16
     });
+
+    //MUSICA
+    this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
 
   }
 
@@ -59,7 +73,7 @@ class SceneBoot extends Phaser.Scene {
         start: 0,
         end: 11
       }),
-      frameRate: 10,
+      frameRate: 15,
       repeat: -1
     });
 
@@ -94,6 +108,13 @@ class SceneBoot extends Phaser.Scene {
       repeat: -1,
       yoyo: true
     });
+    this.anims.create({
+      key: "ship_player_2_idle",
+      frames: this.anims.generateFrameNumbers("ship_player_2"),
+      frameRate: 25,
+      repeat: -1,
+      yoyo: true
+    });
 
     this.anims.create({
       key: "proyectile_beam_1_anim",
@@ -103,7 +124,13 @@ class SceneBoot extends Phaser.Scene {
       yoyo: true
     });
 
+    //Scene Fade Out
+    this.cameras.main.fadeOut(500);
 
-    this.scene.start("SceneTitleScreen");
+    this.cameras.main.once('camerafadeoutcomplete', function() {
+      this.sound.add('maintheme').play();
+      this.scene.start("SceneTitleScreen");
+    }, this);
+
   }
 }

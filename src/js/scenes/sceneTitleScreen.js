@@ -9,6 +9,9 @@ class SceneTitleScreen extends Phaser.Scene {
     this.playb = this.add.image(300, 500, 'play_button').setScale(4);
     this.playb.setInteractive();
     this.playb.on('pointerdown', () => this.scene.start("ScenePlayers"));
+
+    //Scene Fade In
+    this.cameras.main.fadeIn(500);
   }
 
   update() {}

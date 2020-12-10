@@ -1,11 +1,23 @@
 class PlayerManager {
 
+  /*
+  The Player Manager its responsable of:
+  -Maintaining a list of all the players
+  -Passing the input to each player
+
+  Dependecies:
+  -Scene (Must contain a sceneData array with the indexes of the player ships data)
+  -PlayerDataList
+  -PlayerNumber Global Variable
+  -InputManager
+  */
+
   playersArray = [];
 
-  createPlayers(scene) {
+  spawnPlayers(scene, playerDataList) {
     var i = 0;
     for (i = 0; i < playerNumber; i++) {
-      this.playersArray[i] = new Player(scene);
+      this.playersArray[i] = new Player(scene, playerDataList.list[scene.sceneData.playerData[i]]);
       this.playersArray[i].setRandomPosition(1 * config.width / 10, 8 * config.height / 10, 8 * config.width / 10, 1.5 * config.height / 10)
     }
   }
@@ -18,12 +30,11 @@ class PlayerManager {
   }
 
   constructor(scene, inputManager) {
-    this.createPlayers(scene);
+    this.spawnPlayers(scene, playerShipsData);
     this.setPlayersInput(inputManager);
   }
 
   update() {
-    //Updates all playersin playersArray
     var i = 0;
     for (i = 0; i < this.playersArray.length; i++) {
       this.playersArray[i].update();

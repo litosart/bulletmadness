@@ -1,31 +1,39 @@
 class Player extends Phaser.GameObjects.Sprite {
 
   //class fields
-  movementSpeed = 300;
   inputKeys = undefined;
   shootCooldown = false;
 
-  constructor(scene) {
+  constructor(scene, playerData) {
 
     super(scene, 0, 0, "ship_player_1");
-
     this.scene = scene;
+
+    //Setups Player Data
+    this.playerData = playerData;
+    this.setTexture(this.playerData.spriteName);
+
+    //Set Idle Animation;
+    this.play(this.playerData.idleAnimName);
 
     //Set default Input Keys
     this.inputKeys = scene.input.keyboard.createCursorKeys();
 
+    //Movement speed
+    this.movementSpeed = this.playerData.movementSpeed;
+
     //Adding to scene
     scene.add.existing(this);
-
-    this.play("ship_player_1_idle");
 
     //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.playerPhysicsGroup.add(this);
+    
     //Setting collisions with screen bounds
     this.body.setCollideWorldBounds(true);
 
-    this.lives = 3;
+    //Set player lives
+    this.lives = this.playerData.lives;
     this.alive = true;
   }
 
