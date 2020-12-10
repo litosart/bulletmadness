@@ -7,5 +7,5 @@ class PlayerData {
       this.movementSpeed = 10;
       this.lives = 3;
     }
-  
+
   }

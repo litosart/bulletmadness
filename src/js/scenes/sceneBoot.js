@@ -19,6 +19,9 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("1p", "resources/img/buttons/1.png");
     this.load.image("2p", "resources/img/buttons/2.png");
 
+    this.load.image("arrow_left", "resources/img/buttons/flecha_izq.png");
+    this.load.image("arrow_right", "resources/img/buttons/flecha_der.png");
+
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
 
     //SPRITES
@@ -44,6 +47,10 @@ class SceneBoot extends Phaser.Scene {
     });
 
     this.load.spritesheet("ship_player_1", "resources/img/sprites/ship_player_1.png", {
+      frameWidth: 32,
+      frameHeight: 32
+    });
+    this.load.spritesheet("ship_player_2", "resources/img/sprites/ship_player_2.png", {
       frameWidth: 32,
       frameHeight: 32
     });
@@ -97,6 +104,13 @@ class SceneBoot extends Phaser.Scene {
     this.anims.create({
       key: "ship_player_1_idle",
       frames: this.anims.generateFrameNumbers("ship_player_1"),
+      frameRate: 25,
+      repeat: -1,
+      yoyo: true
+    });
+    this.anims.create({
+      key: "ship_player_2_idle",
+      frames: this.anims.generateFrameNumbers("ship_player_2"),
       frameRate: 25,
       repeat: -1,
       yoyo: true
