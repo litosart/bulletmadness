@@ -5,7 +5,7 @@ class SceneGame extends Phaser.Scene {
   }
 
   create(sceneData) {
-    
+
     //Setup previous Scene Data
     this.sceneData = sceneData;
 
