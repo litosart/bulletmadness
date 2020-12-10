@@ -6,7 +6,10 @@ class SceneGame extends Phaser.Scene {
 
   create() {
     //Level Enviorement Initialization
-    this.enviorementManager = new EnviorementManager(this, "background");
+    //this.enviorementManager = new EnviorementManager(this, "background");
+    this.bg_1 = this.add.tileSprite(0, 0, game.config.width, game.config.height, "background_2");
+    this.bg_1.setOrigin(0,0);
+    this.bg_1.setScrollFactor(0);
 
     //Input Initialization
     this.inputManager = new InputManager(this);
@@ -28,5 +31,6 @@ class SceneGame extends Phaser.Scene {
   update() {
     this.playerManager.update();
     this.enemyManager.update();
+    this.bg_1.tilePositionY -= 5;
   }
 }
