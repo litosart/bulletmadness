@@ -23,6 +23,11 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("back_borders", "resources/img/backgrounds/back_borders.png");
     this.load.image("background_2", "resources/img/backgrounds/Background_Black_Borders.png");
 
+    this.load.spritesheet("powerup_movement_speed_boost", "resources/img/sprites/powerup_ship_speed.png",{
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
     //SPRITES
 
     this.load.spritesheet("game_logo", "resources/img/sprites/logo_sheet.png", {

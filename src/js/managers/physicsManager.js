@@ -15,6 +15,7 @@ class PhysicsManager {
     this.playerPhysicsGroup = scene.physics.add.group();
     this.beamsPhysicsGroup = scene.physics.add.group();
     this.enemyPhysicsGroup = scene.physics.add.group();
+    this.powerupPhysicsGroup = scene.physics.add.group();
 
     scene.physics.world.setBounds(30, 0, config.width - 60, config.height);
 
@@ -34,6 +35,11 @@ class PhysicsManager {
       }
       eventSystem.emit("PlayerHit_UpdateHealth");
     }, null, this);
+
+    scene.physics.add.collider(this.playerPhysicsGroup, this.powerupPhysicsGroup, function(player, powerup) {
+      powerup.destroy();
+      console.log("PowerupHIT");
+    });
 
   }
 }

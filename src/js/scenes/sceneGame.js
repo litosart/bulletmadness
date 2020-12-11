@@ -42,6 +42,12 @@ class SceneGame extends Phaser.Scene {
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
+    var powerup = new PowerUp(this);
+    var powerup = new PowerUp(this);
+    var powerup = new PowerUp(this);
+    var powerup = new PowerUp(this);
+    var powerup = new PowerUp(this);
+    var powerup = new PowerUp(this);
 
     //Score Manager Initialization
     this.scoreManager = new ScoreManager(this, this.playerManager.playersArray);
