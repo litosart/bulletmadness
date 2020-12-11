@@ -61,7 +61,11 @@ class SceneBoot extends Phaser.Scene {
     });
 
     //MUSICA
-    this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
+    this.maintheme = this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
+
+    this.beamSound = this.load.audio('beam_sound',["resources/sounds/sound_effects/beam.mp3", "resources/sounds/sound_effects/beam.ogg"]);
+    this.explosionSound = this.load.audio('explosion_sound',["resources/sounds/sound_effects/explosion.mp3", "resources/sounds/sound_effects/explosion.ogg"]);
+    this.powerUpSound = this.load.audio('powerUp_sound',["resources/sounds/sound_effects/powerUp.mp3", "resources/sounds/sound_effects/powerUp.ogg"]);
 
   }
 
@@ -127,8 +131,14 @@ class SceneBoot extends Phaser.Scene {
     //Scene Fade Out
     this.cameras.main.fadeOut(500);
 
+    //Adding sounds
+    soundManager.addTheme(this.maintheme);
+    soundManager.addSound(this.beamSound);
+    soundManager.addSound(this.explosionSound);
+    soundManager.addSound(this.powerUpSound);
+
     this.cameras.main.once('camerafadeoutcomplete', function() {
-      this.sound.add('maintheme').play();
+      soundManager.playTheme(this);
       this.scene.start("SceneTitleScreen");
     }, this);
 
