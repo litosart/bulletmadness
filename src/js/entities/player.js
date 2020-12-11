@@ -87,7 +87,7 @@ class Player extends Phaser.GameObjects.Sprite {
       this.beam = new Beam(this.scene, this.x, (this.y - 10));
 
       //Raise Player_Shoot event
-      eventSystem.emit("Player_Shoot",this.scene,this);
+      eventSystem.emit("PlaySound_Player_Shoot",this.scene,this);
 
       //Setup Shoot Cooldown Timer
       this.shootCooldown = true;

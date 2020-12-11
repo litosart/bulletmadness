@@ -22,10 +22,8 @@ class PhysicsManager {
     scene.physics.add.collider(this.beamsPhysicsGroup, this.enemyPhysicsGroup, function(projectile, enemy) {
       projectile.destroy();
       enemy.destroy();
-      eventSystem.emit("Enemy_Hit", {
-        scene: scene,
-        enemyPointsValue: enemy.enemyData.points
-      });
+      eventSystem.emit("EnemyHit_UpdateScore",enemy.enemyData.points);
+      eventSystem.emit("PlaySound_EnemyHit");
     });
 
     scene.physics.add.collider(this.playerPhysicsGroup, this.enemyPhysicsGroup, function(player, enemy) {
@@ -34,7 +32,7 @@ class PhysicsManager {
       if (player.lives == 0) {
         player.playerDeath();
       }
-      eventSystem.emit("playerHit");
+      eventSystem.emit("PlayerHit_UpdateHealth");
     }, null, this);
 
   }

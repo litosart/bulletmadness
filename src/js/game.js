@@ -19,9 +19,6 @@ var playerNumber = 1;
 //Event System Creation
 var eventSystem = new Phaser.Events.EventEmitter();
 
-//Adding a sound Manager
-var soundManager = new SoundManager();
-
 var enemyShipsData = new EnemyShipsData();
 var playerShipsData = new PlayerShipsData();
 
