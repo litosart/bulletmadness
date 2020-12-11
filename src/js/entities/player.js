@@ -84,6 +84,7 @@ class Player extends Phaser.GameObjects.Sprite {
     if (this.inputKeys.shoot.isDown && !this.shootCooldown) {
       this.beam = new Beam(this.scene, this.x, (this.y - 10));
       this.shootCooldown = true;
+      soundManager.playBeamSound(this.scene);
 
       var timerEventConfig = {
         delay: 100,

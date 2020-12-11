@@ -23,6 +23,7 @@ class PhysicsManager {
       projectile.destroy();
       enemy.destroy();
       eventSystem.emit("enemyHit", enemy.enemyData.points);
+      soundManager.playExplosionSound(scene);
     });
 
     scene.physics.add.collider(this.playerPhysicsGroup, this.enemyPhysicsGroup, function(player, enemy) {
