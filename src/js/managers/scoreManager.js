@@ -23,12 +23,12 @@ class ScoreManager {
     //Setup Events
     eventSystem.removeAllListeners("enemyHit");
     eventSystem.removeAllListeners("playerHit");
-    eventSystem.on("enemyHit", this.addScore, this);
+    eventSystem.on("Enemy_Hit", this.addScore, this);
     eventSystem.on("playerHit", this.updateScore, this);
   }
 
   addScore(amount) {
-    this.score += amount;
+    this.score += amount.enemyPointsValue;
     if (this.scoreText != undefined) {
       this.scoreText.setText('Score: ' + this.score);
     }

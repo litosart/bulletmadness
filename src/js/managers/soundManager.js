@@ -9,11 +9,13 @@ class SoundManager {
     constructor(){
 
         this.mainTheme = undefined;
-
         this.beamSound = undefined;
         this.explosionSound = undefined;
         this.powerUpSound = undefined;
 
+        eventSystem.on("Player_Shoot",this.playBeamSound);
+        eventSystem.on("Play_MainTheme",this.playTheme);
+        eventSystem.on("Enemy_Hit",this.playExplosionSound);
     }
 
     addTheme(theme){
@@ -45,7 +47,7 @@ class SoundManager {
             volume: 0.7,
             rate: 1.5
         }
-        this.explosionSound = scene.sound.add("explosion_sound").play(this.explosionSoundConfig);
+        this.explosionSound = scene.scene.sound.add("explosion_sound").play(this.explosionSoundConfig);
     }
 
     playPowerUpSound(){

@@ -7,5 +7,4 @@ class Powerup extends Phaser.GameObjects.Sprite{
     this.scene = scene;
     this.powerupData = powerupData;
   }
-  
 }

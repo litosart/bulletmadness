@@ -140,7 +140,7 @@ class SceneBoot extends Phaser.Scene {
     soundManager.addSound(this.powerUpSound);
 
     this.cameras.main.once('camerafadeoutcomplete', function() {
-      soundManager.playTheme(this);
+      eventSystem.emit("Play_MainTheme",this);
       this.scene.start("SceneTitleScreen");
     }, this);
 

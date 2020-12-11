@@ -82,10 +82,15 @@ class Player extends Phaser.GameObjects.Sprite {
 
   shoot() {
     if (this.inputKeys.shoot.isDown && !this.shootCooldown) {
-      this.beam = new Beam(this.scene, this.x, (this.y - 10));
-      this.shootCooldown = true;
-      soundManager.playBeamSound(this.scene);
 
+      //Instantiate Beam
+      this.beam = new Beam(this.scene, this.x, (this.y - 10));
+
+      //Raise Player_Shoot event
+      eventSystem.emit("Player_Shoot",this.scene,this);
+
+      //Setup Shoot Cooldown Timer
+      this.shootCooldown = true;
       var timerEventConfig = {
         delay: 100,
         loop: false,
@@ -93,7 +98,6 @@ class Player extends Phaser.GameObjects.Sprite {
         callbackScope: this
       }
       this.scene.timer = this.scene.time.addEvent(timerEventConfig);
-
     }
   }
 
