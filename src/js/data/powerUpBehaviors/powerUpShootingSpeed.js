@@ -6,7 +6,7 @@ class PowerUpShootingSpeed{
   }
 
   execute(scene,player){
-    player.shootingSpeed += this.boostAmount;
+    player.weapon.shootingSpeed += this.boostAmount;
     this.player = player;
     this.revertTimerConfig = {
       delay: this.duration,
@@ -18,6 +18,6 @@ class PowerUpShootingSpeed{
   }
 
   revert(){
-    this.player.shootingSpeed -= this.boostAmount;
+    this.player.weapon.shootingSpeed -= this.boostAmount;
   }
 }

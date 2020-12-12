@@ -19,10 +19,10 @@ var playerNumber = 1;
 //Event System Creation
 const eventSystem = new Phaser.Events.EventEmitter();
 
+const beamDataContainer = new BeamDataContainer();
 const enemyShipsDataContainer = new EnemyShipsDataContainer();
 const playerShipsData = new PlayerShipsDataContainer();
 const powerUpDataContainer = new PowerUpDataContainer();
-const beamDataContainer = new BeamDataContainer();
 
 window.onload = function() {
   game = new Phaser.Game(config);
