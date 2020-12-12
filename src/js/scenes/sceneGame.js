@@ -24,7 +24,7 @@ class SceneGame extends Phaser.Scene {
     //Enemy Manager Initialization
     this.enemyManager = new EnemyManager(this);
 
-    /*var spawnerData = new SpawnerData();
+    var spawnerData = new SpawnerData();
     spawnerData.enemyData = enemyShipsData.list[0];
     spawnerData.spawnDelay = 1500;
     spawnerData.loop = true;
@@ -41,7 +41,7 @@ class SceneGame extends Phaser.Scene {
     spawnerData.spawnDelay = 200;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
-*/
+
     this.powerupManager = new PowerupManager(this);
 
     //Score Manager Initialization

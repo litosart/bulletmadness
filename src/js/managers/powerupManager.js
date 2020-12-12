@@ -15,7 +15,7 @@ class PowerupManager {
 
   setupSpawnerLoop() {
     this.spawnerLoopConfig = {
-      delay: 500,
+      delay: 2500,
       loop: true,
       callback: this.spawnPowerup,
       callbackScope: this
