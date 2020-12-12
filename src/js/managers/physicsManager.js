@@ -37,8 +37,7 @@ class PhysicsManager {
     }, null, this);
 
     scene.physics.add.collider(this.playerPhysicsGroup, this.powerupPhysicsGroup, function(player, powerup) {
-      powerup.destroy();
-      console.log("PowerupHIT");
+      powerup.emit("PowerUp_Hit",player);
     });
 
   }

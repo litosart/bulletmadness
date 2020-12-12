@@ -1,13 +1,12 @@
 class PowerUp extends Phaser.GameObjects.Sprite {
 
-  scene;
-  powerupData;
-
-  constructor(scene, powerupData) {
+  constructor(scene, powerUpData) {
     super(scene, Phaser.Math.Between(0, config.width), Phaser.Math.Between(0, config.height), "powerup_movement_speed_boost");
-    this.setScale(1.5);
     this.scene = scene;
-    this.powerupData = powerupData;
+    this.powerUpData = powerUpData;
+
+    this.setTexture(this.powerUpData.spriteName);
+    this.setScale(1.5);
 
     //Adding to scene
     scene.add.existing(this);
@@ -15,5 +14,17 @@ class PowerUp extends Phaser.GameObjects.Sprite {
     //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.powerupPhysicsGroup.add(this);
+
+    this.on("PowerUp_Hit",this.powerUpHit,this);
+    this.on('destroy' , this.onDestroy);
+  }
+
+  powerUpHit(player){
+    this.powerUpData.behavior.execute(this.scene,player);
+    this.destroy();
+  }
+
+  onDestroy(){
+    this.off("PowerUp_Hit",this.powerUpHit,this);
   }
 }
