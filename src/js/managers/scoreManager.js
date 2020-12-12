@@ -21,6 +21,8 @@ class ScoreManager {
     }
 
     //Setup Events
+    eventSystem.off("EnemyHit_UpdateScore", this.addScore);
+    eventSystem.off("PlayerHit_UpdateHealth", this.updateScore);
     eventSystem.on("EnemyHit_UpdateScore", this.addScore, this);
     eventSystem.on("PlayerHit_UpdateHealth", this.updateScore, this);
   }
