@@ -23,8 +23,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
     //Movement speed
     this.movementSpeed = this.playerData.movementSpeed;
-
-    this.shootingSpeed = this.playerData.shootingSpeed;
+    this.weapon = new BasicWeapon(this.scene,this);
 
     //Adding to scene
     scene.add.existing(this);
@@ -83,14 +82,9 @@ class Player extends Phaser.GameObjects.Sprite {
     this.kill();
   }
 
-  resetCooldown() {
-    this.shootCooldown = false;
-  }
-
   shoot() {
-    if (this.inputKeys.shoot.isDown && !this.shootCooldown) {
-      var weapon = new WeaponData();
-      weapon.behavior.shoot(this.scene,this);
+    if (this.inputKeys.shoot.isDown) {
+      this.weapon.shoot();
     }
   }
 
