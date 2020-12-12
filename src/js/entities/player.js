@@ -43,6 +43,9 @@ class Player extends Phaser.GameObjects.Sprite {
 
   recieveDamage() {
     this.lives--;
+    if (this.lives == 0) {
+      this.playerDeath();
+    }
   }
 
   playerDeath() {
@@ -86,22 +89,8 @@ class Player extends Phaser.GameObjects.Sprite {
 
   shoot() {
     if (this.inputKeys.shoot.isDown && !this.shootCooldown) {
-
-      //Instantiate Beam
-      this.beam = new Beam(this.scene, this.x, (this.y - 10));
-
-      //Raise Player_Shoot event
-      eventSystem.emit("PlaySound_Player_Shoot",this.scene,this);
-
-      //Setup Shoot Cooldown Timer
-      this.shootCooldown = true;
-      var timerEventConfig = {
-        delay: 1/this.shootingSpeed*1000,
-        loop: false,
-        callback: this.resetCooldown,
-        callbackScope: this
-      }
-      this.scene.timer = this.scene.time.addEvent(timerEventConfig);
+      var weapon = new WeaponData();
+      weapon.behavior.shoot(this.scene,this);
     }
   }
 
