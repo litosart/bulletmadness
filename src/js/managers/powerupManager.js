@@ -8,16 +8,16 @@ class PowerupManager {
     this.setupSpawnerLoop();
   }
 
-  spawnPowerup() {
-    var powerUp = new PowerUp(this.scene, new PowerUpData());
+  spawnPowerUp() {
+    var powerUp = new PowerUp(this.scene,powerUpDataContainer.list[Phaser.Math.Between(0,powerUpDataContainer.list.length-1)]);
     this.powerUpList.push(powerUp);
   }
 
   setupSpawnerLoop() {
     this.spawnerLoopConfig = {
-      delay: 2500,
+      delay: 3000,
       loop: true,
-      callback: this.spawnPowerup,
+      callback: this.spawnPowerUp,
       callbackScope: this
     }
     this.scene.timer = this.scene.time.addEvent(this.spawnerLoopConfig);

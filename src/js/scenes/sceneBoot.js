@@ -24,8 +24,23 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("background_2", "resources/img/backgrounds/Background_Black_Borders.png");
 
     //SPRITES
-    
-    this.load.spritesheet("powerup_movement_speed_boost", "resources/img/sprites/powerup_ship_speed.png",{
+
+    this.load.spritesheet("powerup_movement_speed_1", "resources/img/sprites/powerup_ship_speed_1.png",{
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
+    this.load.spritesheet("powerup_movement_speed_2", "resources/img/sprites/powerup_ship_speed_2.png",{
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
+    this.load.spritesheet("powerup_shoot_speed_1", "resources/img/sprites/powerup_shoot_speed_1.png",{
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
+    this.load.spritesheet("powerup_shoot_speed_2", "resources/img/sprites/powerup_shoot_speed_2.png",{
       frameWidth: 32,
       frameHeight: 32
     });

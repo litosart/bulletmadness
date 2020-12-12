@@ -1,4 +1,4 @@
-class EnemyShipsData {
+class EnemyShipsDataContainer {
 
 
   /*
