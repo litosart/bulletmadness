@@ -8,7 +8,7 @@ class Player extends Phaser.GameObjects.Sprite {
     //Player Setup
     this.playerData = playerData;
     this.movementSpeed = this.playerData.movementSpeed;
-    this.weapon = new BasicWeapon(this.scene,this);
+    this.weapon = new BasicWeapon(this.scene,this, beamDataContainer.list[0]);
     this.lives = this.playerData.lives;
     this.alive = true;
 

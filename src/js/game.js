@@ -22,6 +22,7 @@ const eventSystem = new Phaser.Events.EventEmitter();
 const enemyShipsDataContainer = new EnemyShipsDataContainer();
 const playerShipsData = new PlayerShipsDataContainer();
 const powerUpDataContainer = new PowerUpDataContainer();
+const beamDataContainer = new BeamDataContainer();
 
 window.onload = function() {
   game = new Phaser.Game(config);
