@@ -28,7 +28,7 @@ class Player extends Phaser.GameObjects.Sprite {
     //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.playerPhysicsGroup.add(this);
-    
+
     //Setting collisions with screen bounds
     this.body.setCollideWorldBounds(true);
 
@@ -82,9 +82,15 @@ class Player extends Phaser.GameObjects.Sprite {
 
   shoot() {
     if (this.inputKeys.shoot.isDown && !this.shootCooldown) {
-      this.beam = new Beam(this.scene, this.x, (this.y - 10));
-      this.shootCooldown = true;
 
+      //Instantiate Beam
+      this.beam = new Beam(this.scene, this.x, (this.y - 10));
+
+      //Raise Player_Shoot event
+      eventSystem.emit("PlaySound_Player_Shoot",this.scene,this);
+
+      //Setup Shoot Cooldown Timer
+      this.shootCooldown = true;
       var timerEventConfig = {
         delay: 100,
         loop: false,
@@ -92,7 +98,6 @@ class Player extends Phaser.GameObjects.Sprite {
         callbackScope: this
       }
       this.scene.timer = this.scene.time.addEvent(timerEventConfig);
-
     }
   }
 

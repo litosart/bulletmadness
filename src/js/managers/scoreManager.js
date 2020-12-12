@@ -23,8 +23,8 @@ class ScoreManager {
     //Setup Events
     eventSystem.removeAllListeners("enemyHit");
     eventSystem.removeAllListeners("playerHit");
-    eventSystem.on("enemyHit", this.addScore, this);
-    eventSystem.on("playerHit", this.updateScore, this)
+    eventSystem.on("EnemyHit_UpdateScore", this.addScore, this);
+    eventSystem.on("PlayerHit_UpdateHealth", this.updateScore, this);
   }
 
   addScore(amount) {

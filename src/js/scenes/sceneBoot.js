@@ -24,6 +24,11 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("background_2", "resources/img/backgrounds/Background_Black_Borders.png");
 
     //SPRITES
+    
+    this.load.spritesheet("powerup_movement_speed_boost", "resources/img/sprites/powerup_ship_speed.png",{
+      frameWidth: 32,
+      frameHeight: 32
+    });
 
     this.load.spritesheet("game_logo", "resources/img/sprites/logo_sheet.png", {
       frameWidth: 249,
@@ -64,7 +69,12 @@ class SceneBoot extends Phaser.Scene {
     });
 
     //MUSICA
-    this.load.audio('maintheme', "resources/sounds/music/main_theme.mp3");
+    this.maintheme = this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
+
+    this.beamSound = this.load.audio('beam_sound',["resources/sounds/sound_effects/beam.mp3", "resources/sounds/sound_effects/beam.ogg"]);
+    this.explosionSound = this.load.audio('explosion_sound',["resources/sounds/sound_effects/explosion.mp3", "resources/sounds/sound_effects/explosion.ogg"]);
+    this.powerUpSound = this.load.audio('powerUp_sound',["resources/sounds/sound_effects/powerUp.mp3", "resources/sounds/sound_effects/powerUp.ogg"]);
+
   }
 
   create() {
@@ -128,8 +138,17 @@ class SceneBoot extends Phaser.Scene {
     //Scene Fade Out
     this.cameras.main.fadeOut(500);
 
+    //Adding a sound Manager
+    this.soundManager = new SoundManager(this);
+    //Adding sounds
+    this.soundManager.addTheme(this.maintheme);
+    this.soundManager.addSound(this.beamSound);
+    this.soundManager.addSound(this.explosionSound);
+    this.soundManager.addSound(this.powerUpSound);
+
     this.cameras.main.once('camerafadeoutcomplete', function() {
-      this.sound.add('maintheme').play();
+      eventSystem.emit("PlaySound_MainTheme");
+      this.scene.sleep("SceneBoot");
       this.scene.start("SceneTitleScreen");
     }, this);
 
