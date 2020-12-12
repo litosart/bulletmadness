@@ -30,9 +30,6 @@ class PhysicsManager {
     scene.physics.add.collider(this.playerPhysicsGroup, this.enemyPhysicsGroup, function(player, enemy) {
       enemy.destroy();
       player.recieveDamage();
-      if (player.lives == 0) {
-        player.playerDeath();
-      }
       eventSystem.emit("PlayerHit_UpdateHealth");
     }, null, this);
 
