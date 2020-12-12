@@ -11,6 +11,7 @@ class PlayerData {
     this.movementSpeed = 10;
     this.shootingSpeed = 2;
     this.lives = 3;
+    this.weapon = new BasicWeapon();
   }
 
 }

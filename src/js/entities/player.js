@@ -5,12 +5,13 @@ class Player extends Phaser.GameObjects.Sprite {
     super(scene, 0, 0, "ship_player_1");
     this.scene = scene;
 
-    //Player Setup
+    //Player Variables Setup
     this.playerData = playerData;
-    this.movementSpeed = this.playerData.movementSpeed;
-    this.weapon = new BasicWeapon(this.scene,this);
     this.lives = this.playerData.lives;
     this.alive = true;
+    this.movementSpeed = this.playerData.movementSpeed;
+    this.weapon = this.playerData.weapon;
+    this.weapon.linkToPlayer(this.scene,this);
 
     //Set default Input Keys
     this.inputKeys = scene.input.keyboard.createCursorKeys();
