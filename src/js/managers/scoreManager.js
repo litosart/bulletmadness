@@ -6,10 +6,7 @@ class ScoreManager {
 
     //Score
     this.score = 0;
-    this.scoreText = scene.add.text(16, 16, 'Score: 0', {
-      fontSize: '20px',
-      fill: '#000'
-    });
+    this.scoreText = scene.add.bitmapText(16, 16, "font_default", "Score: 0");
 
     //Lives text
     this.livesText_1 = scene.add.text(16, config.height - 30, 'Lives player 1: ' + this.players[0].lives, {
@@ -24,10 +21,10 @@ class ScoreManager {
     }
 
     //Setup Events
-    eventSystem.removeAllListeners("enemyHit");
-    eventSystem.removeAllListeners("playerHit");
-    eventSystem.on("enemyHit", this.addScore, this);
-    eventSystem.on("playerHit", this.updateScore, this)
+    eventSystem.off("EnemyHit_UpdateScore", this.addScore);
+    eventSystem.off("PlayerHit_UpdateHealth", this.updateScore);
+    eventSystem.on("EnemyHit_UpdateScore", this.addScore, this);
+    eventSystem.on("PlayerHit_UpdateHealth", this.updateScore, this);
   }
 
   addScore(amount) {
@@ -53,7 +50,11 @@ class ScoreManager {
       }
     }
     if (n == playerNumber) {
-      this.scene.scene.start("SceneTitleScreen");
+      //Scene Fade Out
+      this.scene.cameras.main.fadeOut(500);
+      this.scene.cameras.main.once('camerafadeoutcomplete', function() {
+        this.scene.scene.start("SceneLevelEndOverview",{score:this.score});
+      }, this);
     }
   }
 

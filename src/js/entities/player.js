@@ -1,15 +1,15 @@
 class Player extends Phaser.GameObjects.Sprite {
 
   //class fields
-  //movementSpeed = 300;
   inputKeys = undefined;
   shootCooldown = false;
 
   constructor(scene, playerData) {
 
     super(scene, 0, 0, "ship_player_1");
-
     this.scene = scene;
+
+    this.setScale(1.5);
 
     //Setups Player Data
     this.playerData = playerData;
@@ -24,12 +24,15 @@ class Player extends Phaser.GameObjects.Sprite {
     //Movement speed
     this.movementSpeed = this.playerData.movementSpeed;
 
+    this.shootingSpeed = this.playerData.shootingSpeed;
+
     //Adding to scene
     scene.add.existing(this);
 
     //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.playerPhysicsGroup.add(this);
+
     //Setting collisions with screen bounds
     this.body.setCollideWorldBounds(true);
 
@@ -83,17 +86,22 @@ class Player extends Phaser.GameObjects.Sprite {
 
   shoot() {
     if (this.inputKeys.shoot.isDown && !this.shootCooldown) {
-      this.beam = new Beam(this.scene, this.x, (this.y - 10));
-      this.shootCooldown = true;
 
+      //Instantiate Beam
+      this.beam = new Beam(this.scene, this.x, (this.y - 10));
+
+      //Raise Player_Shoot event
+      eventSystem.emit("PlaySound_Player_Shoot",this.scene,this);
+
+      //Setup Shoot Cooldown Timer
+      this.shootCooldown = true;
       var timerEventConfig = {
-        delay: 100,
+        delay: 1/this.shootingSpeed*1000,
         loop: false,
         callback: this.resetCooldown,
         callbackScope: this
       }
       this.scene.timer = this.scene.time.addEvent(timerEventConfig);
-
     }
   }
 
