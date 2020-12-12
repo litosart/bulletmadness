@@ -1,15 +1,16 @@
 class BasicWeapon {
-  constructor(scene, player) {
+  constructor(scene, player, beamData) {
     this.scene = scene;
     this.player = player;
     this.shootingSpeed = 2;
     this.shootCooldown = false;
+    this.beamData = beamData;
   }
 
   shoot() {
     if(!this.shootCooldown){
       //Instantiate Beam
-      var beam = new Beam(this.scene, this.player.x, (this.player.y - 10));
+      var beam = new Beam(this.scene, this.player.x, (this.player.y - 10), this.beamData);
 
       //Raise Player_Shoot event
       eventSystem.emit("PlaySound_Player_Shoot", this.scene, this.player);
