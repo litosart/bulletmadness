@@ -20,8 +20,8 @@ class PhysicsManager {
     scene.physics.world.setBounds(30, 0, config.width - 60, config.height);
 
     //Define all collisions and responses
-    scene.physics.add.collider(this.beamsPhysicsGroup, this.enemyPhysicsGroup, function(projectile, enemy) {
-      
+    scene.physics.add.overlap(this.beamsPhysicsGroup, this.enemyPhysicsGroup, function(projectile, enemy) {
+
       if(projectile.beamType == 0)
       {
         projectile.destroy();
@@ -31,7 +31,7 @@ class PhysicsManager {
       }
     }, null, this);
 
-    scene.physics.add.collider(this.beamsPhysicsGroup, this.playerPhysicsGroup, function(projectile, player) {
+    scene.physics.add.overlap(this.beamsPhysicsGroup, this.playerPhysicsGroup, function(projectile, player) {
 
       if(projectile.beamType == 1)
       {
@@ -41,13 +41,13 @@ class PhysicsManager {
       }
     }, null, this);
 
-    scene.physics.add.collider(this.playerPhysicsGroup, this.enemyPhysicsGroup, function(player, enemy) {
+    scene.physics.add.overlap(this.playerPhysicsGroup, this.enemyPhysicsGroup, function(player, enemy) {
       enemy.destroy();
       player.recieveDamage();
       eventSystem.emit("PlayerHit_UpdateHealth");
     }, null, this);
 
-    scene.physics.add.collider(this.playerPhysicsGroup, this.powerupPhysicsGroup, function(player, powerup) {
+    scene.physics.add.overlap(this.playerPhysicsGroup, this.powerupPhysicsGroup, function(player, powerup) {
       powerup.emit("PowerUp_Hit",player);
     });
 
