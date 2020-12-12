@@ -2,6 +2,7 @@ class BasicWeapon {
   constructor() {
     this.shootingSpeed = 2;
     this.shootCooldown = false;
+    this.beamData = beamData;
   }
 
   linkToPlayer(scene,player){
@@ -12,7 +13,7 @@ class BasicWeapon {
   shoot() {
     if(!this.shootCooldown){
       //Instantiate Beam
-      var beam = new Beam(this.scene, this.player.x, (this.player.y - 10));
+      var beam = new Beam(this.scene, this.player.x, (this.player.y - 10), this.beamData);
 
       //Raise Player_Shoot event
       eventSystem.emit("PlaySound_Player_Shoot", this.scene, this.player);
