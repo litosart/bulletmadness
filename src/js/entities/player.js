@@ -1,43 +1,30 @@
 class Player extends Phaser.GameObjects.Sprite {
 
-  //class fields
-  inputKeys = undefined;
-  shootCooldown = false;
-
   constructor(scene, playerData) {
 
     super(scene, 0, 0, "ship_player_1");
     this.scene = scene;
 
-    this.setScale(1.5);
-
-    //Setups Player Data
+    //Player Setup
     this.playerData = playerData;
-    this.setTexture(this.playerData.spriteName);
-
-    //Set Idle Animation;
-    this.play(this.playerData.idleAnimName);
+    this.movementSpeed = this.playerData.movementSpeed;
+    this.weapon = new BasicWeapon(this.scene,this);
+    this.lives = this.playerData.lives;
+    this.alive = true;
 
     //Set default Input Keys
     this.inputKeys = scene.input.keyboard.createCursorKeys();
 
-    //Movement speed
-    this.movementSpeed = this.playerData.movementSpeed;
-    this.weapon = new BasicWeapon(this.scene,this);
+    //Setting up Sprite
+    this.setScale(1.5);
+    this.setTexture(this.playerData.spriteName);
+    this.play(this.playerData.idleAnimName);
 
-    //Adding to scene
+    //Adding to scene and enabling Physics
     scene.add.existing(this);
-
-    //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.playerPhysicsGroup.add(this);
-
-    //Setting collisions with screen bounds
     this.body.setCollideWorldBounds(true);
-
-    //Set player lives
-    this.lives = this.playerData.lives;
-    this.alive = true;
   }
 
   recieveDamage() {
@@ -76,10 +63,6 @@ class Player extends Phaser.GameObjects.Sprite {
     } else {
       this.body.setVelocityY(0);
     }
-  }
-
-  removePlayer() {
-    this.kill();
   }
 
   shoot() {
