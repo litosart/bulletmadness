@@ -21,11 +21,25 @@ class PhysicsManager {
 
     //Define all collisions and responses
     scene.physics.add.collider(this.beamsPhysicsGroup, this.enemyPhysicsGroup, function(projectile, enemy) {
-      projectile.destroy();
-      enemy.destroy();
-      eventSystem.emit("EnemyHit_UpdateScore",enemy.enemyData.points);
-      eventSystem.emit("PlaySound_EnemyHit");
-    });
+      
+      if(projectile.beamType == 0)
+      {
+        projectile.destroy();
+        enemy.destroy();
+        eventSystem.emit("EnemyHit_UpdateScore",enemy.enemyData.points);
+        eventSystem.emit("PlaySound_EnemyHit");
+      }
+    }, null, this);
+
+    scene.physics.add.collider(this.beamsPhysicsGroup, this.playerPhysicsGroup, function(projectile, player) {
+
+      if(projectile.beamType == 1)
+      {
+        projectile.destroy();
+        player.recieveDamage();
+        eventSystem.emit("PlayerHit_UpdateHealth");
+      }
+    }, null, this);
 
     scene.physics.add.collider(this.playerPhysicsGroup, this.enemyPhysicsGroup, function(player, enemy) {
       enemy.destroy();
