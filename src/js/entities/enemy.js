@@ -27,6 +27,12 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     //Sets Start Velocity
     this.body.setVelocityY(this.enemyData.movementSpeed);
+
+    //Weapon
+    this.weapon = enemyData.weapon;
+
+    this.weapon.linkToPlayer(scene,this);
+    this.setupSpawnerLoop();
   }
 
   //Removes player if out of bounds
@@ -38,5 +44,19 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
   update() {
     this.checkOutOfBounds();
+  }
+
+  spawnBeam() {
+    this.weapon.shoot();
+  }
+
+  setupSpawnerLoop() {
+    this.spawnerLoopConfig = {
+      delay: 300,
+      loop: true,
+      callback: this.spawnBeam,
+      callbackScope: this
+    }
+    this.scene.timer = this.scene.time.addEvent(this.spawnerLoopConfig);
   }
 }

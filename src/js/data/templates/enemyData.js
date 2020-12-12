@@ -12,6 +12,7 @@ class EnemyData {
     this.canShoot = true;
     this.health = 100;
     this.points = 10;
+    this.weapon = new BasicWeapon(beamDataContainer.list[1]);
   }
 
 }

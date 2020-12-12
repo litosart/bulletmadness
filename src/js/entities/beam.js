@@ -5,6 +5,7 @@ class Beam extends Phaser.GameObjects.Sprite {
     super(scene, playerX, playerY, "proyectile_beam_1");
 
     this.beamData = beamData;
+    this.beamType = beamData.beamType;
 
     this.setTexture(this.beamData.spriteName);
     this.play(this.beamData.idleAnimName);
@@ -16,14 +17,18 @@ class Beam extends Phaser.GameObjects.Sprite {
     scene.physics.world.enableBody(this);
     scene.physicsManager.beamsPhysicsGroup.add(this);
     
-    this.body.velocity.y = beamData.velocity;
-
+    if(this.beamType == 0){
+      this.body.velocity.y = beamData.velocity;
+    }
+    else{
+      this.body.velocity.y = -beamData.velocity;
+    }
     //Adding to beam group
     //scene.projectiles1.add(this);
   }
 
   update() {
-    if (this.y < 20) {
+    if (this.y < 20 || this.y > config.height) {
       this.destroy();
     }
   }
