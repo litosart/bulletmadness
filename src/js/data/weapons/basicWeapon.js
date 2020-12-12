@@ -1,5 +1,5 @@
 class BasicWeapon {
-  constructor() {
+  constructor(beamData) {
     this.shootingSpeed = 2;
     this.shootCooldown = false;
     this.beamData = beamData;
