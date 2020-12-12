@@ -6,7 +6,7 @@ class PowerUp extends Phaser.GameObjects.Sprite {
     this.powerUpData = powerUpData;
 
     this.setTexture(this.powerUpData.spriteName);
-    this.setScale(1.5);
+    this.setScale(2);
 
     //Adding to scene
     scene.add.existing(this);
@@ -14,7 +14,18 @@ class PowerUp extends Phaser.GameObjects.Sprite {
     //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.powerupPhysicsGroup.add(this);
+    scene.physics.world.wrap(this);
 
+    //Setup Timer till autodestruction
+    this.spawnerLoopConfig = {
+      delay: 3000,
+      loop: false,
+      callback: this.destroy,
+      callbackScope: this
+    }
+    this.scene.timer = this.scene.time.addEvent(this.spawnerLoopConfig);
+
+    //Subscribing to events
     this.on("PowerUp_Hit",this.powerUpHit,this);
     this.on('destroy' , this.onDestroy);
   }

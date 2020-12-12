@@ -17,10 +17,11 @@ const config = {
 var playerNumber = 1;
 
 //Event System Creation
-var eventSystem = new Phaser.Events.EventEmitter();
+const eventSystem = new Phaser.Events.EventEmitter();
 
-var enemyShipsData = new EnemyShipsData();
-var playerShipsData = new PlayerShipsData();
+const enemyShipsDataContainer = new EnemyShipsDataContainer();
+const playerShipsData = new PlayerShipsDataContainer();
+const powerUpDataContainer = new PowerUpDataContainer();
 
 window.onload = function() {
   game = new Phaser.Game(config);

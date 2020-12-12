@@ -9,6 +9,8 @@ class Player extends Phaser.GameObjects.Sprite {
     super(scene, 0, 0, "ship_player_1");
     this.scene = scene;
 
+    this.setScale(1.5);
+
     //Setups Player Data
     this.playerData = playerData;
     this.setTexture(this.playerData.spriteName);
@@ -21,6 +23,8 @@ class Player extends Phaser.GameObjects.Sprite {
 
     //Movement speed
     this.movementSpeed = this.playerData.movementSpeed;
+
+    this.shootingSpeed = this.playerData.shootingSpeed;
 
     //Adding to scene
     scene.add.existing(this);
@@ -92,7 +96,7 @@ class Player extends Phaser.GameObjects.Sprite {
       //Setup Shoot Cooldown Timer
       this.shootCooldown = true;
       var timerEventConfig = {
-        delay: 100,
+        delay: 1/this.shootingSpeed*1000,
         loop: false,
         callback: this.resetCooldown,
         callbackScope: this
