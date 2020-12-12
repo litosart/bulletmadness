@@ -4,6 +4,10 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     super(scene, Phaser.Math.Between(0, config.width), 0, "ship1");
 
+
+    scene.physics.world.wrap(this);
+    this.setScale(2);
+
     //Setups Enemy Data
     this.enemyData = enemyData;
     this.setTexture(this.enemyData.spriteName);

@@ -6,7 +6,9 @@ class PowerUp extends Phaser.GameObjects.Sprite {
     this.powerUpData = powerUpData;
 
     this.setTexture(this.powerUpData.spriteName);
-    this.setScale(1.5);
+    
+    scene.physics.world.wrap(this);
+    this.setScale(2);
 
     //Adding to scene
     scene.add.existing(this);
