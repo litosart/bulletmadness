@@ -6,12 +6,10 @@ class ShotgunWeapon extends BasicWeapon {
   shoot() {
     if(!this.shootCooldown){
       //Instantiate Beam
-      var beam = new Beam(this.scene, this.player.x, (this.player.y - 10), this.beamData);
-      var beam = new Beam(this.scene, this.player.x + 20, (this.player.y - 10), this.beamData);
-      var beam = new Beam(this.scene, this.player.x - 20, (this.player.y - 10), this.beamData);
+      var beam = new Beam(this.scene, this.ship, this.beamData);
 
       //Raise Player_Shoot event
-      eventSystem.emit("PlaySound_Player_Shoot", this.scene, this.player);
+      eventSystem.emit("PlaySound_Player_Shoot");
 
       //Setup Shoot Cooldown Timer
       this.shootCooldown = true;

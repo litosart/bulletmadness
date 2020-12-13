@@ -11,7 +11,8 @@ class PlayerData {
     this.movementSpeed = 10;
     this.shootingSpeed = 2;
     this.lives = 3;
-    this.weapon = new BasicWeapon(beamDataContainer.list[0]);
+    this.weaponID = 0;
+    this.bulletData = beamDataContainer.list[0];
   }
 
 }
