@@ -26,7 +26,7 @@ class SceneGame extends Phaser.Scene {
 
     var spawnerData = new SpawnerData();
     spawnerData.enemyData = enemyShipsDataContainer.list[0];
-    spawnerData.spawnDelay = 2500;
+    spawnerData.spawnDelay = 1000;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 

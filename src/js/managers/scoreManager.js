@@ -9,10 +9,12 @@ class ScoreManager {
     this.scoreText = scene.add.bitmapText(16, 16, "font_default", "Score: 0");
 
     //Lives text
-    this.livesText_1 = scene.add.bitmapText(25, config.height - 50, "font_default", "Lives player 1: " + this.players[0].lives);
+    this.livesText_1 = scene.add.bitmapText(35, config.height - 50, "font_default", "Lives player 1: " + this.players[0].lives);
+    this.livesText_1.setFontSize(40);
 
     if (playerNumber == 2) {
-      this.livesText_2 = scene.add.bitmapText(config.width - 200, config.height - 80, "font_default", "Lives player 1: " + this.players[0].lives);
+      this.livesText_2 = scene.add.bitmapText(config.width - 270, config.height - 50, "font_default", "Lives player 2: " + this.players[1].lives);
+      this.livesText_2.setFontSize(40);
     }
 
     //Setup Events

@@ -20,13 +20,13 @@ class PhysicsManager {
     scene.physics.world.setBounds(30, 0, config.width - 60, config.height);
 
     //Define all collisions and responses
-    scene.physics.add.overlap(this.beamsPhysicsGroup, this.enemyPhysicsGroup, function(projectile, enemy) {
+    scene.physics.add.overlap(this.beamsPhysicsGroup, this.enemyPhysicsGroup, function(proyectile, enemy) {
 
-      if(projectile.team == 0)
+      if(proyectile.team == 0)
       {
-        projectile.destroy();
-        enemy.destroy();
-        eventSystem.emit("EnemyHit_UpdateScore",enemy.enemyData.points);
+        proyectile.destroy();
+        enemy.emit("EnemyHit",proyectile.damage);
+        eventSystem.emit("EnemyHit_UpdateScore",enemy.points);
         eventSystem.emit("PlaySound_EnemyHit");
       }
     }, null, this);

@@ -3,10 +3,16 @@ class Enemy extends Phaser.GameObjects.Sprite {
   constructor(scene, enemyData) {
 
     super(scene, Phaser.Math.Between(0, config.width), 0, "ship1");
+    this.scene = scene;
+    this.team = 1;
 
     //Setups Enemy Data
     this.enemyData = enemyData;
-    this.team = 1;
+    this.movementSpeed = this.enemyData.movementSpeed;
+    this.health = this.enemyData.startingHealth;
+    this.points = this.enemyData.points;
+
+    console.log(this.enemyData.startingHealth);
 
     //Setup Sprite
     this.setTexture(this.enemyData.spriteName);
@@ -25,7 +31,9 @@ class Enemy extends Phaser.GameObjects.Sprite {
     scene.physicsManager.enemyPhysicsGroup.add(this);
     scene.physics.world.wrap(this);
 
-    this.body.setVelocityY(this.enemyData.movementSpeed);
+    this.body.setVelocityY(this.movementSpeed);
+    this.on("EnemyHit" , this.onHit , this);
+    this.on('destroy' , this.onDestroy, this);
   }
 
   //Removes player if out of bounds
@@ -43,13 +51,24 @@ class Enemy extends Phaser.GameObjects.Sprite {
     this.weapon.shoot();
   }
 
+  onDestroy(){
+    this.shootLoop.remove(false);
+  }
+
+  onHit(damage){
+    this.health -= damage;
+    if(this.health <= 0){
+      this.destroy();
+    }
+  }
+
   setupShootingLoop() {
     this.shootingLoopConfig = {
-      delay: 1000,
+      delay: 1500,
       loop: true,
       callback: this.shoot,
       callbackScope: this
     }
-    this.scene.timer = this.scene.time.addEvent(this.shootingLoopConfig);
+    this.shootLoop = this.scene.time.addEvent(this.shootingLoopConfig);
   }
 }

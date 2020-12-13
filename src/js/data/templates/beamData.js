@@ -8,7 +8,7 @@ class BeamData {
       //Set Default Values
       this.spriteName = "proyectile_beam_1";
       this.idleAnimName = "proyectile_beam_1_anim";
-      this.velocity = -800;
+      this.velocity = 800;
     }
 
   }
