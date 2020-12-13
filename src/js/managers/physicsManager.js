@@ -22,7 +22,7 @@ class PhysicsManager {
     //Define all collisions and responses
     scene.physics.add.overlap(this.beamsPhysicsGroup, this.enemyPhysicsGroup, function(projectile, enemy) {
 
-      if(projectile.beamType == 0)
+      if(projectile.team == 0)
       {
         projectile.destroy();
         enemy.destroy();
@@ -33,7 +33,7 @@ class PhysicsManager {
 
     scene.physics.add.overlap(this.beamsPhysicsGroup, this.playerPhysicsGroup, function(projectile, player) {
 
-      if(projectile.beamType == 1)
+      if(projectile.team == 1)
       {
         projectile.destroy();
         player.recieveDamage();

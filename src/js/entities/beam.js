@@ -1,30 +1,25 @@
 class Beam extends Phaser.GameObjects.Sprite {
 
-  constructor(scene, playerX, playerY, beamData) {
+  constructor(scene, ship, beamData,team) {
 
-    super(scene, playerX, playerY, "proyectile_beam_1");
+    super(scene, ship.x, ship.y, "proyectile_beam_1");
 
+    this.team = team;
     this.beamData = beamData;
-    this.beamType = beamData.beamType;
 
     this.setTexture(this.beamData.spriteName);
     this.play(this.beamData.idleAnimName);
 
-    this.setScale(1.5);
+    this.setScale(2.5);
 
     scene.add.existing(this);
 
     scene.physics.world.enableBody(this);
     scene.physicsManager.beamsPhysicsGroup.add(this);
-    
-    if(this.beamType == 0){
-      this.body.velocity.y = beamData.velocity;
-    }
-    else{
-      this.body.velocity.y = -beamData.velocity;
-    }
-    //Adding to beam group
-    //scene.projectiles1.add(this);
+
+    this.body.velocity.x = beamData.velocity * Math.sin(ship.rotation);
+    this.body.velocity.y = beamData.velocity * Math.cos(ship.rotation);
+    this.rotation = this.body.velocity.angle() + Math.PI/2;
   }
 
   update() {

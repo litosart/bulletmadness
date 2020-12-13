@@ -4,35 +4,28 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
     super(scene, Phaser.Math.Between(0, config.width), 0, "ship1");
 
-
-    scene.physics.world.wrap(this);
-    this.setScale(2);
-
     //Setups Enemy Data
     this.enemyData = enemyData;
+    this.team = 1;
+
+    //Setup Sprite
     this.setTexture(this.enemyData.spriteName);
-
-    //Set Idle Animation;
     this.play(this.enemyData.idleAnimName);
+    this.setScale(2);
+    this.angle = 180;
 
-    //Adding to scene
+    //Setup Weapon
+    this.weapon = WeaponCreator.getWeapon(enemyData.weaponID,enemyData.bulletData);
+    this.weapon.linkToShip(scene,this,this.team);
+    this.setupShootingLoop();
+
+    //Adding to scene and enabling Physics
     scene.add.existing(this);
-
-    //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.enemyPhysicsGroup.add(this);
+    scene.physics.world.wrap(this);
 
-    //Rotation in Radians
-    this.rotation = 3.1415;
-
-    //Sets Start Velocity
     this.body.setVelocityY(this.enemyData.movementSpeed);
-
-    //Weapon
-    this.weapon = enemyData.weapon;
-
-    this.weapon.linkToPlayer(scene,this);
-    this.setupShootingLoop();
   }
 
   //Removes player if out of bounds
@@ -46,15 +39,15 @@ class Enemy extends Phaser.GameObjects.Sprite {
     this.checkOutOfBounds();
   }
 
-  spawnBeam() {
+  shoot() {
     this.weapon.shoot();
   }
 
   setupShootingLoop() {
     this.shootingLoopConfig = {
-      delay: 300,
+      delay: 1000,
       loop: true,
-      callback: this.spawnBeam,
+      callback: this.shoot,
       callbackScope: this
     }
     this.scene.timer = this.scene.time.addEvent(this.shootingLoopConfig);
