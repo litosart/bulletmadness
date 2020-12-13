@@ -11,10 +11,15 @@ class BeamDataContainer {
       var data = new BeamData();
       data.spriteName = "proyectile_beam_1";
       data.idleAnimName = "proyectile_beam_1_anim";
-      data.beamType = 0;
-      data.velocity = -800;
+      data.velocity = 800;
       this.list.push(data);
-      
+
+      var data = new BeamData();
+      data.spriteName = "proyectile_beam_2";
+      data.idleAnimName = "proyectile_beam_2_anim";
+      data.velocity = 325;
+      this.list.push(data);
+
     }
 
   }

@@ -10,10 +10,10 @@ class EnemyData {
     this.idleAnimName = "ship_enemy_small_1_idle";
     this.movementSpeed = 10;
     this.canShoot = true;
-    this.startingHealth = 100;
+    this.startingHealth = 10;
     this.points = 10;
     this.weaponID = 0;
-    this.bulletData = beamDataContainer.list[0];
+    this.bulletData = beamDataContainer.list[1];
   }
 
 }

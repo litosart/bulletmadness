@@ -4,9 +4,21 @@ class ShotgunWeapon extends BasicWeapon {
   }
 
   shoot() {
-    if(!this.shootCooldown){
+    if (!this.shootCooldown) {
       //Instantiate Beam
-      var beam = new Beam(this.scene, this.ship, this.beamData);
+      var FIXTHIS = {
+        x: this.ship.x + 10,
+        y: this.ship.y,
+        rotation: this.ship.rotation
+      }
+      var beam = new Beam(this.scene, this.ship, this.beamData,this.team);
+      var beam = new Beam(this.scene, FIXTHIS, this.beamData,this.team);
+      var FIXTHIS = {
+        x: this.ship.x - 10,
+        y: this.ship.y,
+        rotation: this.ship.rotation
+      }
+      var beam = new Beam(this.scene, FIXTHIS, this.beamData,this.team);
 
       //Raise Player_Shoot event
       eventSystem.emit("PlaySound_Player_Shoot");

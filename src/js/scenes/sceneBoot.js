@@ -74,10 +74,16 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 32
     });
 
-    this.load.spritesheet("proyectile_beam_1", "resources/img/sprites/proyectile_beam.png", {
+    this.load.spritesheet("proyectile_beam_1", "resources/img/sprites/proyectile_beam_1.png", {
       frameWidth: 7,
       frameHeight: 16
     });
+
+    this.load.spritesheet("proyectile_beam_2", "resources/img/sprites/proyectile_beam_2.png", {
+      frameWidth: 7,
+      frameHeight: 16
+    });
+
     this.load.spritesheet("numbers", "resources/img/sprites/numbers.png", {
       frameWidth: 16,
       frameHeight: 16
@@ -145,6 +151,14 @@ class SceneBoot extends Phaser.Scene {
     this.anims.create({
       key: "proyectile_beam_1_anim",
       frames: this.anims.generateFrameNumbers("proyectile_beam_1"),
+      frameRate: 5,
+      repeat: -1,
+      yoyo: true
+    });
+
+    this.anims.create({
+      key: "proyectile_beam_2_anim",
+      frames: this.anims.generateFrameNumbers("proyectile_beam_2"),
       frameRate: 5,
       repeat: -1,
       yoyo: true
