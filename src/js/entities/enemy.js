@@ -3,10 +3,14 @@ class Enemy extends Phaser.GameObjects.Sprite {
   constructor(scene, enemyData) {
 
     super(scene, Phaser.Math.Between(0, config.width), 0, "ship1");
+    this.scene = scene;
+    this.team = 1;
 
     //Setups Enemy Data
     this.enemyData = enemyData;
-    this.team = 1;
+    this.movementSpeed = this.enemyData.movementSpeed;
+    this.health = this.enemyData.startingHealth;
+    this.points = enemyData.points;
 
     //Setup Sprite
     this.setTexture(this.enemyData.spriteName);
@@ -25,7 +29,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
     scene.physicsManager.enemyPhysicsGroup.add(this);
     scene.physics.world.wrap(this);
 
-    this.body.setVelocityY(this.enemyData.movementSpeed);
+    this.body.setVelocityY(this.movementSpeed);
   }
 
   //Removes player if out of bounds

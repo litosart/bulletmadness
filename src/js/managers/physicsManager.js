@@ -26,7 +26,7 @@ class PhysicsManager {
       {
         projectile.destroy();
         enemy.destroy();
-        eventSystem.emit("EnemyHit_UpdateScore",enemy.enemyData.points);
+        eventSystem.emit("EnemyHit_UpdateScore",enemy.points);
         eventSystem.emit("PlaySound_EnemyHit");
       }
     }, null, this);
