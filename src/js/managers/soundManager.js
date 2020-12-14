@@ -33,7 +33,7 @@ class SoundManager {
     var beamSoundConfig = {
       volume: 0.1
     }
-    this.beamSound.play(this.beamSoundConfig);
+    this.beamSound.play(beamSoundConfig);
   }
 
   playExplosionSound() {
@@ -41,7 +41,7 @@ class SoundManager {
       volume: 0.08,
       rate: 1
     }
-    this.explosionSound.play(this.explosionSoundConfig);
+    this.explosionSound.play(explosionSoundConfig);
   }
 
   playPowerUpSound() {
