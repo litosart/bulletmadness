@@ -26,5 +26,11 @@ class PowerUpDataContainer {
     data.spriteName = "powerup_shoot_speed_2";
     data.behavior = new PowerUpShootingSpeed(5, 4000);
     this.list.push(data);
+
+    var data = new PowerUpData();
+    this.name = "Shotgun PowerUp"
+    data.spriteName = "powerup_weapon_shotgun_1";
+    data.behavior = new PowerUpChangeWeapon(1, 8000);
+    this.list.push(data);
   }
 }
