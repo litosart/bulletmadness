@@ -39,6 +39,7 @@ class PhysicsManager {
         player.recieveDamage();
         eventSystem.emit("PlayEffect_Explosion",player);
         eventSystem.emit("PlayerHit_UpdateHealth");
+        eventSystem.emit("PlaySound_PlayerHit");
       }
     }, null, this);
 
@@ -48,10 +49,12 @@ class PhysicsManager {
       eventSystem.emit("PlayEffect_Explosion",player);
       eventSystem.emit("PlayEffect_Explosion",enemy);
       eventSystem.emit("PlayerHit_UpdateHealth");
+      eventSystem.emit("PlaySound_PlayerHit");
     }, null, this);
 
     scene.physics.add.overlap(this.playerPhysicsGroup, this.powerupPhysicsGroup, function(player, powerup) {
       powerup.emit("PowerUp_Hit",player);
+      eventSystem.emit("PlaySound_PowerUp");
     });
 
   }
