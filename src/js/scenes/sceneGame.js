@@ -32,20 +32,24 @@ class SceneGame extends Phaser.Scene {
 
     var spawnerData = new SpawnerData();
     spawnerData.enemyData = enemyShipsDataContainer.list[2];
-    spawnerData.spawnDelay = 1000;
+    spawnerData.spawnDelay = 3000;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
     var spawnerData = new SpawnerData();
     spawnerData.enemyData = enemyShipsDataContainer.list[3];
-    spawnerData.spawnDelay = 750;
+    spawnerData.spawnDelay = 500;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
     this.powerupManager = new PowerupManager(this);
 
+    this.effectsManager = new EffectsManager(this);
+
     //Score Manager Initialization
     this.scoreManager = new ScoreManager(this, this.playerManager.playersArray);
+
+    this.cameras.main.fadeIn(500);
   }
 
   update() {

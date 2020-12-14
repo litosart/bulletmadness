@@ -3,36 +3,35 @@ class Enemy extends Phaser.GameObjects.Sprite {
   constructor(scene, enemyData) {
 
     super(scene, Phaser.Math.Between(0, config.width), 0, "ship1");
-
-
-    scene.physics.world.wrap(this);
-    this.setScale(2);
+    this.scene = scene;
+    this.team = 1;
 
     //Setups Enemy Data
     this.enemyData = enemyData;
+    this.movementSpeed = this.enemyData.movementSpeed;
+    this.health = this.enemyData.startingHealth;
+    this.points = this.enemyData.points;
+    
+    //Setup Sprite
     this.setTexture(this.enemyData.spriteName);
-
-    //Set Idle Animation;
     this.play(this.enemyData.idleAnimName);
+    this.setScale(2);
+    this.angle = 180;
 
-    //Adding to scene
+    //Setup Weapon
+    this.weapon = WeaponCreator.getWeapon(enemyData.weaponID,enemyData.bulletData);
+    this.weapon.linkToShip(scene,this,this.team);
+    this.setupShootingLoop();
+
+    //Adding to scene and enabling Physics
     scene.add.existing(this);
-
-    //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.enemyPhysicsGroup.add(this);
+    scene.physics.world.wrap(this);
 
-    //Rotation in Radians
-    this.rotation = 3.1415;
-
-    //Sets Start Velocity
-    this.body.setVelocityY(this.enemyData.movementSpeed);
-
-    //Weapon
-    this.weapon = enemyData.weapon;
-
-    this.weapon.linkToPlayer(scene,this);
-    this.setupSpawnerLoop();
+    this.body.setVelocityY(this.movementSpeed);
+    this.on("EnemyHit" , this.onHit , this);
+    this.on('destroy' , this.onDestroy, this);
   }
 
   //Removes player if out of bounds
@@ -46,17 +45,29 @@ class Enemy extends Phaser.GameObjects.Sprite {
     this.checkOutOfBounds();
   }
 
-  spawnBeam() {
+  shoot() {
     this.weapon.shoot();
   }
 
-  setupSpawnerLoop() {
-    this.spawnerLoopConfig = {
-      delay: 300,
+  onDestroy(){
+    eventSystem.emit("EnemyHit_UpdateScore",this.points);
+    this.shootLoop.remove(false);
+  }
+
+  onHit(damage){
+    this.health -= damage;
+    if(this.health <= 0){
+      this.destroy();
+    }
+  }
+
+  setupShootingLoop() {
+    this.shootingLoopConfig = {
+      delay: 1500,
       loop: true,
-      callback: this.spawnBeam,
+      callback: this.shoot,
       callbackScope: this
     }
-    this.scene.timer = this.scene.time.addEvent(this.spawnerLoopConfig);
+    this.shootLoop = this.scene.time.addEvent(this.shootingLoopConfig);
   }
 }

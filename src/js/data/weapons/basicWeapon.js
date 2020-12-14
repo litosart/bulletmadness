@@ -1,22 +1,23 @@
 class BasicWeapon {
   constructor(beamData) {
-    this.shootingSpeed = 2;
+    this.shootingSpeed = 6;
     this.shootCooldown = false;
     this.beamData = beamData;
   }
 
-  linkToPlayer(scene,player){
+  linkToShip(scene,ship,team){
     this.scene = scene;
-    this.player = player;
+    this.ship = ship;
+    this.team = team;
   }
 
   shoot() {
     if(!this.shootCooldown){
       //Instantiate Beam
-      var beam = new Beam(this.scene, this.player.x, (this.player.y - 10), this.beamData);
+      var beam = new Beam(this.scene, this.ship, this.beamData,this.team);
 
       //Raise Player_Shoot event
-      eventSystem.emit("PlaySound_Player_Shoot", this.scene, this.player);
+      eventSystem.emit("PlaySound_Player_Shoot");
       //Setup Shoot Cooldown Timer
       this.startCooldownTimer();
     }
