@@ -10,8 +10,14 @@ class SceneBoot extends Phaser.Scene {
     this.loadingText = this.add.bitmapText(config.width - 400, config.height - 80, "font_default", "Loading Game...");
 
     this.load.image("play_button", "resources/img/buttons/play_button.png");
+    this.load.image("credits_button", "resources/img/buttons/credits.png");
+    this.load.image("goback_button", "resources/img/buttons/go_back.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
     this.load.image("score", "resources/img/sprites/score.png");
+
+    this.load.image("ship1_stats", "resources/img/sprites/ship1_stats.png");
+    this.load.image("ship2_stats", "resources/img/sprites/ship2_stats.png");
+    this.load.image("ship3_stats", "resources/img/sprites/ship3_stats.png");
 
     this.load.image("1p", "resources/img/buttons/1.png");
     this.load.image("2p", "resources/img/buttons/2.png");
@@ -22,6 +28,17 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
     this.load.image("back_borders", "resources/img/backgrounds/back_borders.png");
     this.load.image("background_2", "resources/img/backgrounds/Background_Black_Borders.png");
+
+    this.load.image("W", "resources/img/buttons/W.png");
+    this.load.image("A", "resources/img/buttons/A.png");
+    this.load.image("S", "resources/img/buttons/S.png");
+    this.load.image("D", "resources/img/buttons/D.png");
+    this.load.image("V", "resources/img/buttons/V.png");
+    this.load.image("L", "resources/img/buttons/L.png");
+    this.load.image("UP", "resources/img/buttons/UP.png");
+    this.load.image("DOWN", "resources/img/buttons/DOWN.png");
+    this.load.image("LEFT", "resources/img/buttons/LEFT.png");
+    this.load.image("RIGHT", "resources/img/buttons/RIGHT.png");
 
     //SPRITES
 
@@ -70,6 +87,10 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 32
     });
     this.load.spritesheet("ship_player_2", "resources/img/sprites/ship_player_2.png", {
+      frameWidth: 32,
+      frameHeight: 32
+    });
+    this.load.spritesheet("ship_player_3", "resources/img/sprites/ship_player_3.png", {
       frameWidth: 32,
       frameHeight: 32
     });
@@ -143,6 +164,13 @@ class SceneBoot extends Phaser.Scene {
     this.anims.create({
       key: "ship_player_2_idle",
       frames: this.anims.generateFrameNumbers("ship_player_2"),
+      frameRate: 25,
+      repeat: -1,
+      yoyo: true
+    });
+    this.anims.create({
+      key: "ship_player_3_idle",
+      frames: this.anims.generateFrameNumbers("ship_player_3"),
       frameRate: 25,
       repeat: -1,
       yoyo: true

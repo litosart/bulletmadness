@@ -46,6 +46,8 @@ class SceneGame extends Phaser.Scene {
 
     //Score Manager Initialization
     this.scoreManager = new ScoreManager(this, this.playerManager.playersArray);
+
+    this.cameras.main.fadeIn(500);
   }
 
   update() {
