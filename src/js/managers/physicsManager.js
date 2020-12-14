@@ -26,7 +26,7 @@ class PhysicsManager {
       {
         proyectile.destroy();
         enemy.emit("EnemyHit",proyectile.damage);
-        eventSystem.emit("EnemyHit_UpdateScore",enemy.points);
+        eventSystem.emit("PlayEffect_Explosion",enemy)
         eventSystem.emit("PlaySound_EnemyHit");
       }
     }, null, this);
@@ -37,6 +37,7 @@ class PhysicsManager {
       {
         projectile.destroy();
         player.recieveDamage();
+        eventSystem.emit("PlayEffect_Explosion",player);
         eventSystem.emit("PlayerHit_UpdateHealth");
       }
     }, null, this);
@@ -44,6 +45,8 @@ class PhysicsManager {
     scene.physics.add.overlap(this.playerPhysicsGroup, this.enemyPhysicsGroup, function(player, enemy) {
       enemy.destroy();
       player.recieveDamage();
+      eventSystem.emit("PlayEffect_Explosion",player);
+      eventSystem.emit("PlayEffect_Explosion",enemy);
       eventSystem.emit("PlayerHit_UpdateHealth");
     }, null, this);
 

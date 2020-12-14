@@ -52,6 +52,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
   }
 
   onDestroy(){
+    eventSystem.emit("EnemyHit_UpdateScore",this.points);
     this.shootLoop.remove(false);
   }
 

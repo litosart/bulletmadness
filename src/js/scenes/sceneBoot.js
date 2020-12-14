@@ -105,6 +105,11 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 16
     });
 
+    this.load.spritesheet("explosion_1", "resources/img/sprites/explosion_1.png", {
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
     this.load.spritesheet("numbers", "resources/img/sprites/numbers.png", {
       frameWidth: 16,
       frameHeight: 16
@@ -192,16 +197,19 @@ class SceneBoot extends Phaser.Scene {
       yoyo: true
     });
 
+    this.anims.create({
+      key: "explosion_1_anim",
+      frames: this.anims.generateFrameNumbers("explosion_1"),
+      frameRate: 15,
+      repeat: 0,
+      yoyo: false
+    });
+
     //Scene Fade Out
     this.cameras.main.fadeOut(500);
 
     //Adding a sound Manager
     this.soundManager = new SoundManager(this);
-    //Adding sounds
-    this.soundManager.addTheme(this.maintheme);
-    this.soundManager.addSound(this.beamSound);
-    this.soundManager.addSound(this.explosionSound);
-    this.soundManager.addSound(this.powerUpSound);
 
     this.cameras.main.once('camerafadeoutcomplete', function() {
       eventSystem.emit("PlaySound_MainTheme");
