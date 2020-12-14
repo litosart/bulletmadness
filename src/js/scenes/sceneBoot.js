@@ -62,6 +62,11 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 32
     });
 
+    this.load.spritesheet("powerup_weapon_shotgun_1", "resources/img/sprites/powerup_weapon_shotgun_1.png",{
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
     this.load.spritesheet("game_logo", "resources/img/sprites/logo_sheet.png", {
       frameWidth: 249,
       frameHeight: 96
