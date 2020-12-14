@@ -9,14 +9,14 @@ class ShotgunWeapon extends BasicWeapon {
       var FIXTHIS = {
         x: this.ship.x + 10,
         y: this.ship.y,
-        rotation: this.ship.rotation
+        rotation: this.ship.rotation - Math.PI/40
       }
       var beam = new Beam(this.scene, this.ship, this.beamData,this.team);
       var beam = new Beam(this.scene, FIXTHIS, this.beamData,this.team);
       var FIXTHIS = {
         x: this.ship.x - 10,
         y: this.ship.y,
-        rotation: this.ship.rotation
+        rotation: this.ship.rotation + Math.PI/40
       }
       var beam = new Beam(this.scene, FIXTHIS, this.beamData,this.team);
 
