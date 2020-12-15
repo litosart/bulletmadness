@@ -3,15 +3,33 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Bullet Madness</title>
+  <link rel="icon" href="resources/img/sprites/ship_icon.png" type="image/png">
   <script type="text/javascript" src="src/js/_phaser/phaser.js"></script>
 
   <!-- Entities -->
   <script type="text/javascript" src="src/js/entities/player.js"></script>
   <script type="text/javascript" src="src/js/entities/enemy.js"></script>
   <script type="text/javascript" src="src/js/entities/beam.js"></script>
+  <script type="text/javascript" src="src/js/entities/powerup.js"></script>
+
+  <!-- Data -->
   <script type="text/javascript" src="src/js/data/templates/enemyData.js"></script>
-  <script type="text/javascript" src="src/js/data/enemyShipsData.js"></script>
+  <script type="text/javascript" src="src/js/data/templates/playerData.js"></script>
+  <script type="text/javascript" src="src/js/data/templates/spawnerData.js"></script>
+  <script type="text/javascript" src="src/js/data/templates/powerupData.js"></script>
+  <script type="text/javascript" src="src/js/data/templates/beamData.js"></script>
+  <script type="text/javascript" src="src/js/data/powerUpBehaviors/powerUpMovementSpeed.js"></script>
+  <script type="text/javascript" src="src/js/data/powerUpBehaviors/powerUpShootingSpeed.js"></script>
+  <script type="text/javascript" src="src/js/data/powerUpBehaviors/powerUpChangeWeapon.js"></script>
+  <script type="text/javascript" src="src/js/data/weapons/basicWeapon.js"></script>
+  <script type="text/javascript" src="src/js/data/weapons/shotgunWeapon.js"></script>
+  <script type="text/javascript" src="src/js/data/weapons/weaponCreator.js"></script>
+
+  <script type="text/javascript" src="src/js/data/containers/enemyShipsDataContainer.js"></script>
+  <script type="text/javascript" src="src/js/data/containers/playerShipsDataContainer.js"></script>
+  <script type="text/javascript" src="src/js/data/containers/powerUpDataContainer.js"></script>
+  <script type="text/javascript" src="src/js/data/containers/beamDataContainer.js"></script>
 
   <!-- Managers -->
   <script type="text/javascript" src="src/js/managers/inputManager.js"></script>
@@ -21,12 +39,20 @@
   <script type="text/javascript" src="src/js/managers/playerManager.js"></script>
   <script type="text/javascript" src="src/js/managers/physicsManager.js"></script>
   <script type="text/javascript" src="src/js/managers/scoreManager.js"></script>
+  <script type="text/javascript" src="src/js/managers/soundManager.js"></script>
+  <script type="text/javascript" src="src/js/managers/powerupManager.js"></script>
+  <script type="text/javascript" src="src/js/managers/effectsManager.js"></script>
 
   <!-- Scenes -->
+  <script type="text/javascript" src="src/js/scenes/scenePreBoot.js"></script>
   <script type="text/javascript" src="src/js/scenes/sceneBoot.js"></script>
   <script type="text/javascript" src="src/js/scenes/sceneGame.js"></script>
   <script type="text/javascript" src="src/js/scenes/sceneTitleScreen.js"></script>
   <script type="text/javascript" src="src/js/scenes/scenePlayers.js"></script>
+  <script type="text/javascript" src="src/js/scenes/sceneLevelEndOverview.js"></script>
+  <script type="text/javascript" src="src/js/scenes/sceneCredits.js"></script>
+  <script type="text/javascript" src="src/js/scenes/sceneLevel1End.js"></script>
+  <script type="text/javascript" src="src/js/scenes/sceneStory1.js"></script>
 
   <!-- Game -->
   <script type="text/javascript" src="src/js/game.js"></script>

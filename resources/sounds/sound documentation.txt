@@ -1,0 +1,13 @@
+beam: https://freesound.org/people/cabled_mess/sounds/352702/
+Author: https://freesound.org/people/cabled_mess/
+License: Creative Commons 0 License https://creativecommons.org/publicdomain/zero/1.0/
+
+explosion: https://freesound.org/people/thehorriblejoke/sounds/259962/
+Author: https://freesound.org/people/thehorriblejoke/
+License: Creative Commons 0 License
+https://creativecommons.org/publicdomain/zero/1.0/
+
+powerUp: https://freesound.org/people/sharesynth/sounds/341240/
+Author: https://freesound.org/people/sharesynth/
+License: Creative Commons 0 License
+https://creativecommons.org/publicdomain/zero/1.0/

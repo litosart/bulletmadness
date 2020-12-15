@@ -1,15 +1,25 @@
 class EnemyManager {
 
+  /*
+  The Enemy Manager its responsable of:
+  -Setting up enemy spawners
+  -Maintaining a list of all the enemies and spawners in the current level (scene)
+  -Executing the Update Method of all the enemies in the list
+
+  Dependecies:
+  -Scene
+  -EnemySpawner
+  */
+
+  spawnerArray = [];
   enemyArray = [];
-  enemyShipsData;
 
-  constructor(scene, enemyShipsData) {
-
+  constructor(scene) {
     this.scene = scene
-    this.enemyShipsData = enemyShipsData;
+  }
 
-    //Setup Enemy Spawners
-    this.BasicSpawner = new EnemySpawner(scene,this.enemyArray);
+  setupSpawner(spawnerData){
+    var spawner = new EnemySpawner(this.scene,spawnerData,this.enemyArray);
   }
 
   update() {
