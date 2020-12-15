@@ -17,14 +17,14 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 
 ## **Índice:**
   1. Capturas del juego
-    * Loading
-    * MainMenu
-    * SceneStory1
-    * ShipSelection
-    * Game
-    * FinalScoreScreen
-    * SceneLevel1End
-    * Credits
+     * Loading
+     * MainMenu
+     * SceneStory1
+     * ShipSelection
+     * Game
+     * FinalScoreScreen
+     * SceneLevel1End
+     * Credits
   2. Diagrama de navegación
   
 ## **1. Capturas del juego**
