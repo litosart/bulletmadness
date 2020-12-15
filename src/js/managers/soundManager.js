@@ -23,7 +23,7 @@ class SoundManager {
 
   playTheme() {
     var themeConfig = {
-      volume: 0.05,
+      volume: 0.1,
       loop: true
     }
     this.mainTheme.play(themeConfig);
@@ -38,7 +38,7 @@ class SoundManager {
 
   playExplosionSound() {
     var explosionSoundConfig = {
-      volume: 0.08,
+      volume: 0.07,
       rate: 1
     }
     this.explosionSound.play(explosionSoundConfig);
@@ -46,14 +46,14 @@ class SoundManager {
 
   playPowerUpSound() {
     var soundConfig = {
-      volume: 0.5,
+      volume: 0.1,
     }
     this.powerUpSound.play(soundConfig);
   }
 
   playPlayerHitSound() {
     var soundConfig = {
-      volume: 0.5,
+      volume: 0.1,
     }
     this.playerHitSound.play(soundConfig);
   }
