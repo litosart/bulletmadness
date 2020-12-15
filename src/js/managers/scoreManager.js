@@ -3,6 +3,7 @@ class ScoreManager {
 
     this.players = playersList;
     this.scene = scene;
+    this.enemiesKilled = 0;
 
     //Score
     this.score = 0;
@@ -26,6 +27,7 @@ class ScoreManager {
 
   addScore(amount) {
     this.score += amount;
+    this.enemiesKilled += 1;
     if (this.scoreText != undefined) {
       this.scoreText.setText('Score: ' + this.score);
     }
@@ -52,6 +54,12 @@ class ScoreManager {
       this.scene.cameras.main.once('camerafadeoutcomplete', function() {
         this.scene.scene.start("SceneLevelEndOverview",{score:this.score});
       }, this);
+    }
+    if (this.enemiesKilled > 10){
+      this.scene.cameras.main.fadeOut(500);
+      this.scene.cameras.main.once('camerafadeoutcomplete', function() {
+        this.scene.scene.start("SceneLevel1End",{score:this.score});
+      }, this)
     }
   }
 
