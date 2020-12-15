@@ -26,6 +26,7 @@ class PowerUp extends Phaser.GameObjects.Sprite {
 
   powerUpHit(player){
     this.powerUpData.behavior.execute(this.scene,player);
+    eventSystem.emit("PlaySound_PowerUp");
     this.destroy();
   }
 

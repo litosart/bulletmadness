@@ -5,6 +5,7 @@ class Player extends Phaser.GameObjects.Sprite {
     super(scene, 0, 0, "ship_player_1");
     this.scene = scene;
     this.team = 0;
+    this.enemiesKilled = 0;
 
     //Player Variables Setup
     this.playerData = playerData;
