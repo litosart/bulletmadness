@@ -11,9 +11,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
     this.movementSpeed = this.enemyData.movementSpeed;
     this.health = this.enemyData.startingHealth;
     this.points = this.enemyData.points;
-
-    console.log(this.enemyData.startingHealth);
-
+    
     //Setup Sprite
     this.setTexture(this.enemyData.spriteName);
     this.play(this.enemyData.idleAnimName);
@@ -52,6 +50,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
   }
 
   onDestroy(){
+    eventSystem.emit("EnemyHit_UpdateScore",this.points);
     this.shootLoop.remove(false);
   }
 

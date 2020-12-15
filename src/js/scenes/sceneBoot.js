@@ -63,6 +63,11 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 32
     });
 
+    this.load.spritesheet("powerup_weapon_shotgun_1", "resources/img/sprites/powerup_weapon_shotgun_1.png",{
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
     this.load.spritesheet("game_logo", "resources/img/sprites/logo_sheet.png", {
       frameWidth: 249,
       frameHeight: 96
@@ -106,17 +111,22 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 16
     });
 
+    this.load.spritesheet("explosion_1", "resources/img/sprites/explosion_1.png", {
+      frameWidth: 32,
+      frameHeight: 32
+    });
+
     this.load.spritesheet("numbers", "resources/img/sprites/numbers.png", {
       frameWidth: 16,
       frameHeight: 16
     });
 
     //MUSICA
-    this.maintheme = this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
-
-    this.beamSound = this.load.audio('beam_sound',["resources/sounds/sound_effects/beam.mp3", "resources/sounds/sound_effects/beam.ogg"]);
-    this.explosionSound = this.load.audio('explosion_sound',["resources/sounds/sound_effects/explosion.mp3", "resources/sounds/sound_effects/explosion.ogg"]);
-    this.powerUpSound = this.load.audio('powerUp_sound',["resources/sounds/sound_effects/powerUp.mp3", "resources/sounds/sound_effects/powerUp.ogg"]);
+    this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
+    this.load.audio('beam_sound',["resources/sounds/sound_effects/beam.mp3", "resources/sounds/sound_effects/beam.ogg"]);
+    this.load.audio('explosion_sound',["resources/sounds/sound_effects/explosion.mp3", "resources/sounds/sound_effects/explosion.ogg"]);
+    this.load.audio('powerUp_sound',["resources/sounds/sound_effects/powerUp.mp3", "resources/sounds/sound_effects/powerUp.ogg"]);
+    this.load.audio('playerHit_sound',"resources/sounds/sound_effects/Player_Hit.wav");
 
   }
 
@@ -193,16 +203,19 @@ class SceneBoot extends Phaser.Scene {
       yoyo: true
     });
 
+    this.anims.create({
+      key: "explosion_1_anim",
+      frames: this.anims.generateFrameNumbers("explosion_1"),
+      frameRate: 15,
+      repeat: 0,
+      yoyo: false
+    });
+
     //Scene Fade Out
     this.cameras.main.fadeOut(500);
 
     //Adding a sound Manager
     this.soundManager = new SoundManager(this);
-    //Adding sounds
-    this.soundManager.addTheme(this.maintheme);
-    this.soundManager.addSound(this.beamSound);
-    this.soundManager.addSound(this.explosionSound);
-    this.soundManager.addSound(this.powerUpSound);
 
     this.cameras.main.once('camerafadeoutcomplete', function() {
       eventSystem.emit("PlaySound_MainTheme");
