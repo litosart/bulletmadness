@@ -11,7 +11,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
     this.movementSpeed = this.enemyData.movementSpeed;
     this.health = this.enemyData.startingHealth;
     this.points = this.enemyData.points;
-    
+
     //Setup Sprite
     this.setTexture(this.enemyData.spriteName);
     this.play(this.enemyData.idleAnimName);
@@ -50,13 +50,14 @@ class Enemy extends Phaser.GameObjects.Sprite {
   }
 
   onDestroy(){
-    eventSystem.emit("EnemyHit_UpdateScore",this.points);
+    //eventSystem.emit("EnemyHit_UpdateScore",this.points);
     this.shootLoop.remove(false);
   }
 
   onHit(damage){
     this.health -= damage;
     if(this.health <= 0){
+      eventSystem.emit("EnemyHit_UpdateScore",this.points);
       this.destroy();
     }
   }

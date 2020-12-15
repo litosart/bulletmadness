@@ -31,6 +31,12 @@ class ScoreManager {
     if (this.scoreText != undefined) {
       this.scoreText.setText('Score: ' + this.score);
     }
+    if (this.enemiesKilled > 20){
+      this.scene.cameras.main.fadeOut(500);
+      this.scene.cameras.main.once('camerafadeoutcomplete', function() {
+        this.scene.scene.start("SceneLevel1End",{score:this.score});
+      }, this)
+    }
   }
 
   updateTexts() {
@@ -55,12 +61,7 @@ class ScoreManager {
         this.scene.scene.start("SceneLevelEndOverview",{score:this.score});
       }, this);
     }
-    if (this.enemiesKilled > 10){
-      this.scene.cameras.main.fadeOut(500);
-      this.scene.cameras.main.once('camerafadeoutcomplete', function() {
-        this.scene.scene.start("SceneLevel1End",{score:this.score});
-      }, this)
-    }
+
   }
 
   updateScore() {

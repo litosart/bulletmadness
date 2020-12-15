@@ -3,7 +3,7 @@ const config = {
   height: 800,
   type: Phaser.AUTO,
   backgroundColor: 0x000000,
-  scene: [ScenePreBoot,SceneBoot, SceneTitleScreen, ScenePlayers, SceneGame, SceneLevelEndOverview, SceneCredits, SceneLevel1End],
+  scene: [ScenePreBoot,SceneBoot, SceneTitleScreen, ScenePlayers, SceneGame, SceneLevelEndOverview, SceneCredits, SceneLevel1End, SceneStory1],
   pixelArt: true,
   //create: this.create,
   physics: {
