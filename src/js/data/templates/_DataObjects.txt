@@ -1,0 +1,6 @@
+
+Data Objects.
+
+Data objects contain all the shared information of an object like the Max Health
+of a ship or the Base Shooting Speed of a weapon. They cant contain specific
+object state like the current object position.

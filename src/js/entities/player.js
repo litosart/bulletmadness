@@ -1,44 +1,40 @@
 class Player extends Phaser.GameObjects.Sprite {
 
-  //class fields
-  inputKeys = undefined;
-  shootCooldown = false;
-
   constructor(scene, playerData) {
 
     super(scene, 0, 0, "ship_player_1");
     this.scene = scene;
+    this.team = 0;
 
-    //Setups Player Data
+    //Player Variables Setup
     this.playerData = playerData;
-    this.setTexture(this.playerData.spriteName);
+    this.lives = this.playerData.lives;
+    this.alive = true;
+    this.movementSpeed = this.playerData.movementSpeed;
 
-    //Set Idle Animation;
-    this.play(this.playerData.idleAnimName);
+    this.weapon = WeaponCreator.getWeapon(this.playerData.weaponID,this.playerData.bulletData);
+    this.weapon.linkToShip(this.scene,this,this.team);
 
     //Set default Input Keys
     this.inputKeys = scene.input.keyboard.createCursorKeys();
 
-    //Movement speed
-    this.movementSpeed = this.playerData.movementSpeed;
+    //Setting up Sprite
+    this.setScale(1.5);
+    this.setTexture(this.playerData.spriteName);
+    this.play(this.playerData.idleAnimName);
 
-    //Adding to scene
+    //Adding to scene and enabling Physics
     scene.add.existing(this);
-
-    //Enabling Physics
     scene.physics.world.enable([this]);
     scene.physicsManager.playerPhysicsGroup.add(this);
-    
-    //Setting collisions with screen bounds
     this.body.setCollideWorldBounds(true);
-
-    //Set player lives
-    this.lives = this.playerData.lives;
-    this.alive = true;
   }
 
   recieveDamage() {
     this.lives--;
+    if (this.lives == 0) {
+      this.playerDeath();
+    }
   }
 
   playerDeath() {
@@ -72,28 +68,9 @@ class Player extends Phaser.GameObjects.Sprite {
     }
   }
 
-  removePlayer() {
-    this.kill();
-  }
-
-  resetCooldown() {
-    this.shootCooldown = false;
-  }
-
   shoot() {
-    if (this.inputKeys.shoot.isDown && !this.shootCooldown) {
-      this.beam = new Beam(this.scene, this.x, (this.y - 10));
-      this.shootCooldown = true;
-      soundManager.playBeamSound(this.scene);
-
-      var timerEventConfig = {
-        delay: 100,
-        loop: false,
-        callback: this.resetCooldown,
-        callbackScope: this
-      }
-      this.scene.timer = this.scene.time.addEvent(timerEventConfig);
-
+    if (this.inputKeys.shoot.isDown) {
+      this.weapon.shoot();
     }
   }
 

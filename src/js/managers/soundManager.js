@@ -1,58 +1,61 @@
 class SoundManager {
 
-    themes = [];
-    i_theme = 0;
+  constructor(scene) {
 
-    sounds = [];
-    i_sound = 0;
+    this.mainTheme = undefined;
+    this.beamSound = undefined;
+    this.explosionSound = undefined;
+    this.powerUpSound = undefined;
+    this.scene = scene;
 
-    constructor(){
+    eventSystem.on("PlaySound_Player_Shoot", this.playBeamSound, this);
+    eventSystem.on("PlaySound_MainTheme", this.playTheme, this);
+    eventSystem.on("PlaySound_EnemyHit", this.playExplosionSound, this);
+    eventSystem.on("PlaySound_PowerUp", this.playPowerUpSound, this);
+    eventSystem.on("PlaySound_PlayerHit", this.playPlayerHitSound, this);
 
-        this.mainTheme = undefined;
+    this.mainTheme = this.scene.sound.add("maintheme")
+    this.beamSound = this.scene.sound.add("beam_sound")
+    this.explosionSound = this.scene.sound.add("explosion_sound")
+    this.powerUpSound = scene.sound.add("powerUp_sound")
+    this.playerHitSound = scene.sound.add("playerHit_sound")
+  }
 
-        this.beamSound = undefined;
-        this.explosionSound = undefined;
-        this.powerUpSound = undefined;
-
+  playTheme() {
+    var themeConfig = {
+      volume: 0.05,
+      loop: true
     }
+    this.mainTheme.play(themeConfig);
+  }
 
-    addTheme(theme){
-        this.themes[this.i_theme] = theme;
-        this.i_theme++;
+  playBeamSound() {
+    var beamSoundConfig = {
+      volume: 0.1
     }
+    this.beamSound.play(beamSoundConfig);
+  }
 
-    playTheme(scene){
-        var themeConfig = {
-            loop: true
-        }
-        this.mainTheme = scene.sound.add("maintheme").play(themeConfig);
+  playExplosionSound() {
+    var explosionSoundConfig = {
+      volume: 0.08,
+      rate: 1
     }
+    this.explosionSound.play(explosionSoundConfig);
+  }
 
-    addSound(sound){
-        this.sounds[this.i_sound] = sound;
-        this.i_sound++;
+  playPowerUpSound() {
+    var soundConfig = {
+      volume: 0.5,
     }
+    this.powerUpSound.play(soundConfig);
+  }
 
-    playBeamSound(scene){
-        this.beamSoundConfig = {
-            volume: 0.6
-        }
-        this.beamSound = scene.sound.add("beam_sound").play(this.beamSoundConfig);
+  playPlayerHitSound() {
+    var soundConfig = {
+      volume: 0.5,
     }
-
-    playExplosionSound(scene){
-        this.explosionSoundConfig = {
-            volume: 0.7,
-            rate: 1.5
-        }
-        this.explosionSound = scene.sound.add("explosion_sound").play(this.explosionSoundConfig);
-    }
-
-    playPowerUpSound(){
-        // this.powerUpSoundConfig = {
-        //     volume:
-        // }
-        this.powerUpSound = scene.sound.add("powerUp_sound").play();
-    }
+    this.playerHitSound.play(soundConfig);
+  }
 
 }
