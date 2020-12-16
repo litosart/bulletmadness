@@ -14,6 +14,10 @@ class SceneTitleScreen extends Phaser.Scene {
     this.creditsb.setInteractive();
     this.creditsb.on('pointerdown', () => this.scene.start("SceneCredits"));
 
+    this.verText = this.add.bitmapText(config.width / 2, config.height / 2, "font_default", "Ver. 0.1 EARLY ACCESS\nSTILL IN DEVELOPMENT").setFontSize(40);
+    this.verText.setOriginFromFrame();
+    this.verText.setPosition(config.width / 2, 700);
+
     //Scene Fade In
     this.cameras.main.fadeIn(500);
   }
