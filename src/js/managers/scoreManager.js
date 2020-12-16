@@ -31,7 +31,7 @@ class ScoreManager {
     if (this.scoreText != undefined) {
       this.scoreText.setText('Score: ' + this.score);
     }
-    if (this.enemiesKilled > 20){
+    if (this.enemiesKilled > 100){
       this.scene.cameras.main.fadeOut(500);
       this.scene.cameras.main.once('camerafadeoutcomplete', function() {
         this.scene.scene.start("SceneLevel1End",{score:this.score});
