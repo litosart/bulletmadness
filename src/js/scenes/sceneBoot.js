@@ -224,10 +224,10 @@ class SceneBoot extends Phaser.Scene {
       url: "http://127.0.0.1:8080/players",
       method: "POST",
       contentType:"application/json; charset=utf-8",
-      data: "{\"id\":0}"
+      data: "{}"
     }).done(function(data) {
-      console.log(data);
-      serverResponse = data;
+      clientParameters.id = data.id;
+      console.log(clientParameters.id);
     });
 
     this.cameras.main.once('camerafadeoutcomplete', function() {
