@@ -14,8 +14,6 @@ const config = {
   }
 };
 
-var playerNumber = 1;
-
 //Event System Creation
 const eventSystem = new Phaser.Events.EventEmitter();
 

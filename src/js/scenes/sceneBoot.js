@@ -44,27 +44,27 @@ class SceneBoot extends Phaser.Scene {
 
     //SPRITES
 
-    this.load.spritesheet("powerup_movement_speed_1", "resources/img/sprites/powerup_ship_speed_1.png",{
+    this.load.spritesheet("powerup_movement_speed_1", "resources/img/sprites/powerup_ship_speed_1.png", {
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("powerup_movement_speed_2", "resources/img/sprites/powerup_ship_speed_2.png",{
+    this.load.spritesheet("powerup_movement_speed_2", "resources/img/sprites/powerup_ship_speed_2.png", {
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("powerup_shoot_speed_1", "resources/img/sprites/powerup_shoot_speed_1.png",{
+    this.load.spritesheet("powerup_shoot_speed_1", "resources/img/sprites/powerup_shoot_speed_1.png", {
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("powerup_shoot_speed_2", "resources/img/sprites/powerup_shoot_speed_2.png",{
+    this.load.spritesheet("powerup_shoot_speed_2", "resources/img/sprites/powerup_shoot_speed_2.png", {
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("powerup_weapon_shotgun_1", "resources/img/sprites/powerup_weapon_shotgun_1.png",{
+    this.load.spritesheet("powerup_weapon_shotgun_1", "resources/img/sprites/powerup_weapon_shotgun_1.png", {
       frameWidth: 32,
       frameHeight: 32
     });
@@ -123,11 +123,11 @@ class SceneBoot extends Phaser.Scene {
     });
 
     //MUSICA
-    this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
-    this.load.audio('beam_sound',["resources/sounds/sound_effects/beam.mp3", "resources/sounds/sound_effects/beam.ogg"]);
-    this.load.audio('explosion_sound',["resources/sounds/sound_effects/explosion.mp3", "resources/sounds/sound_effects/explosion.ogg"]);
-    this.load.audio('powerUp_sound',["resources/sounds/sound_effects/powerUp.mp3", "resources/sounds/sound_effects/powerUp.ogg"]);
-    this.load.audio('playerHit_sound',"resources/sounds/sound_effects/Player_Hit.wav");
+    this.load.audio('maintheme', "resources/sounds/music/main_theme.mp3");
+    this.load.audio('beam_sound', ["resources/sounds/sound_effects/beam.mp3", "resources/sounds/sound_effects/beam.ogg"]);
+    this.load.audio('explosion_sound', ["resources/sounds/sound_effects/explosion.mp3", "resources/sounds/sound_effects/explosion.ogg"]);
+    this.load.audio('powerUp_sound', ["resources/sounds/sound_effects/powerUp.mp3", "resources/sounds/sound_effects/powerUp.ogg"]);
+    this.load.audio('playerHit_sound', "resources/sounds/sound_effects/Player_Hit.wav");
 
   }
 
@@ -217,6 +217,18 @@ class SceneBoot extends Phaser.Scene {
 
     //Adding a sound Manager
     this.soundManager = new SoundManager(this);
+
+    //Conecting to Server
+    var serverResponse;
+    $.ajax({
+      url: "http://127.0.0.1:8080/players",
+      method: "POST",
+      contentType:"application/json; charset=utf-8",
+      data: "{\"id\":0}"
+    }).done(function(data) {
+      console.log(data);
+      serverResponse = data;
+    });
 
     this.cameras.main.once('camerafadeoutcomplete', function() {
       eventSystem.emit("PlaySound_MainTheme");
