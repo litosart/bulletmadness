@@ -30,17 +30,6 @@ window.onload = function() {
 //Client Functions
 clientParameters = {};
 
-function DisconnectClient() {
-  console.log("Disconecting");
-  $.ajax({
-    url: "http://127.0.0.1:8080/players/" + clientParameters.id,
-    method: "DELETE",
-  }).done(function(data) {
-    console.log(data);
-    close();
-  });
-}
-
 //window.onbeforeunload = DisconnectClient;
 
 /*this.create = function(){
