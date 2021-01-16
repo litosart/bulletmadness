@@ -22,7 +22,7 @@ const enemyShipsDataContainer = new EnemyShipsDataContainer();
 const playerShipsData = new PlayerShipsDataContainer();
 const powerUpDataContainer = new PowerUpDataContainer();
 
-
+var game;
 window.onload = function() {
   game = new Phaser.Game(config);
 };
@@ -41,7 +41,7 @@ function DisconnectClient() {
   });
 }
 
-window.onbeforeunload = DisconnectClient;
+//window.onbeforeunload = DisconnectClient;
 
 /*this.create = function(){
   game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;

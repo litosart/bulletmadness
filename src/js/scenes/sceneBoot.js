@@ -218,21 +218,40 @@ class SceneBoot extends Phaser.Scene {
     //Adding a sound Manager
     this.soundManager = new SoundManager(this);
 
-    //Conecting to Server
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    //                         Server Conection Setup                        //
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+
     var serverResponse;
     $.ajax({
       url: "http://127.0.0.1:8080/players",
       method: "POST",
-      contentType:"application/json; charset=utf-8",
-      data: "{}"
+      contentType: "application/json; charset=utf-8",
+      data: "{\"connected\":true}"
     }).done(function(data) {
       clientParameters.id = data.id;
       console.log(clientParameters.id);
+      window.setInterval(function() {
+        $.ajax({
+          url: "http://127.0.0.1:8080/players/" + clientParameters.id,
+          method: "PUT",
+          contentType: "application/json; charset=utf-8",
+          data: "{\"connected\":true}"
+        }).done(function(data) {
+          console.log("Set Connected To True")
+        });
+      }, 1000)
     });
+
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
 
     this.cameras.main.once('camerafadeoutcomplete', function() {
       eventSystem.emit("PlaySound_MainTheme");
-      this.scene.sleep("SceneBoot");
       this.scene.start("SceneTitleScreen");
     }, this);
 
