@@ -68,12 +68,10 @@ class ScenePlayers extends Phaser.Scene {
 
   OnePlayerSelected() {
     this.startNextScene();
-    playerNumber = 1;
   }
 
   TwoPlayerSelected() {
     this.startNextScene();
-    playerNumber = 2;
   }
 
   ChangeShip(dir, p) {
