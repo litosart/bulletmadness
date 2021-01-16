@@ -224,9 +224,23 @@ class SceneBoot extends Phaser.Scene {
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
 
+    var para = document.createElement('p');
+    document.body.appendChild(para);
+    para.textContent = "PLAYERS ONLINE: 0";
+
+    //Lista que contiene los nombres de los jugadores conectados al servidor
+    var playerNames = [];
+    for(var s=0; s<10; s++)
+    {
+      playerNames[s] = document.createElement('p');
+      document.body.appendChild(playerNames[s]);
+    }
+
     var serverResponse;
     $.ajax({
       url: "http://127.0.0.1:8080/players",
+      //url: "http://508d726bf7f1.ngrok.io/players",
+      
       method: "POST",
       contentType: "application/json; charset=utf-8",
       data: "{\"connected\":true}"
@@ -236,6 +250,7 @@ class SceneBoot extends Phaser.Scene {
       window.setInterval(function() {
         $.ajax({
           url: "http://127.0.0.1:8080/players/" + clientParameters.id,
+          //url: "http://508d726bf7f1.ngrok.io/players/" + clientParameters.id,
           method: "PUT",
           contentType: "application/json; charset=utf-8",
           data: "{\"connected\":true}"
@@ -243,8 +258,37 @@ class SceneBoot extends Phaser.Scene {
           console.log("Set Connected To True")
         });
       }, 1000)
+      window.setInterval(function() {
+        $.ajax({
+          url: "http://127.0.0.1:8080/players/connected"
+        }).done(function(data) {
+          para.textContent = "PLAYERS ONLINE: " + data;
+        });
+      }, 2000)
+      window.setInterval(function() {
+        $.ajax({
+          url: "http://127.0.0.1:8080/players/playerNames"
+        }).done(function(data) {
+         for(var i=0; i<data.length; i++)
+         {
+            playerNames[i].textContent = data[i];
+         } 
+          
+        });
+      }, 2000)
     });
 
+    clientParameters.playerName = prompt('YOUR NAME');
+    console.log("id: " + clientParameters.id),
+    $.ajax({
+      url: "http://127.0.0.1:8080/players/name",
+      method: "POST",
+      contentType: "application/json; charset=utf-8",
+      
+      data: JSON.stringify({id: clientParameters.id, name: clientParameters.playerName})
+    }).done(function(data) {
+      console.log(data.name);
+    });
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
