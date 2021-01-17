@@ -13,8 +13,6 @@ class SceneGame extends Phaser.Scene {
     this.earth = this.add.image(300, 600, "background_earth");
     this.enviorementManager = new EnviorementManager(this, "background_2", 0, 0);
 
-
-
     //Input Initialization
     this.inputManager = new InputManager(this);
 
