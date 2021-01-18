@@ -14,6 +14,10 @@ class SceneTitleScreen extends Phaser.Scene {
     this.creditsb.setInteractive();
     this.creditsb.on('pointerdown', () => this.scene.start("SceneCredits"));
 
+    this.exitb = this.add.image(300, 680, 'records_button').setScale(4);
+    this.exitb.setInteractive();
+    this.exitb.on('pointerdown', () => this.scene.start("SceneRecords"));
+
     //Scene Fade In
     this.cameras.main.fadeIn(500);
   }
