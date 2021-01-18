@@ -1,0 +1,8 @@
+GRUPO 06 
+Integrantes: 
+	Carlos Rodríguez Sánchez-Roldán 
+	José Fernando Medina Talavera 
+	Antonio Arian Silaghi 
+	Norman Peter Stankewitz 
+
+Github: https://github.com/litosart/bulletmadness

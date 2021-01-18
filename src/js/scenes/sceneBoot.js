@@ -29,6 +29,7 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("background", "resources/img/backgrounds/Background_ClearSky.png");
     this.load.image("back_borders", "resources/img/backgrounds/back_borders.png");
     this.load.image("background_2", "resources/img/backgrounds/Background_Black_Borders.png");
+    this.load.image("background_earth", "resources/img/backgrounds/earth.png");
 
     this.load.image("W", "resources/img/buttons/W.png");
     this.load.image("A", "resources/img/buttons/A.png");

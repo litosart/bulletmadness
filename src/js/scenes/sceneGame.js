@@ -5,12 +5,15 @@ class SceneGame extends Phaser.Scene {
   }
 
   create(sceneData) {
-
     //Setup previous Scene Data
     this.sceneData = sceneData;
 
     //Level Enviorement Initialization
-    this.enviorementManager = new EnviorementManager(this, "background_2");
+    //this.enviorementManager2 = new EnviorementManager(this, "background_earth", 0, 200);
+    this.earth = this.add.image(300, 600, "background_earth");
+    this.enviorementManager = new EnviorementManager(this, "background_2", 0, 0);
+
+
 
     //Input Initialization
     this.inputManager = new InputManager(this);
@@ -53,8 +56,10 @@ class SceneGame extends Phaser.Scene {
   }
 
   update() {
+
     this.playerManager.update();
     this.enemyManager.update();
-    this.enviorementManager.update();
+    this.enviorementManager.update(1);
+
   }
 }
