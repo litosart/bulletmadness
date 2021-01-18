@@ -229,6 +229,8 @@ class SceneBoot extends Phaser.Scene {
     var para = document.createElement('p');
     document.body.appendChild(para);
     para.textContent = "PLAYERS ONLINE: 0";
+    clientParameters.playerName = prompt('YOUR NAME');
+
 
     //Lista que contiene los nombres de los jugadores conectados al servidor
     var playerNames = [];
@@ -255,7 +257,7 @@ class SceneBoot extends Phaser.Scene {
           contentType: "application/json; charset=utf-8",
           data: "{\"connected\":true}"
         })
-      }, 1000)
+      }, 100)
 
       //Update Player Count
       window.setInterval(function() {
@@ -264,7 +266,7 @@ class SceneBoot extends Phaser.Scene {
         }).done(function(data) {
           para.textContent = "PLAYERS ONLINE: " + data;
         });
-      }, 2000)
+      }, 600)
 
       //Update Player Names
       window.setInterval(function() {
@@ -272,13 +274,12 @@ class SceneBoot extends Phaser.Scene {
           url: "http://127.0.0.1:8080/players/playerNames"
         }).done(function(data) {
           for (var i = 0; i < data.length; i++) {
-            playerNames[i].textContent = data[i];
+            if (playerNames[i] != undefined) {
+              playerNames[i].textContent = data[i];
+            }
           }
-
         });
-      }, 2000)
-
-      clientParameters.playerName = prompt('YOUR NAME');
+      }, 600)
 
       $.ajax({
         url: "http://127.0.0.1:8080/players/name",
