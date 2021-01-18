@@ -13,6 +13,8 @@ class SceneBoot extends Phaser.Scene {
     this.load.image("credits_button", "resources/img/buttons/credits.png");
     this.load.image("goback_button", "resources/img/buttons/go_back.png");
     this.load.image("continue_button", "resources/img/buttons/continue.png");
+    this.load.image("records_button", "resources/img/buttons/records.png");
+    this.load.image("score_button", "resources/img/buttons/score.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
     this.load.image("score", "resources/img/sprites/score.png");
 

@@ -19,7 +19,7 @@ class SceneLevel1End extends Phaser.Scene {
     }).done(function(data) {
       console.log("name: " + data.name);
       console.log("id: " + data.id)
-      console.log("id: " + data.scoreNumber)
+      console.log("score: " + data.scoreNumber)
     });
 
   }
