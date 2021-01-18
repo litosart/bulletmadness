@@ -19,8 +19,19 @@ class SceneLevelEndOverview extends Phaser.Scene {
 
     this.playb = this.add.image(300, 500, 'play_button').setScale(4);
     this.playb.setInteractive();
-    this.playb.on('pointerdown', () => this.scene.start("ScenePlayers"));
+    this.playb.on('pointerdown', () => this.scene.start("SceneTitleScreen"));
 
     this.cameras.main.fadeIn(500);
+
+    //Send Score To Server
+    $.ajax({
+      url: "http://127.0.0.1:8080/leaderboard",
+      method: "POST",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify({
+        playerName: clientParameters.playerName,
+        scoreNumber: sceneData.score
+      })
+    })
   }
 }
