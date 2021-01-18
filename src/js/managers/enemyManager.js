@@ -33,6 +33,5 @@ class EnemyManager {
         this.enemyArray[i].update();
       }
     }
-
   }
 }
