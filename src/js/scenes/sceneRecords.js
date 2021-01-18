@@ -9,38 +9,28 @@ class SceneRecords extends Phaser.Scene {
         this.gobackb.setInteractive();
         this.gobackb.on('pointerdown', () => this.scene.start("SceneTitleScreen"));
 
-        //var score = [];
-        //var name = "";
-        //var leaderboard = [];
-
-        this.scene = this.add.bitmapText(80, 120 + aux, "font_default", pos + "." + name).setFontSize(40);
+        var aux = 0;
+        var pos = 1;
+        var leaderboard = [];
 
         $.ajax({
             url: "http://127.0.0.1:8080/leaderboard",
             method: "GET",
             contentType: "application/json; charset=utf-8",
+            context: this,
     
           }).done(function(data) {
-            //scoreRecords = data;
-            for(var i = 0; i < data.length; i++){
-                //score[i] = data[i];
-                //console.log(pos + "." + score[i].playerName + ", score: " + score[i].scoreNumber);
+            for(var i = 0; i < 10; i++){
                 scoreRecords[i] = data[i];
-                console.log(pos + "." + scoreRecords[i].playerName + ", score: " + scoreRecords[i].scoreNumber);
-                //leaderboard[i] = scoreRecords[i].playerName;
+                if (scoreRecords[i] == undefined){
+                    leaderboard[i] = this.add.bitmapText(80, 120 + aux, "font_default",  pos + ".???: " + 0).setFontSize(40);
+                } else {
+                    leaderboard[i] = this.add.bitmapText(80, 120 + aux, "font_default",  pos + "." + scoreRecords[i].playerName + ": " + scoreRecords[i].scoreNumber).setFontSize(40);
+                  }
+                  aux += 50;
+                  pos++;
             }
         });
-
-        this.score1  = this.add.bitmapText(80, 120, "font_default", "1." + scoreRecords[0].playerName).setFontSize(40);
-        this.score2  = this.add.bitmapText(80, 170, "font_default", "2." + leaderboard[1]).setFontSize(40);
-        this.score3  = this.add.bitmapText(80, 220, "font_default", "3." + leaderboard[2]).setFontSize(40);
-        this.score4  = this.add.bitmapText(80, 270, "font_default", "4." + leaderboard[3]).setFontSize(40);
-        this.score5  = this.add.bitmapText(80, 320, "font_default", "5." + leaderboard[4]).setFontSize(40);
-        this.score6  = this.add.bitmapText(80, 370, "font_default", "6." + leaderboard[5]).setFontSize(40);
-        this.score7  = this.add.bitmapText(80, 420, "font_default", "7." + leaderboard[6]).setFontSize(40);
-        this.score8  = this.add.bitmapText(80, 470, "font_default", "8." + leaderboard[7]).setFontSize(40);
-        this.score9  = this.add.bitmapText(80, 520, "font_default", "9." + leaderboard[8]).setFontSize(40);
-        this.score10 = this.add.bitmapText(80, 570, "font_default", "10." + leaderboard[9]).setFontSize(40);
 
         //Scene Fade In
         this.cameras.main.fadeIn(500);
