@@ -4,6 +4,26 @@ class SceneGame extends Phaser.Scene {
     super("SceneGame");
   }
 
+  setupSurvivalSpawners(){
+    var spawnerData = new SpawnerData();
+    spawnerData.enemyData = enemyShipsDataContainer.list[0];
+    spawnerData.spawnDelay = 2500;
+    spawnerData.loop = true;
+    this.enemyManager.setupSpawner(spawnerData);
+
+    var spawnerData = new SpawnerData();
+    spawnerData.enemyData = enemyShipsDataContainer.list[2];
+    spawnerData.spawnDelay = 3000;
+    spawnerData.loop = true;
+    this.enemyManager.setupSpawner(spawnerData);
+
+    var spawnerData = new SpawnerData();
+    spawnerData.enemyData = enemyShipsDataContainer.list[3];
+    spawnerData.spawnDelay = 500;
+    spawnerData.loop = true;
+    this.enemyManager.setupSpawner(spawnerData);
+  }
+
   create(sceneData) {
     //Setup previous Scene Data
     this.sceneData = sceneData;
@@ -12,8 +32,6 @@ class SceneGame extends Phaser.Scene {
     //this.enviorementManager2 = new EnviorementManager(this, "background_earth", 0, 200);
     this.earth = this.add.image(300, 600, "background_earth");
     this.enviorementManager = new EnviorementManager(this, "background_2", 0, 0);
-
-
 
     //Input Initialization
     this.inputManager = new InputManager(this);
@@ -44,6 +62,15 @@ class SceneGame extends Phaser.Scene {
     spawnerData.spawnDelay = 500;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
+
+    //ADD MORE DIFFICULTY
+    this.spawnerLoopConfig = {
+      delay: 5000,
+      loop: true,
+      callback: this.setupSurvivalSpawners,
+      callbackScope: this
+    }
+    this.timer = this.time.addEvent(this.spawnerLoopConfig);
 
     this.powerupManager = new PowerupManager(this);
 

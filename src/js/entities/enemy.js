@@ -64,7 +64,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
   setupShootingLoop() {
     this.shootingLoopConfig = {
-      delay: 1500,
+      delay: 2500,
       loop: true,
       callback: this.shoot,
       callbackScope: this

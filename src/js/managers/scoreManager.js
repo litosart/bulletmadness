@@ -1,6 +1,9 @@
 class ScoreManager {
   constructor(scene, clientPlayer) {
 
+
+    this.goalMet = false;
+
     this.clientPlayer = clientPlayer;
     this.scene = scene;
     this.enemiesKilled = 0;
@@ -26,12 +29,13 @@ class ScoreManager {
     if (this.scoreText != undefined) {
       this.scoreText.setText('Score: ' + this.score);
     }
-    if (this.enemiesKilled > 20){
-      this.scene.cameras.main.fadeOut(500);
-      this.scene.cameras.main.once('camerafadeoutcomplete', function() {
-        this.scene.scene.start("SceneLevel1End",{score:this.score});
-      }, this)
-    }
+    // if (this.enemiesKilled > 20 && !this.goalMet){
+    //   this.goalMet = true
+    //   this.scene.cameras.main.fadeOut(500);
+    //   this.scene.cameras.main.once('camerafadeoutcomplete', function() {
+    //     this.scene.scene.start("SceneLevel1End",{score:this.score});
+    //   }, this)
+    // }
   }
 
   updateTexts() {

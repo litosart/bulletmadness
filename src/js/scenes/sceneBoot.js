@@ -9,10 +9,14 @@ class SceneBoot extends Phaser.Scene {
 
     this.loadingText = this.add.bitmapText(config.width - 400, config.height - 80, "font_default", "Loading Game...");
 
+    this.load.image("disconnected_warning", "resources/img/Disconnected.png");
+
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("credits_button", "resources/img/buttons/credits.png");
     this.load.image("goback_button", "resources/img/buttons/go_back.png");
     this.load.image("continue_button", "resources/img/buttons/continue.png");
+    this.load.image("records_button", "resources/img/buttons/records.png");
+    this.load.image("score_button", "resources/img/buttons/score.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
     this.load.image("score", "resources/img/sprites/score.png");
 
@@ -227,11 +231,12 @@ class SceneBoot extends Phaser.Scene {
     var para = document.createElement('p');
     document.body.appendChild(para);
     para.textContent = "PLAYERS ONLINE: 0";
+    clientParameters.playerName = prompt('YOUR NAME');
+
 
     //Lista que contiene los nombres de los jugadores conectados al servidor
     var playerNames = [];
-    for(var s=0; s<10; s++)
-    {
+    for (var s = 0; s < 10; s++) {
       playerNames[s] = document.createElement('p');
       document.body.appendChild(playerNames[s]);
     }
@@ -239,56 +244,69 @@ class SceneBoot extends Phaser.Scene {
     var serverResponse;
     $.ajax({
       url: "http://127.0.0.1:8080/players",
-      //url: "http://508d726bf7f1.ngrok.io/players",
-      
       method: "POST",
       contentType: "application/json; charset=utf-8",
-      data: "{\"connected\":true}"
+      data: "{\"connected\":true}",
+      context: this
     }).done(function(data) {
+
       clientParameters.id = data.id;
-      console.log(clientParameters.id);
+
+      //Maintain Conexion With Server
       window.setInterval(function() {
         $.ajax({
           url: "http://127.0.0.1:8080/players/" + clientParameters.id,
-          //url: "http://508d726bf7f1.ngrok.io/players/" + clientParameters.id,
           method: "PUT",
           contentType: "application/json; charset=utf-8",
-          data: "{\"connected\":true}"
-        }).done(function(data) {
-          console.log("Set Connected To True")
-        });
-      }, 1000)
+          data: "{\"connected\":true}",
+          context: this
+        }).fail(function() {
+          this.scene.launch("SceneDisconnected");
+        })
+      }.bind(this), 100)
+
+      //this.intervalID = window.setInterval(this.retrieve_rate.bind(this), this.INTERVAL);
+
+      //Update Player Count
       window.setInterval(function() {
         $.ajax({
           url: "http://127.0.0.1:8080/players/connected"
         }).done(function(data) {
           para.textContent = "PLAYERS ONLINE: " + data;
         });
-      }, 2000)
+      }, 600)
+
+      //Update Player Names
       window.setInterval(function() {
         $.ajax({
           url: "http://127.0.0.1:8080/players/playerNames"
         }).done(function(data) {
-         for(var i=0; i<data.length; i++)
-         {
-            playerNames[i].textContent = data[i];
-         } 
-          
+          for (var i = 0; i < data.length; i++) {
+            if (playerNames[i] != undefined) {
+              playerNames[i].textContent = data[i];
+            }
+          }
         });
-      }, 2000)
+      }, 600)
+
+      $.ajax({
+        url: "http://127.0.0.1:8080/players/name",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+
+        data: JSON.stringify({
+          id: clientParameters.id,
+          name: clientParameters.playerName
+        })
+      }).done(function(data) {
+        console.log("name: " + data.name);
+        console.log("id: " + clientParameters.id)
+      });
+
+    }).fail(function() {
+      this.scene.launch("SceneDisconnected");
     });
 
-    clientParameters.playerName = prompt('YOUR NAME');
-    console.log("id: " + clientParameters.id),
-    $.ajax({
-      url: "http://127.0.0.1:8080/players/name",
-      method: "POST",
-      contentType: "application/json; charset=utf-8",
-      
-      data: JSON.stringify({id: clientParameters.id, name: clientParameters.playerName})
-    }).done(function(data) {
-      console.log(data.name);
-    });
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
@@ -296,7 +314,7 @@ class SceneBoot extends Phaser.Scene {
 
     this.cameras.main.once('camerafadeoutcomplete', function() {
       eventSystem.emit("PlaySound_MainTheme");
-      this.scene.start("SceneTitleScreen");
+      this.scene.launch("SceneTitleScreen");
     }, this);
 
   }
