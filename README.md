@@ -27,6 +27,7 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
      * Credits
   2. Diagrama de navegación
   3. Diagrama de clases
+  4. Instrucciones para ejecutar la aplicación
 
 ## **1. Capturas del juego**
 
@@ -67,3 +68,11 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 
 ## **3. Diagrama de clases**
 ![diagramaClases](/resources/caps/diagramaClases.jpeg)
+
+## **Instrucciones para ejecutar la aplicación:**
+Paso 1: Descargar el servidor del juego que se encuentra subido en github.
+Paso 2: Tener descargado Spring Tool Suite.
+Paso 3: Importar el proyecto descargado en Spring.
+Paso 4: Ejecutar la aplicación BulletmadnessApplication.
+
+El cliente se conectará al servidor con la url: http://127.0.0.1:8080/
