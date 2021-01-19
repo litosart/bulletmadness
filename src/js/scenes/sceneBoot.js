@@ -9,6 +9,8 @@ class SceneBoot extends Phaser.Scene {
 
     this.loadingText = this.add.bitmapText(config.width - 400, config.height - 80, "font_default", "Loading Game...");
 
+    this.load.image("disconnected_warning", "resources/img/Disconnected.png");
+
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("credits_button", "resources/img/buttons/credits.png");
     this.load.image("goback_button", "resources/img/buttons/go_back.png");
@@ -229,6 +231,8 @@ class SceneBoot extends Phaser.Scene {
     var para = document.createElement('p');
     document.body.appendChild(para);
     para.textContent = "PLAYERS ONLINE: 0";
+    clientParameters.playerName = prompt('YOUR NAME');
+
 
     //Lista que contiene los nombres de los jugadores conectados al servidor
     var playerNames = [];
@@ -242,7 +246,8 @@ class SceneBoot extends Phaser.Scene {
       url: "http://127.0.0.1:8080/players",
       method: "POST",
       contentType: "application/json; charset=utf-8",
-      data: "{\"connected\":true}"
+      data: "{\"connected\":true}",
+      context: this
     }).done(function(data) {
 
       clientParameters.id = data.id;
@@ -253,9 +258,14 @@ class SceneBoot extends Phaser.Scene {
           url: "http://127.0.0.1:8080/players/" + clientParameters.id,
           method: "PUT",
           contentType: "application/json; charset=utf-8",
-          data: "{\"connected\":true}"
+          data: "{\"connected\":true}",
+          context: this
+        }).fail(function() {
+          this.scene.launch("SceneDisconnected");
         })
-      }, 1000)
+      }.bind(this), 100)
+
+      //this.intervalID = window.setInterval(this.retrieve_rate.bind(this), this.INTERVAL);
 
       //Update Player Count
       window.setInterval(function() {
@@ -264,7 +274,7 @@ class SceneBoot extends Phaser.Scene {
         }).done(function(data) {
           para.textContent = "PLAYERS ONLINE: " + data;
         });
-      }, 2000)
+      }, 600)
 
       //Update Player Names
       window.setInterval(function() {
@@ -272,13 +282,12 @@ class SceneBoot extends Phaser.Scene {
           url: "http://127.0.0.1:8080/players/playerNames"
         }).done(function(data) {
           for (var i = 0; i < data.length; i++) {
-            playerNames[i].textContent = data[i];
+            if (playerNames[i] != undefined) {
+              playerNames[i].textContent = data[i];
+            }
           }
-
         });
-      }, 2000)
-
-      clientParameters.playerName = prompt('YOUR NAME');
+      }, 600)
 
       $.ajax({
         url: "http://127.0.0.1:8080/players/name",
@@ -294,6 +303,8 @@ class SceneBoot extends Phaser.Scene {
         console.log("id: " + clientParameters.id)
       });
 
+    }).fail(function() {
+      this.scene.launch("SceneDisconnected");
     });
 
     ///////////////////////////////////////////////////////////////////////////
@@ -303,7 +314,7 @@ class SceneBoot extends Phaser.Scene {
 
     this.cameras.main.once('camerafadeoutcomplete', function() {
       eventSystem.emit("PlaySound_MainTheme");
-      this.scene.start("SceneTitleScreen");
+      this.scene.launch("SceneTitleScreen");
     }, this);
 
   }
