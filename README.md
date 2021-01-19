@@ -32,12 +32,12 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 ## **1. Capturas del juego**
 
 ### **Loading:**
-![loading](/resources/caps/Cap_loading.PNG)
-* Pantalla de carga del juego.
+![loading](/resources/caps/Cap_enterName.PNG)
+* Pantalla donde el jugador pone su nombre de usuario.
 
 ### **MainMenu:**
 ![main menu](/resources/caps/Cap_mainMenu.PNG)
-* Menú principal con el logo del juego. Tiene la opcion de jugar que te lleva a la pantalla de la historia del juego y una opción de créditos que te lleva a la pantalla de créditos.
+* Menú principal con el logo del juego. Tiene la opcion de jugar que te lleva a la pantalla de la historia del juego, una opción de créditos que te lleva a la pantalla de créditos y otra de récords que te muestra las puntuaciones más altas.
 
 ### **SceneStory1:**
 ![story 1](/resources/caps/Cap_story1.PNG)
@@ -52,12 +52,8 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 * Pantalla donde tiene lugar el juego en sí. Arriba a la izquierda existe un contador con la puntuación actual y abajo aparece el número de vidas restantes de cada jugador. Las naves enemigas se generan en la parte superior y los jugadores empiezan en la parte inferior.
 
 ### **FinalScoreScreen:**
-![final score](/resources/caps/Cap_score.PNG)
-* Escena que se muestra cuando el jugador pierde. Muestra la puntuación final obtenida y le da al jugador la opción de volver a jugar que lleva a la pantalla de selección de nave.
-
-### **SceneLevel1End:**
-![victory](/resources/caps/Cap_victory1.PNG)
-* Escena que se muestra cuando el jugador completa el nivel 1. Botón de continuar que lleva a la pantalla de créditos.
+![final score](/resources/caps/Cap_finalScore.PNG)
+* Escena que se muestra cuando el jugador acaba la partida. Muestra la puntuación final obtenida y el botón lleva al jugador al menú principal.
 
 ### **Credits:**
 ![credits](/resources/caps/Cap_credits.PNG)
