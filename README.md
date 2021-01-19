@@ -24,6 +24,7 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
      * Game
      * FinalScoreScreen
      * Credits
+     * Leaderboard
   2. Diagrama de navegación
   3. Diagrama de clases
   4. Instrucciones para ejecutar la aplicación
