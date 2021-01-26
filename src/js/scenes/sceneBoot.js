@@ -302,7 +302,7 @@ class SceneBoot extends Phaser.Scene {
         console.log("name: " + data.name);
         console.log("id: " + clientParameters.id)
       });
-
+      
     }).fail(function() {
       this.scene.launch("SceneDisconnected");
     });
