@@ -25,6 +25,10 @@ class SceneGame extends Phaser.Scene {
   }
 
   create(sceneData) {
+
+    //Setting Client Parameters
+    clientParameters.playing = true;
+
     //Setup previous Scene Data
     this.sceneData = sceneData;
 
