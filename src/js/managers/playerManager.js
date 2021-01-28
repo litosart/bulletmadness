@@ -12,21 +12,19 @@ class PlayerManager {
   -InputManager
   */
 
-  playersArray = [];
+  clientPlayer;
+  serverPlayers = [];
 
   spawnPlayers(scene, playerDataList) {
-    var i = 0;
-    for (i = 0; i < playerNumber; i++) {
-      this.playersArray[i] = new Player(scene, playerDataList.list[scene.sceneData.playerData[i]]);
-      this.playersArray[i].setRandomPosition(1 * config.width / 10, 8 * config.height / 10, 8 * config.width / 10, 1.5 * config.height / 10)
-    }
+    //Create Client Player
+    this.clientPlayer = new Player(scene, playerDataList.list[scene.sceneData.playerData[0]]);
+    this.clientPlayer.setRandomPosition(1 * config.width / 10, 8 * config.height / 10, 8 * config.width / 10, 1.5 * config.height / 10)
+
+    //Create Server Players
   }
 
   setPlayersInput(inputManager) {
-    this.playersArray[0].setInputOrigin(inputManager.getInput(0));
-    if (playerNumber == 2) {
-      this.playersArray[1].setInputOrigin(inputManager.getInput(1));
-    }
+    this.clientPlayer.setInputOrigin(inputManager.getInput(0));
   }
 
   constructor(scene, inputManager) {
@@ -35,9 +33,6 @@ class PlayerManager {
   }
 
   update() {
-    var i = 0;
-    for (i = 0; i < this.playersArray.length; i++) {
-      this.playersArray[i].update();
-    }
+      this.clientPlayer.update();
   }
 }

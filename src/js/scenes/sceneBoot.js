@@ -9,10 +9,14 @@ class SceneBoot extends Phaser.Scene {
 
     this.loadingText = this.add.bitmapText(config.width - 400, config.height - 80, "font_default", "Loading Game...");
 
+    this.load.image("disconnected_warning", "resources/img/Disconnected.png");
+
     this.load.image("play_button", "resources/img/buttons/play_button.png");
     this.load.image("credits_button", "resources/img/buttons/credits.png");
     this.load.image("goback_button", "resources/img/buttons/go_back.png");
     this.load.image("continue_button", "resources/img/buttons/continue.png");
+    this.load.image("records_button", "resources/img/buttons/records.png");
+    this.load.image("score_button", "resources/img/buttons/score.png");
     this.load.image("logo", "resources/img/sprites/LOGO.png");
     this.load.image("score", "resources/img/sprites/score.png");
 
@@ -44,27 +48,27 @@ class SceneBoot extends Phaser.Scene {
 
     //SPRITES
 
-    this.load.spritesheet("powerup_movement_speed_1", "resources/img/sprites/powerup_ship_speed_1.png",{
+    this.load.spritesheet("powerup_movement_speed_1", "resources/img/sprites/powerup_ship_speed_1.png", {
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("powerup_movement_speed_2", "resources/img/sprites/powerup_ship_speed_2.png",{
+    this.load.spritesheet("powerup_movement_speed_2", "resources/img/sprites/powerup_ship_speed_2.png", {
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("powerup_shoot_speed_1", "resources/img/sprites/powerup_shoot_speed_1.png",{
+    this.load.spritesheet("powerup_shoot_speed_1", "resources/img/sprites/powerup_shoot_speed_1.png", {
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("powerup_shoot_speed_2", "resources/img/sprites/powerup_shoot_speed_2.png",{
+    this.load.spritesheet("powerup_shoot_speed_2", "resources/img/sprites/powerup_shoot_speed_2.png", {
       frameWidth: 32,
       frameHeight: 32
     });
 
-    this.load.spritesheet("powerup_weapon_shotgun_1", "resources/img/sprites/powerup_weapon_shotgun_1.png",{
+    this.load.spritesheet("powerup_weapon_shotgun_1", "resources/img/sprites/powerup_weapon_shotgun_1.png", {
       frameWidth: 32,
       frameHeight: 32
     });
@@ -123,11 +127,11 @@ class SceneBoot extends Phaser.Scene {
     });
 
     //MUSICA
-    this.load.audio('maintheme',"resources/sounds/music/main_theme.mp3");
-    this.load.audio('beam_sound',["resources/sounds/sound_effects/beam.mp3", "resources/sounds/sound_effects/beam.ogg"]);
-    this.load.audio('explosion_sound',["resources/sounds/sound_effects/explosion.mp3", "resources/sounds/sound_effects/explosion.ogg"]);
-    this.load.audio('powerUp_sound',["resources/sounds/sound_effects/powerUp.mp3", "resources/sounds/sound_effects/powerUp.ogg"]);
-    this.load.audio('playerHit_sound',"resources/sounds/sound_effects/Player_Hit.wav");
+    this.load.audio('maintheme', "resources/sounds/music/main_theme.mp3");
+    this.load.audio('beam_sound', ["resources/sounds/sound_effects/beam.mp3", "resources/sounds/sound_effects/beam.ogg"]);
+    this.load.audio('explosion_sound', ["resources/sounds/sound_effects/explosion.mp3", "resources/sounds/sound_effects/explosion.ogg"]);
+    this.load.audio('powerUp_sound', ["resources/sounds/sound_effects/powerUp.mp3", "resources/sounds/sound_effects/powerUp.ogg"]);
+    this.load.audio('playerHit_sound', "resources/sounds/sound_effects/Player_Hit.wav");
 
   }
 
@@ -218,10 +222,99 @@ class SceneBoot extends Phaser.Scene {
     //Adding a sound Manager
     this.soundManager = new SoundManager(this);
 
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    //                         Server Conection Setup                        //
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+
+    var para = document.createElement('p');
+    document.body.appendChild(para);
+    para.textContent = "PLAYERS ONLINE: 0";
+    clientParameters.playerName = prompt('YOUR NAME');
+
+
+    //Lista que contiene los nombres de los jugadores conectados al servidor
+    var playerNames = [];
+    for (var s = 0; s < 10; s++) {
+      playerNames[s] = document.createElement('p');
+      document.body.appendChild(playerNames[s]);
+    }
+
+    var serverResponse;
+    $.ajax({
+      url: "http://127.0.0.1:8080/players",
+      method: "POST",
+      contentType: "application/json; charset=utf-8",
+      data: "{\"connected\":true}",
+      context: this
+    }).done(function(data) {
+
+      clientParameters.id = data.id;
+
+      //Maintain Conexion With Server
+      window.setInterval(function() {
+        $.ajax({
+          url: "http://127.0.0.1:8080/players/" + clientParameters.id,
+          method: "PUT",
+          contentType: "application/json; charset=utf-8",
+          data: "{\"connected\":true}",
+          context: this
+        }).fail(function() {
+          this.scene.launch("SceneDisconnected");
+        })
+      }.bind(this), 100)
+
+      //this.intervalID = window.setInterval(this.retrieve_rate.bind(this), this.INTERVAL);
+
+      //Update Player Count
+      window.setInterval(function() {
+        $.ajax({
+          url: "http://127.0.0.1:8080/players/connected"
+        }).done(function(data) {
+          para.textContent = "PLAYERS ONLINE: " + data;
+        });
+      }, 600)
+
+      //Update Player Names
+      window.setInterval(function() {
+        $.ajax({
+          url: "http://127.0.0.1:8080/players/playerNames"
+        }).done(function(data) {
+          for (var i = 0; i < data.length; i++) {
+            if (playerNames[i] != undefined) {
+              playerNames[i].textContent = data[i];
+            }
+          }
+        });
+      }, 600)
+
+      $.ajax({
+        url: "http://127.0.0.1:8080/players/name",
+        method: "POST",
+        contentType: "application/json; charset=utf-8",
+
+        data: JSON.stringify({
+          id: clientParameters.id,
+          name: clientParameters.playerName
+        })
+      }).done(function(data) {
+        console.log("name: " + data.name);
+        console.log("id: " + clientParameters.id)
+      });
+
+    }).fail(function() {
+      this.scene.launch("SceneDisconnected");
+    });
+
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+
     this.cameras.main.once('camerafadeoutcomplete', function() {
       eventSystem.emit("PlaySound_MainTheme");
-      this.scene.sleep("SceneBoot");
-      this.scene.start("SceneTitleScreen");
+      this.scene.launch("SceneTitleScreen");
     }, this);
 
   }
