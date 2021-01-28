@@ -273,6 +273,9 @@ class SceneBoot extends Phaser.Scene {
           url: "http://127.0.0.1:8080/players/connected"
         }).done(function(data) {
           para.textContent = "PLAYERS ONLINE: " + data;
+          if(data == 1){
+            isHost = true;
+          }
         });
       }, 600)
 
@@ -302,7 +305,7 @@ class SceneBoot extends Phaser.Scene {
         console.log("name: " + data.name);
         console.log("id: " + clientParameters.id)
       });
-      
+
     }).fail(function() {
       this.scene.launch("SceneDisconnected");
     });
