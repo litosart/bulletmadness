@@ -233,6 +233,12 @@ class SceneBoot extends Phaser.Scene {
     para.textContent = "PLAYERS ONLINE: 0";
     clientParameters.playerName = prompt('YOUR NAME');
 
+    //<input type="text" id="username" />
+    //clientParameters.playerName = document.getElementById("username").value;
+
+    //<input type="text" id="p" />
+    //var valor = document.getElementById("texto").value;
+
 
     //Lista que contiene los nombres de los jugadores conectados al servidor
     var playerNames = [];
