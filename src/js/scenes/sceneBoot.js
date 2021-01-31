@@ -231,7 +231,8 @@ class SceneBoot extends Phaser.Scene {
     var para = document.createElement('p');
     document.body.appendChild(para);
     para.textContent = "PLAYERS ONLINE: 0";
-    clientParameters.playerName = prompt('YOUR NAME');
+    //clientParameters.playerName = prompt('YOUR NAME');
+    console.log(clientParameters.playerName);
 
     //<input type="text" id="username" />
     //clientParameters.playerName = document.getElementById("username").value;
