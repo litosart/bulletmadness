@@ -32,12 +32,12 @@ class ScenePreBoot extends Phaser.Scene {
       if(username_string.length<10){
         username_string += e.key;
         //this.blackname = this.add.image(300, 400, 'black');
-        //goblack();
       }
     }
   }
 
   update() {
+    this.blackname = this.add.image(300, 400, 'black');
     this.player_name = this.add.bitmapText(300, 400, "font_default", username_string).setOrigin(0.5);
     //this.player_name.destroy();
     clientParameters.playerName = username_string;
@@ -48,10 +48,4 @@ class ScenePreBoot extends Phaser.Scene {
     //this.player_name.destroy();
     this.blackname = this.add.image(300, 400, 'black');
   }
-
-  goblack() {
-    this.blackname = this.add.image(300, 400, 'black');
-  }
-
-
 }
