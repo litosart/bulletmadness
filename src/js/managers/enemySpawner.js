@@ -10,17 +10,18 @@ class EnemySpawner {
   -SpawnerData (its not strictly necesary)
   */
 
-  constructor(scene, spawnerData, enemyArray) {
+  constructor(scene, spawnerData, enemyArray,websocket) {
     this.scene = scene;
     //References the enemyManager list
     this.enemyList = enemyArray;
     this.spawnerData = spawnerData;
+    this.websocket = websocket;
     this.setupSpawnerLoop();
   }
 
   spawnEnemy() {
     //Creates enemy using the given enemyData
-    var enemy = new Enemy(this.scene, this.spawnerData.enemyData);
+    var enemy = new Enemy(this.scene, this.spawnerData.enemyData,this.websocket,this.spawnerData);
     //Adds enemy to the enemyManagers list
     this.enemyList.push(enemy);
   }
