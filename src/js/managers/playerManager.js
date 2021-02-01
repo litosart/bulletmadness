@@ -23,7 +23,7 @@ class PlayerManager {
     this.scene = scene;
 
     this.gameplayWebSocket = new WebSocket('ws://127.0.0.1:8080/gameplay');
-    this.scene.gameplayWebSocket.close();
+    scene.gameplayWebSocket = this.gameplayWebSocket;
     this.gameplayWebSocket.onopen = function() {
       this.gameplayWebSocket.send(JSON.stringify({
         playerID: clientParameters.id,
