@@ -88,3 +88,6 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 * El host de la partida es el encargado de enviar la posiciÓn de los enemigos al resto de clientes
 * Los clientes crean una "imagen" de los enemigos que se mueve acorde a los datos enviados por el host
 * Este proceso en el que la funcionalidad real de los elementos esta en el host y lo que ve el cliente es una imagen de la consecuencia de esta funcionalidad se repite para todos los websockets.
+
+## **6. Video:**
+[Video](https://drive.google.com/file/d/1-sNwVRZhftPoTVzaBlrHimgOXyTOlvc6/view?usp=sharing)
