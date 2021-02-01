@@ -17,8 +17,11 @@ class PlayerManager {
   serverPlayersIDInGame = [];
 
   spawnPlayers(scene, playerDataList) {
+    //Open connection to server to send beam info
+    this.beamWebSocket = new WebSocket('ws://127.0.0.1:8080/beam');
+
     //Create Client Player
-    this.clientPlayer = new Player(scene, playerDataList.list[scene.sceneData.playerData[0]]);
+    this.clientPlayer = new Player(scene, playerDataList.list[scene.sceneData.playerData[0]], this.beamWebSocket);
     this.clientPlayer.setRandomPosition(1 * config.width / 10, 8 * config.height / 10, 8 * config.width / 10, 1.5 * config.height / 10);
     this.scene = scene;
 
@@ -73,6 +76,18 @@ class PlayerManager {
           this.serverPlayers[i].y = objectMessage.shipYPosition;
         }
       }
+    }.bind(this);
+
+    this.beamWebSocket.onmessage = function(message){
+      //var alreadyAdded = false;
+      console.log("pew pew");
+      var beamMessage = JSON.parse(message.data);
+      // for (var i = 0; i < this.serverPlayersIDInGame.length; i++) {
+      //   if (this.serverPlayersIDInGame[i] == beamMessage.playerID) {
+      //     alreadyAdded = true;
+      //   }
+      // }
+      var beam = new Beam(this.scene, beamMessage.ship, beamMessage.beamData, beamMessage.team);
     }.bind(this);
 
   }
