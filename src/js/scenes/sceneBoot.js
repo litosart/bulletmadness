@@ -106,6 +106,11 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 32
     });
 
+    this.load.spritesheet("shipmodel2", "resources/img/sprites/shipmodel2.png", {
+      frameWidth: 16,
+      frameHeight: 16
+    });
+
     this.load.spritesheet("proyectile_beam_1", "resources/img/sprites/proyectile_beam_1.png", {
       frameWidth: 7,
       frameHeight: 16
@@ -191,6 +196,13 @@ class SceneBoot extends Phaser.Scene {
       repeat: -1,
       yoyo: true
     });
+    this.anims.create({
+      key: "shipmodel2_idle",
+      frames: this.anims.generateFrameNumbers("shipmodel2"),
+      frameRate: 12,
+      repeat: -1,
+      yoyo: true
+    });
 
     this.anims.create({
       key: "proyectile_beam_1_anim",
@@ -231,11 +243,11 @@ class SceneBoot extends Phaser.Scene {
     var para = document.createElement('p');
     document.body.appendChild(para);
     para.textContent = "PLAYERS ONLINE: 0";
-    var para2 = document.createElement('p');
-    document.body.appendChild(para2);
-    para2.textContent = clientParameters.playerName;
+    // var para2 = document.createElement('p');
+    // document.body.appendChild(para2);
+    // para2.textContent = clientParameters.playerName;
     //clientParameters.playerName = prompt('YOUR NAME');
-    console.log(clientParameters.playerName);
+    //console.log(clientParameters.playerName);
 
     //<input type="text" id="username" />
     //clientParameters.playerName = document.getElementById("username").value;

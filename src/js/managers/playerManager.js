@@ -17,8 +17,11 @@ class PlayerManager {
   serverPlayersIDInGame = [];
 
   spawnPlayers(scene, playerDataList) {
+    //Open connection to server to send beam info
+    this.beamWebSocket = new WebSocket('ws://127.0.0.1:8080/beam');
+
     //Create Client Player
-    this.clientPlayer = new Player(scene, playerDataList.list[scene.sceneData.playerData[0]]);
+    this.clientPlayer = new Player(scene, playerDataList.list[scene.sceneData.playerData[0]], this.beamWebSocket);
     this.clientPlayer.setRandomPosition(1 * config.width / 10, 8 * config.height / 10, 8 * config.width / 10, 1.5 * config.height / 10);
     this.scene = scene;
 
@@ -59,7 +62,6 @@ class PlayerManager {
       }
       if (!alreadyAdded) {
         //this.serverPlayers.push(new Player(scene, playerDataList.list[objectMessage.shipID]))
-        console.log("WORKS");
         var newDummyPlayer = new Phaser.GameObjects.Sprite(this.scene,0,0, playerDataList.list[objectMessage.shipID].spriteName)
         newDummyPlayer.setScale(1.5);
         newDummyPlayer.play(playerDataList.list[objectMessage.shipID].idleAnimName);
@@ -76,6 +78,11 @@ class PlayerManager {
       }
     }.bind(this);
 
+    this.beamWebSocket.onmessage = function(message){
+      //var alreadyAdded = false;
+      var beamMessage = JSON.parse(message.data);
+      var beam = new Beam(this.scene, beamMessage.ship, beamMessage.beamData, beamMessage.team);
+    }.bind(this);
   }
 
   setPlayersInput(inputManager) {
