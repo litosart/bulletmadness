@@ -106,6 +106,11 @@ class SceneBoot extends Phaser.Scene {
       frameHeight: 32
     });
 
+    this.load.spritesheet("shipmodel2", "resources/img/sprites/shipmodel2.png", {
+      frameWidth: 16,
+      frameHeight: 16
+    });
+
     this.load.spritesheet("proyectile_beam_1", "resources/img/sprites/proyectile_beam_1.png", {
       frameWidth: 7,
       frameHeight: 16
@@ -188,6 +193,13 @@ class SceneBoot extends Phaser.Scene {
       key: "ship_player_3_idle",
       frames: this.anims.generateFrameNumbers("ship_player_3"),
       frameRate: 25,
+      repeat: -1,
+      yoyo: true
+    });
+    this.anims.create({
+      key: "shipmodel2_idle",
+      frames: this.anims.generateFrameNumbers("shipmodel2"),
+      frameRate: 12,
       repeat: -1,
       yoyo: true
     });
