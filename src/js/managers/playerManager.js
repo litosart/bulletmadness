@@ -26,6 +26,7 @@ class PlayerManager {
     this.scene = scene;
 
     this.gameplayWebSocket = new WebSocket('ws://127.0.0.1:8080/gameplay');
+    scene.gameplayWebSocket = this.gameplayWebSocket;
     this.gameplayWebSocket.onopen = function() {
       this.gameplayWebSocket.send(JSON.stringify({
         playerID: clientParameters.id,
@@ -84,7 +85,6 @@ class PlayerManager {
       var beamMessage = JSON.parse(message.data);
       var beam = new Beam(this.scene, beamMessage.ship, beamMessage.beamData, beamMessage.team);
     }.bind(this);
-
   }
 
   setPlayersInput(inputManager) {
