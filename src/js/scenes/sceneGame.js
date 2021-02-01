@@ -2,7 +2,6 @@ class SceneGame extends Phaser.Scene {
 
   constructor() {
     super("SceneGame");
-    this.beamsWebSocket = new WebSocket('ws://127.0.0.1:8080/bullets');
   }
 
   setupSurvivalSpawners() {
@@ -99,6 +98,6 @@ class SceneGame extends Phaser.Scene {
     this.playerManager.update();
     this.enemyManager.update();
     this.enviorementManager.update(1);
-    
+
   }
 }
