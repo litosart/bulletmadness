@@ -37,7 +37,6 @@ class EnemyShipsDataContainer {
     data.spriteName = "shipmodel2";
     data.idleAnimName = "shipmodel2_idle";
     data.points = 15;
-    data.weaponID = 1;
     data.startingHealth = 15;
     this.list.push(data);
 
