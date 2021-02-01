@@ -2,7 +2,6 @@ class SceneGame extends Phaser.Scene {
 
   constructor() {
     super("SceneGame");
-    this.beamsWebSocket = new WebSocket('ws://127.0.0.1:8080/bullets');
   }
 
   setupSurvivalSpawners() {
@@ -24,6 +23,13 @@ class SceneGame extends Phaser.Scene {
     spawnerData.ID = 3;
     spawnerData.enemyData = enemyShipsDataContainer.list[3];
     spawnerData.spawnDelay = 500;
+    spawnerData.loop = true;
+    this.enemyManager.setupSpawner(spawnerData);
+
+    var spawnerData = new SpawnerData();
+    spawnerData.ID = 4;
+    spawnerData.enemyData = enemyShipsDataContainer.list[4];
+    spawnerData.spawnDelay = 2000;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
   }
@@ -75,9 +81,16 @@ class SceneGame extends Phaser.Scene {
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
+    var spawnerData = new SpawnerData();
+    spawnerData.ID = 4;
+    spawnerData.enemyData = enemyShipsDataContainer.list[4];
+    spawnerData.spawnDelay = 2000;
+    spawnerData.loop = true;
+    this.enemyManager.setupSpawner(spawnerData);
+
     //ADD MORE DIFFICULTY
     this.spawnerLoopConfig = {
-      delay: 5000,
+      delay: 15250,
       loop: true,
       callback: this.setupSurvivalSpawners,
       callbackScope: this
@@ -99,6 +112,6 @@ class SceneGame extends Phaser.Scene {
     this.playerManager.update();
     this.enemyManager.update();
     this.enviorementManager.update(1);
-    
+
   }
 }

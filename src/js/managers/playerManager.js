@@ -62,7 +62,6 @@ class PlayerManager {
       }
       if (!alreadyAdded) {
         //this.serverPlayers.push(new Player(scene, playerDataList.list[objectMessage.shipID]))
-        console.log("WORKS");
         var newDummyPlayer = new Phaser.GameObjects.Sprite(this.scene,0,0, playerDataList.list[objectMessage.shipID].spriteName)
         newDummyPlayer.setScale(1.5);
         newDummyPlayer.play(playerDataList.list[objectMessage.shipID].idleAnimName);
@@ -81,7 +80,6 @@ class PlayerManager {
 
     this.beamWebSocket.onmessage = function(message){
       //var alreadyAdded = false;
-      console.log("pew pew");
       var beamMessage = JSON.parse(message.data);
       var beam = new Beam(this.scene, beamMessage.ship, beamMessage.beamData, beamMessage.team);
     }.bind(this);
