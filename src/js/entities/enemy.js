@@ -1,10 +1,14 @@
 class Enemy extends Phaser.GameObjects.Sprite {
 
-  constructor(scene, enemyData) {
+  constructor(scene, enemyData,websocket,spawnerData) {
 
     super(scene, Phaser.Math.Between(0, config.width), 0, "ship1");
+    this.websocket = websocket;
     this.scene = scene;
     this.team = 1;
+    this.spawnerData = spawnerData;
+    this.ID = this.scene.lastEnemyID;
+    this.scene.lastEnemyID++;
 
     //Setups Enemy Data
     this.enemyData = enemyData;
@@ -43,6 +47,12 @@ class Enemy extends Phaser.GameObjects.Sprite {
 
   update() {
     this.checkOutOfBounds();
+    this.websocket.send(JSON.stringify({
+      enemyID: this.ID,
+      shipID: this.spawnerData.ID,
+      shipXPosition: this.x,
+      shipYPosition: this.y
+    }));
   }
 
   shoot() {
@@ -50,7 +60,9 @@ class Enemy extends Phaser.GameObjects.Sprite {
   }
 
   onDestroy(){
-    //eventSystem.emit("EnemyHit_UpdateScore",this.points);
+    //eventSystem.emit("EnemyHit_UpdateScore",this.points);ç
+    this.x = 99999;
+    this.y = 99999;
     this.shootLoop.remove(false);
   }
 

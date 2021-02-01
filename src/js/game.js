@@ -14,6 +14,7 @@ const config = {
   }
 };
 
+var isHost = false;
 //Event System Creation
 const eventSystem = new Phaser.Events.EventEmitter();
 
