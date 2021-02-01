@@ -199,7 +199,7 @@ class SceneBoot extends Phaser.Scene {
     this.anims.create({
       key: "shipmodel2_idle",
       frames: this.anims.generateFrameNumbers("shipmodel2"),
-      frameRate: 12,
+      frameRate: 10,
       repeat: -1,
       yoyo: true
     });

@@ -25,6 +25,13 @@ class SceneGame extends Phaser.Scene {
     spawnerData.spawnDelay = 500;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
+
+    var spawnerData = new SpawnerData();
+    spawnerData.ID = 4;
+    spawnerData.enemyData = enemyShipsDataContainer.list[4];
+    spawnerData.spawnDelay = 2000;
+    spawnerData.loop = true;
+    this.enemyManager.setupSpawner(spawnerData);
   }
 
   create(sceneData) {
@@ -71,6 +78,13 @@ class SceneGame extends Phaser.Scene {
     spawnerData.ID = 3;
     spawnerData.enemyData = enemyShipsDataContainer.list[3];
     spawnerData.spawnDelay = 500;
+    spawnerData.loop = true;
+    this.enemyManager.setupSpawner(spawnerData);
+
+    var spawnerData = new SpawnerData();
+    spawnerData.ID = 4;
+    spawnerData.enemyData = enemyShipsDataContainer.list[4];
+    spawnerData.spawnDelay = 2000;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
