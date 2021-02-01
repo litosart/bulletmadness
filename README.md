@@ -28,6 +28,7 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
   2. Diagrama de navegación
   3. Diagrama de clases
   4. Instrucciones para ejecutar la aplicación
+  5. Implementación Websockets
 
 ## **1. Capturas del juego**
 
@@ -76,3 +77,14 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 * Paso 4: Ejecutar la aplicación BulletmadnessApplication.
 
 * El cliente se conectará al servidor con la url: http://127.0.0.1:8080/
+* El primer jugador que seleccione nave y se meta a la pantalla de juego sera el host de la partida
+* Si el host se desconecta o muere la partida se terminara y se tendran que cerrar todos los clientes y volver a repetir los pasos de ejecucion.
+
+## **5. Implementación Websockets:**
+* Se han usado los siguientes websockets en el juego:
+* Gameplay : Encargado de sincronizar la posicion de los jugadores entre todos los clientes.
+* Beam : Encargado de sincronizar la posición de las balas de los jugadores.
+* Enemies : Encargado de sincronizar la posición y estado de los enemigos.
+* El host de la partida es el encargado de enviar la posiciÓn de los enemigos al resto de clientes
+* Los clientes crean una "imagen" de los enemigos que se mueve acorde a los datos enviados por el host
+* Este proceso en el que la funcionalidad real de los elementos esta en el host y lo que ve el cliente es una imagen de la consecuencia de esta funcionalidad se repite para todos los websockets.
