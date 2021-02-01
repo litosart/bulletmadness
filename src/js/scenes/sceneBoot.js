@@ -243,11 +243,11 @@ class SceneBoot extends Phaser.Scene {
     var para = document.createElement('p');
     document.body.appendChild(para);
     para.textContent = "PLAYERS ONLINE: 0";
-    var para2 = document.createElement('p');
-    document.body.appendChild(para2);
-    para2.textContent = clientParameters.playerName;
+    // var para2 = document.createElement('p');
+    // document.body.appendChild(para2);
+    // para2.textContent = clientParameters.playerName;
     //clientParameters.playerName = prompt('YOUR NAME');
-    console.log(clientParameters.playerName);
+    //console.log(clientParameters.playerName);
 
     //<input type="text" id="username" />
     //clientParameters.playerName = document.getElementById("username").value;
@@ -295,6 +295,9 @@ class SceneBoot extends Phaser.Scene {
           url: "http://127.0.0.1:8080/players/connected"
         }).done(function(data) {
           para.textContent = "PLAYERS ONLINE: " + data;
+          if(data == 1){
+            isHost = true;
+          }
         });
       }, 600)
 

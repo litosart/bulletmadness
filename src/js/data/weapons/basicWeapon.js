@@ -16,8 +16,20 @@ class BasicWeapon {
       //Instantiate Beam
       var beam = new Beam(this.scene, this.ship, this.beamData,this.team);
 
+      if (this.team == 0){
+        this.ship.beamWebSocket.send(JSON.stringify({
+          speedX: beam.body.velocity.x,
+          speedY: beam.body.velocity.y,
+          beamRotation: beam.rotation,
+          ship: this.ship,
+          beamData: this.beamData,
+          team: this.team
+        }));
+      }
+
       //Raise Player_Shoot event
       eventSystem.emit("PlaySound_Player_Shoot");
+      
       //Setup Shoot Cooldown Timer
       this.startCooldownTimer();
     }

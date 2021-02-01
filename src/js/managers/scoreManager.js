@@ -47,6 +47,7 @@ class ScoreManager {
       //Scene Fade Out
       this.scene.cameras.main.fadeOut(500);
       this.scene.cameras.main.once('camerafadeoutcomplete', function() {
+        this.scene.gameplayWebSocket.close();
         this.scene.scene.start("SceneLevelEndOverview",{score:this.score});
       }, this);
     }
