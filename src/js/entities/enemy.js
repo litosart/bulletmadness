@@ -56,7 +56,7 @@ class Enemy extends Phaser.GameObjects.Sprite {
   }
 
   shoot() {
-    this.weapon.shoot();
+    //this.weapon.shoot();
   }
 
   onDestroy(){

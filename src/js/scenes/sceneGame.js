@@ -76,7 +76,7 @@ class SceneGame extends Phaser.Scene {
 
     //ADD MORE DIFFICULTY
     this.spawnerLoopConfig = {
-      delay: 5000,
+      delay: 15250,
       loop: true,
       callback: this.setupSurvivalSpawners,
       callbackScope: this
