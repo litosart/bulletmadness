@@ -1,10 +1,11 @@
 class Player extends Phaser.GameObjects.Sprite {
 
-  constructor(scene, playerData) {
+  constructor(scene, playerData, beamWebSocket) {
 
     super(scene, 0, 0, "ship_player_1");
     this.scene = scene;
     this.team = 0;
+    this.beamWebSocket = beamWebSocket;
 
     //Player Variables Setup
     this.playerData = playerData;
@@ -41,6 +42,7 @@ class Player extends Phaser.GameObjects.Sprite {
     this.x = config.height + 200;
     this.alive = false;
     this.body.enable = false;
+    this.beamWebSocket.close();
   }
 
   //Sets the input that will be used to move the sprite
