@@ -82,11 +82,6 @@ class PlayerManager {
       //var alreadyAdded = false;
       console.log("pew pew");
       var beamMessage = JSON.parse(message.data);
-      // for (var i = 0; i < this.serverPlayersIDInGame.length; i++) {
-      //   if (this.serverPlayersIDInGame[i] == beamMessage.playerID) {
-      //     alreadyAdded = true;
-      //   }
-      // }
       var beam = new Beam(this.scene, beamMessage.ship, beamMessage.beamData, beamMessage.team);
     }.bind(this);
 
