@@ -2,22 +2,26 @@ class SceneGame extends Phaser.Scene {
 
   constructor() {
     super("SceneGame");
+    this.beamsWebSocket = new WebSocket('ws://127.0.0.1:8080/bullets');
   }
 
-  setupSurvivalSpawners(){
+  setupSurvivalSpawners() {
     var spawnerData = new SpawnerData();
+    spawnerData.ID = 0;
     spawnerData.enemyData = enemyShipsDataContainer.list[0];
     spawnerData.spawnDelay = 2500;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
     var spawnerData = new SpawnerData();
+    spawnerData.ID = 2;
     spawnerData.enemyData = enemyShipsDataContainer.list[2];
     spawnerData.spawnDelay = 3000;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
     var spawnerData = new SpawnerData();
+    spawnerData.ID = 3;
     spawnerData.enemyData = enemyShipsDataContainer.list[3];
     spawnerData.spawnDelay = 500;
     spawnerData.loop = true;
@@ -25,6 +29,11 @@ class SceneGame extends Phaser.Scene {
   }
 
   create(sceneData) {
+
+    this.lastEnemyID = 0;
+    //Setting Client Parameters
+    clientParameters.playing = true;
+
     //Setup previous Scene Data
     this.sceneData = sceneData;
 
@@ -46,18 +55,21 @@ class SceneGame extends Phaser.Scene {
     this.enemyManager = new EnemyManager(this);
 
     var spawnerData = new SpawnerData();
+    spawnerData.ID = 0;
     spawnerData.enemyData = enemyShipsDataContainer.list[0];
     spawnerData.spawnDelay = 2500;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
     var spawnerData = new SpawnerData();
+    spawnerData.ID = 2;
     spawnerData.enemyData = enemyShipsDataContainer.list[2];
     spawnerData.spawnDelay = 3000;
     spawnerData.loop = true;
     this.enemyManager.setupSpawner(spawnerData);
 
     var spawnerData = new SpawnerData();
+    spawnerData.ID = 3;
     spawnerData.enemyData = enemyShipsDataContainer.list[3];
     spawnerData.spawnDelay = 500;
     spawnerData.loop = true;
@@ -87,6 +99,6 @@ class SceneGame extends Phaser.Scene {
     this.playerManager.update();
     this.enemyManager.update();
     this.enviorementManager.update(1);
-
+    
   }
 }
