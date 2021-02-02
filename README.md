@@ -12,6 +12,9 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
   * José Fernando Medina Talavera - jf.medina.2018@alumnos.urjc.es - [GitHub](https://github.com/Kreithor)
   * Antonio Arian Silaghi - aa.silaghi.2018@alumnos.urjc.es - [GitHub](https://github.com/Anthonys-source)
   * Norman Peter Stankewitz - np.stankewitz.2018@alumnos.urjc.es - [GitHub](https://github.com/NormanSt98)
+  
+## **Video:**
+[![Watch the video](https://img.youtube.com/vi/YLVlOnTlZvg/maxresdefault.jpg)](https://youtu.be/YLVlOnTlZvg)
 
 ## **[Trello](https://trello.com/b/0NaHNGy9/bullet-madness)**
 
@@ -89,5 +92,4 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 * Los clientes crean una "imagen" de los enemigos que se mueve acorde a los datos enviados por el host
 * Este proceso en el que la funcionalidad real de los elementos esta en el host y lo que ve el cliente es una imagen de la consecuencia de esta funcionalidad se repite para todos los websockets.
 
-## **6. Video:**
-[![Watch the video](https://img.youtube.com/vi/YLVlOnTlZvg/maxresdefault.jpg)](https://youtu.be/YLVlOnTlZvg)
+
