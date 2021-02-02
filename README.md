@@ -90,6 +90,4 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 * Este proceso en el que la funcionalidad real de los elementos esta en el host y lo que ve el cliente es una imagen de la consecuencia de esta funcionalidad se repite para todos los websockets.
 
 ## **6. Video:**
-[Video](https://drive.google.com/file/d/1-sNwVRZhftPoTVzaBlrHimgOXyTOlvc6/view?usp=sharing)
-
-<iframe width="2504" height="1161" src="https://www.youtube.com/embed/YLVlOnTlZvg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Watch the video](https://img.youtube.com/vi/YLVlOnTlZvg/maxresdefault.jpg)](https://youtu.be/YLVlOnTlZvg)
