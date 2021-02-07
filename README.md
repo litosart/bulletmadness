@@ -1,6 +1,9 @@
 # Bullet Madness
 GitHub del Grupo 6 de Juegos en Red.
 
+## **JUEGA A BULLET MADNESS EN ITCHIO**
+https://litos-art.itch.io/bullet-madness
+
 ## **Nombre del juego:**
 *Bullet Madness*
 
@@ -12,6 +15,9 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
   * José Fernando Medina Talavera - jf.medina.2018@alumnos.urjc.es - [GitHub](https://github.com/Kreithor)
   * Antonio Arian Silaghi - aa.silaghi.2018@alumnos.urjc.es - [GitHub](https://github.com/Anthonys-source)
   * Norman Peter Stankewitz - np.stankewitz.2018@alumnos.urjc.es - [GitHub](https://github.com/NormanSt98)
+  
+## **Video:**
+[![Watch the video](https://img.youtube.com/vi/YLVlOnTlZvg/maxresdefault.jpg)](https://youtu.be/YLVlOnTlZvg)
 
 ## **[Trello](https://trello.com/b/0NaHNGy9/bullet-madness)**
 
@@ -88,3 +94,5 @@ Bullet Madness es un videojuego del género *bullet hell* con opción cooperativ
 * El host de la partida es el encargado de enviar la posiciÓn de los enemigos al resto de clientes
 * Los clientes crean una "imagen" de los enemigos que se mueve acorde a los datos enviados por el host
 * Este proceso en el que la funcionalidad real de los elementos esta en el host y lo que ve el cliente es una imagen de la consecuencia de esta funcionalidad se repite para todos los websockets.
+
+
